@@ -1,0 +1,79 @@
+specification: API Commons Vocabulary
+specificationVersion: '0.1'
+provider: PropelAuth
+providerId: propelauth
+created: '2026-05-25'
+modified: '2026-05-25'
+description: |
+  Operational and capability vocabulary for the PropelAuth B2B authentication and
+  multi-tenant user management platform. Maps PropelAuth concepts to authentication,
+  identity, and FinOps dimensions.
+tags:
+  - Authentication
+  - Identity
+  - B2B
+  - Multi-Tenancy
+  - MCP
+concepts:
+  - id: user
+    label: User
+    description: A PropelAuth-managed end user that authenticates into a customer's product.
+    related:
+      - https://schema.org/Person
+  - id: organization
+    label: Organization
+    description: A tenant (organization, team, or account) that groups users in a B2B product.
+    related:
+      - https://schema.org/Organization
+  - id: role
+    label: Role
+    description: A named role inside a custom role mapping that grants permissions within an organization.
+  - id: permission
+    label: Permission
+    description: A discrete action right granted by a role.
+  - id: magic-link
+    label: Magic Link
+    description: A signed one-time URL that authenticates a user without a password.
+  - id: api-key
+    label: End-User API Key
+    description: A long-lived bearer token tied to a user or organization for machine-to-machine access.
+  - id: oauth2
+    label: OAuth 2.0 / OIDC
+    description: PropelAuth as an OpenID Connect identity provider for third-party OAuth clients.
+  - id: mcp-server-auth
+    label: MCP Server Authentication
+    description: OAuth 2.1 authorization, dynamic client registration, and token introspection for MCP clients and AI agents.
+  - id: saml
+    label: SAML / Enterprise SSO
+    description: Per-organization SAML and OIDC enterprise SSO with self-service setup.
+  - id: scim
+    label: SCIM Directory Sync
+    description: SCIM provisioning and deprovisioning for enterprise customers (Growth Plus and Enterprise tiers).
+  - id: impersonation
+    label: User Impersonation
+    description: Operator ability to impersonate end users for support, with audit trail and alerting.
+  - id: mfa
+    label: Multi-Factor Authentication
+    description: TOTP-based 2FA enforced per user or per organization.
+dimensions:
+  - id: tenant
+    label: Tenant
+    description: A multi-tenant boundary represented by a PropelAuth organization.
+  - id: environment
+    label: Environment
+    description: PropelAuth test, staging, and production environments are isolated and billed separately.
+  - id: tier
+    label: Plan Tier
+    description: Free, Growth, Growth Plus, Enterprise.
+  - id: scope
+    label: OAuth / MCP Scope
+    description: A named permission included in an OAuth 2.1 or MCP access token.
+mappings:
+  - from: user
+    to: schema:Person
+  - from: organization
+    to: schema:Organization
+  - from: api-key
+    to: https://docs.propelauth.com/reference/api/apikey
+  - from: magic-link
+    to: https://docs.propelauth.com/reference/api/user#create-magic-link

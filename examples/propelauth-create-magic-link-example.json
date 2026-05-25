@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://auth.example.com/api/backend/v1/magic_link",
+    "headers": {
+      "Authorization": "Bearer 1234567890abcdef",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "ada.lovelace@example.com",
+      "redirect_to_url": "https://app.example.com/dashboard",
+      "expires_in_hours": 24,
+      "create_new_user_if_one_doesnt_exist": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "url": "https://auth.example.com/api/auth/magic_link?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+  }
+}

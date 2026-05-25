@@ -1,0 +1,152 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: PropelAuth
+providerId: propelauth
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Authentication
+  - Identity
+  - B2B
+  - Multi-Tenancy
+description: 'Reconciled plans and per-MAU pricing for PropelAuth, the B2B SaaS authentication and multi-tenant
+  user management platform. Source: propelauth.com/pricing.'
+sources:
+  - https://www.propelauth.com/pricing
+plans:
+  - id: propelauth-free
+    name: Free
+    type: tier
+    description: Free tier with 10,000 monthly active users included.
+    entries:
+      - label: Monthly Active Users
+        name: mau-included
+        type: included
+        metric: mau
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Up to 10,000 MAU
+      - name: Unlimited organizations
+      - name: Custom domain
+      - name: 2FA and RBAC
+      - name: Customizable hosted UIs
+      - name: Social login
+      - name: Magic links and password auth
+  - id: propelauth-growth
+    name: Growth
+    type: tier
+    description: For growing B2B SaaS teams that need impersonation, enterprise SSO, staging environments, and MCP / M2M auth.
+    entries:
+      - label: Subscription
+        name: base
+        type: fixed
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '150.00'
+        userMultiplied: false
+      - label: Monthly Active Users
+        name: mau-included
+        type: included
+        metric: mau
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Additional MAU
+        name: mau-overage
+        type: metered
+        metric: mau
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.05'
+        userMultiplied: false
+    elements:
+      - name: Everything in Free
+      - name: User impersonation
+      - name: Unlimited SAML / Enterprise SSO connections
+      - name: Separate staging environment
+      - name: End-user API keys / M2M auth
+      - name: MCP server authentication
+  - id: propelauth-growth-plus
+    name: Growth Plus
+    type: tier
+    description: Adds SCIM directory sync and advanced organization and security controls. Volume discounts apply on MAU overage.
+    entries:
+      - label: Subscription
+        name: base
+        type: fixed
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '500.00'
+        userMultiplied: false
+      - label: Monthly Active Users
+        name: mau-included
+        type: included
+        metric: mau
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Additional MAU
+        name: mau-overage
+        type: metered
+        metric: mau
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.05'
+        userMultiplied: false
+    elements:
+      - name: Everything in Growth
+      - name: SCIM / Directory sync
+      - name: Advanced organization controls
+      - name: Advanced security options
+      - name: Volume discounts on MAU overage
+  - id: propelauth-enterprise
+    name: Enterprise
+    type: custom
+    description: Custom pricing for high-volume customers needing custom SLAs, dedicated support, and tailored contracts.
+    entries:
+      - label: Custom
+        name: custom
+        type: custom
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Contact'
+        userMultiplied: false
+    elements:
+      - name: Volume discounts
+      - name: Tailored contract terms
+      - name: Feature acceleration
+      - name: Custom SLAs
+      - name: Dedicated support
+addOns:
+  - id: propelauth-advanced-api-keys
+    name: Advanced API Keys
+    description: Raises end-user API key validations to 5,000,000 per month.
+  - id: propelauth-data-explorer
+    name: Data Explorer
+    description: Enhanced user and company insights and reporting.

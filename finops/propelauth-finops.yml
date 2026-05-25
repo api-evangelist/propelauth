@@ -1,0 +1,87 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: PropelAuth
+providerId: propelauth
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Identity
+  - FOCUS
+  - Authentication
+  - MAU
+description: |
+  FOCUS-aligned FinOps definition for PropelAuth. PropelAuth is billed as a flat monthly
+  subscription (per tier) with usage overage metered in Monthly Active Users (MAU) at
+  $0.05/MAU after the 10,000-MAU included allotment. End-user API key validations meter
+  separately on the Advanced API Keys add-on (5M validations / month).
+sources:
+  - https://www.propelauth.com/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: PropelAuth
+serviceCategory: Identity
+billingModel:
+  pricingCategory: Subscription with Usage Overage
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  primaryUnit: mau
+  secondaryUnits:
+    - api_key_validation
+    - month
+focusColumns:
+  ServiceName: PropelAuth
+  ServiceCategory: Identity
+  ProviderName: PropelAuth
+  PublisherName: PropelAuth
+  InvoiceIssuerName: PropelAuth
+  PricingCategory: Subscription with Usage Overage
+  PricingUnit: MAU
+  BillingCurrency: USD
+meters:
+  - name: monthly_active_users
+    unit: mau
+    aggregation: sum
+    dimensions:
+      - tier
+      - environment
+    description: Distinct users that authenticated against PropelAuth in a calendar month.
+  - name: api_key_validations
+    unit: validation
+    aggregation: sum
+    dimensions:
+      - environment
+      - api_key_type
+    description: End-user API key validation calls served by the backend API.
+  - name: tier_subscription
+    unit: month
+    aggregation: sum
+    dimensions:
+      - tier
+    description: Flat monthly subscription charge for Growth and Growth Plus tiers.
+tierPlans:
+  - id: free
+    description: $0/month, 10k MAU included
+  - id: growth
+    description: $150/month base, 10k MAU included, $0.05/MAU overage
+  - id: growth-plus
+    description: $500/month base, 10k MAU included, $0.05/MAU overage with volume discounts
+  - id: enterprise
+    description: Custom contracts with negotiated MAU, validations, SCIM, SSO, and SLAs
+addOns:
+  - id: advanced-api-keys
+    description: Adds 5,000,000 end-user API key validations per month
+  - id: data-explorer
+    description: Enhanced user and company insights and reporting

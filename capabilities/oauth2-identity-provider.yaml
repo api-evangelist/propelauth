@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: PropelAuth OAuth2 — Identity Provider
+  description: 'PropelAuth OAuth 2.0 / OpenID Connect identity provider capability. Authorize, exchange tokens,
+    refresh tokens, retrieve user info, log out, and discover the OIDC configuration.'
+  tags:
+  - PropelAuth
+  - OAuth 2.0
+  - OpenID Connect
+  - Identity Provider
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PROPELAUTH_AUTH_URL: PROPELAUTH_AUTH_URL
+    PROPELAUTH_API_KEY: PROPELAUTH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: propelauth-oauth2
+    baseUri: '{{env.PROPELAUTH_AUTH_URL}}'
+    description: PropelAuth OAuth 2.0 / OIDC endpoints.
+    resources:
+    - name: token
+      path: /propelauth/oauth/token
+      operations:
+      - name: token
+        method: POST
+        description: Exchange authorization code or refresh token for tokens.
+        outputRawFormat: json
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: userinfo
+      path: /propelauth/oauth/userinfo
+      operations:
+      - name: userInfo
+        method: GET
+        description: Return OIDC user info for the bearer token.
+        outputRawFormat: json
+    - name: logout
+      path: /api/backend/v1/logout
+      operations:
+      - name: logout
+        method: POST
+        description: Invalidate a refresh token.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: discovery
+      path: /.well-known/openid-configuration
+      operations:
+      - name: oidcDiscovery
+        method: GET
+        description: OpenID Connect discovery document.
+        outputRawFormat: json
+    authentication:
+      type: bearer
+      value: '{{env.PROPELAUTH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: propelauth-oauth2-mcp
+    port: 9094
+    transport: http
+    description: MCP adapter for PropelAuth OAuth 2.0 / OIDC.
+    tools:
+    - name: propelauth-oauth-token
+      description: Exchange OAuth code / refresh token for tokens.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: propelauth-oauth2.token
+      with:
+        body: tools.body
+    - name: propelauth-oauth-userinfo
+      description: Fetch OIDC user info.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: propelauth-oauth2.userInfo
+    - name: propelauth-oauth-logout
+      description: Revoke a refresh token.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: propelauth-oauth2.logout
+      with:
+        body: tools.body
+    - name: propelauth-oidc-discovery
+      description: Fetch the OpenID Connect discovery document.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: propelauth-oauth2.oidcDiscovery

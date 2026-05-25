@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://auth.example.com/api/backend/v1/org/",
+    "headers": {
+      "Authorization": "Bearer 1234567890abcdef",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Acme Inc",
+      "domain": "acme.com",
+      "enable_auto_joining_by_domain": true,
+      "members_must_have_matching_domain": false,
+      "max_users": 100,
+      "custom_role_mapping_name": "B2B SaaS Default"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "org_id": "11111111-2222-3333-4444-555555555555",
+      "name": "Acme Inc",
+      "url_safe_org_name": "acme-inc",
+      "is_saml_configured": false,
+      "max_users": 100,
+      "domain": "acme.com",
+      "domain_autojoin": true,
+      "domain_restrict": false,
+      "can_setup_saml": true,
+      "custom_role_mapping_name": "B2B SaaS Default",
+      "created_at": 1748131200
+    }
+  }
+}

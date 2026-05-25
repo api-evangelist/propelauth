@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/propelauth/propelauth-api-key-schema.json",
+  "title": "PropelAuth End-User API Key",
+  "description": "Schema for a PropelAuth end-user API key resource. The plaintext token is returned only at creation time.",
+  "type": "object",
+  "required": ["api_key_id", "created_at"],
+  "properties": {
+    "api_key_id": { "type": "string", "format": "uuid" },
+    "created_at": { "type": "integer", "description": "Unix seconds." },
+    "expires_at_seconds": { "type": ["integer", "null"], "description": "Unix seconds for expiration, or null for no expiry." },
+    "user_id": { "type": ["string", "null"], "format": "uuid" },
+    "org_id": { "type": ["string", "null"], "format": "uuid" },
+    "type": { "type": "string", "enum": ["personal", "org"] },
+    "metadata": { "type": "object", "additionalProperties": true }
+  }
+}

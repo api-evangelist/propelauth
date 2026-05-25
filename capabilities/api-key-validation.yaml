@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: PropelAuth End-User API Keys — Validation & Management
+  description: 'PropelAuth backend capability for validating end-user API keys at a gateway and for managing their
+    lifecycle (issue, fetch, update, revoke). Self-contained Naftiko capability.'
+  tags:
+  - PropelAuth
+  - API Keys
+  - Authentication
+  - Gateway
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    PROPELAUTH_API_KEY: PROPELAUTH_API_KEY
+    PROPELAUTH_AUTH_URL: PROPELAUTH_AUTH_URL
+capability:
+  consumes:
+  - type: http
+    namespace: propelauth-api-keys
+    baseUri: '{{env.PROPELAUTH_AUTH_URL}}'
+    description: PropelAuth End-User API Key operations.
+    resources:
+    - name: validate
+      path: /api/backend/v1/end_user_api_keys/validate
+      operations:
+      - name: validateApiKey
+        method: POST
+        description: Validate an end-user API key.
+        outputRawFormat: json
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: keys
+      path: /api/backend/v1/end_user_api_keys
+      operations:
+      - name: createApiKey
+        method: POST
+        description: Create an end-user API key.
+        outputRawFormat: json
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: fetchActiveApiKeys
+        method: GET
+        description: List active API keys.
+        outputRawFormat: json
+        inputParameters:
+        - name: page_size
+          in: query
+          type: integer
+        - name: page_number
+          in: query
+          type: integer
+    - name: keyById
+      path: /api/backend/v1/end_user_api_keys/{apiKeyId}
+      operations:
+      - name: deleteApiKey
+        method: DELETE
+        description: Revoke an API key.
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      value: '{{env.PROPELAUTH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: propelauth-api-keys-mcp
+    port: 9092
+    transport: http
+    description: MCP adapter for PropelAuth API key validation and lifecycle.
+    tools:
+    - name: propelauth-validate-api-key
+      description: Validate an end-user API key.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: propelauth-api-keys.validateApiKey
+      with:
+        body: tools.body
+    - name: propelauth-create-api-key
+      description: Create an end-user API key.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: propelauth-api-keys.createApiKey
+      with:
+        body: tools.body
+    - name: propelauth-delete-api-key
+      description: Revoke an end-user API key.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: propelauth-api-keys.deleteApiKey
+      with:
+        apiKeyId: tools.apiKeyId

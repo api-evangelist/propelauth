@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://auth.example.com/api/backend/v1/user/",
+    "headers": {
+      "Authorization": "Bearer 1234567890abcdef",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "ada.lovelace@example.com",
+      "email_confirmed": true,
+      "send_email_to_confirm_email_address": false,
+      "first_name": "Ada",
+      "last_name": "Lovelace",
+      "username": "ada",
+      "properties": {
+        "department": "Engineering"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "user_id": "8e7a9d3c-4e5f-4b1d-9d8b-2a2c8b1d9d8b",
+      "email": "ada.lovelace@example.com",
+      "email_confirmed": true,
+      "username": "ada",
+      "first_name": "Ada",
+      "last_name": "Lovelace",
+      "enabled": true,
+      "locked": false,
+      "mfa_enabled": false,
+      "has_password": false,
+      "created_at": 1748131200,
+      "properties": {
+        "department": "Engineering"
+      }
+    }
+  }
+}

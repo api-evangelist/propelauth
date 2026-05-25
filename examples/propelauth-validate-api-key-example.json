@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://auth.example.com/api/backend/v1/end_user_api_keys/validate",
+    "headers": {
+      "Authorization": "Bearer 1234567890abcdef",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "api_key_token": "pa_sk_abcdef0123456789..."
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "user": {
+        "user_id": "8e7a9d3c-4e5f-4b1d-9d8b-2a2c8b1d9d8b",
+        "email": "ada.lovelace@example.com",
+        "username": "ada"
+      },
+      "org": {
+        "org_id": "11111111-2222-3333-4444-555555555555",
+        "name": "Acme",
+        "user_role": "Admin"
+      },
+      "metadata": {
+        "scope": "read:invoices write:invoices"
+      },
+      "rate_limit": {
+        "allowed": true,
+        "limit": 1000,
+        "remaining": 947,
+        "reset_at_seconds": 1748134800
+      }
+    }
+  }
+}

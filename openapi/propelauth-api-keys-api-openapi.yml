@@ -1,0 +1,324 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys API
+  description: |
+    Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+    require a PropelAuth Backend Integration API key.
+  version: "1.0.0"
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+  - url: https://{authId}.propelauthtest.com
+    description: Test environment
+    variables:
+      authId:
+        default: "0000000000"
+  - url: https://auth.example.com
+    description: Production / Staging custom domain
+security:
+  - BackendApiKey: []
+tags:
+  - name: API Keys
+    description: Create, fetch, update, and delete end-user API keys
+  - name: Validation
+    description: Validate end-user, personal, organization, and imported API keys
+  - name: Usage
+    description: Inspect API key usage statistics
+paths:
+  /api/backend/v1/end_user_api_keys/validate:
+    post:
+      summary: Validate API Key
+      description: |
+        Validate an end-user API key and return the associated user, organization, and metadata.
+        Use this endpoint at your API gateway / middleware layer to gate requests.
+      operationId: validateApiKey
+      tags: [Validation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [api_key_token]
+              properties:
+                api_key_token: { type: string, description: The raw API key the end user presented }
+      responses:
+        '200':
+          description: API key validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyValidationResult'
+        '401':
+          description: API key invalid or expired
+  /api/backend/v1/end_user_api_keys/validate_imported:
+    post:
+      summary: Validate Imported API Key
+      description: Validate an API key previously imported from an external auth system.
+      operationId: validateImportedApiKey
+      tags: [Validation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [api_key_token]
+              properties:
+                api_key_token: { type: string }
+      responses:
+        '200':
+          description: Imported API key validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyValidationResult'
+  /api/backend/v1/end_user_api_keys:
+    get:
+      summary: Fetch Active API Keys
+      description: Page through active API keys for your project.
+      operationId: fetchActiveApiKeys
+      tags: [API Keys]
+      parameters:
+        - name: page_size
+          in: query
+          schema: { type: integer, default: 10 }
+        - name: page_number
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: user_id
+          in: query
+          schema: { type: string, format: uuid }
+        - name: org_id
+          in: query
+          schema: { type: string, format: uuid }
+        - name: user_email
+          in: query
+          schema: { type: string, format: email }
+      responses:
+        '200':
+          description: Page of API keys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyPage'
+    post:
+      summary: Create API Key
+      description: Create a new API key bound to a user, organization, or both.
+      operationId: createApiKey
+      tags: [API Keys]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApiKeyRequest'
+      responses:
+        '201':
+          description: API key created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApiKeyResponse'
+  /api/backend/v1/end_user_api_keys/{apiKeyId}:
+    get:
+      summary: Fetch API Key
+      description: Return the metadata for a single API key. The plaintext token is never returned.
+      operationId: fetchApiKey
+      tags: [API Keys]
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyId'
+      responses:
+        '200':
+          description: API key metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+    patch:
+      summary: Update API Key
+      description: Update mutable fields on an API key (metadata, expiration, etc.).
+      operationId: updateApiKey
+      tags: [API Keys]
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expires_at_seconds: { type: integer }
+                metadata:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: API key updated
+    delete:
+      summary: Delete API Key
+      description: Revoke an API key. Subsequent validations of the token will fail.
+      operationId: deleteApiKey
+      tags: [API Keys]
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyId'
+      responses:
+        '200':
+          description: API key deleted
+  /api/backend/v1/end_user_api_keys/archived:
+    get:
+      summary: Fetch Expired API Keys
+      description: Page through expired and revoked API keys.
+      operationId: fetchExpiredApiKeys
+      tags: [API Keys]
+      parameters:
+        - name: page_size
+          in: query
+          schema: { type: integer, default: 10 }
+        - name: page_number
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: user_id
+          in: query
+          schema: { type: string, format: uuid }
+        - name: org_id
+          in: query
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Page of archived API keys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyPage'
+  /api/backend/v1/end_user_api_keys/usage:
+    get:
+      summary: Fetch API Key Usage
+      description: Return validation counts and usage stats for end-user API keys.
+      operationId: fetchApiKeyUsage
+      tags: [Usage]
+      parameters:
+        - name: start_time_seconds
+          in: query
+          schema: { type: integer }
+        - name: end_time_seconds
+          in: query
+          schema: { type: integer }
+        - name: user_id
+          in: query
+          schema: { type: string, format: uuid }
+        - name: org_id
+          in: query
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Usage report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validations: { type: integer }
+                  cache_hits: { type: integer }
+                  cache_misses: { type: integer }
+  /api/backend/v1/end_user_api_keys/import:
+    post:
+      summary: Import API Key
+      description: Import an existing API key generated by a legacy auth system.
+      operationId: importApiKey
+      tags: [API Keys]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [api_key_token]
+              properties:
+                api_key_token: { type: string }
+                user_id: { type: string, format: uuid }
+                org_id: { type: string, format: uuid }
+                expires_at_seconds: { type: integer }
+                metadata:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '201':
+          description: API key imported
+components:
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer
+  parameters:
+    ApiKeyId:
+      name: apiKeyId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  schemas:
+    ApiKey:
+      type: object
+      properties:
+        api_key_id: { type: string, format: uuid }
+        created_at: { type: integer }
+        expires_at_seconds: { type: integer }
+        metadata:
+          type: object
+          additionalProperties: true
+        user_id: { type: string, format: uuid }
+        org_id: { type: string, format: uuid }
+        type:
+          type: string
+          enum: [personal, org]
+    ApiKeyPage:
+      type: object
+      properties:
+        api_keys:
+          type: array
+          items: { $ref: '#/components/schemas/ApiKey' }
+        total_api_keys: { type: integer }
+        current_page: { type: integer }
+        page_size: { type: integer }
+        has_more_results: { type: boolean }
+    CreateApiKeyRequest:
+      type: object
+      properties:
+        user_id: { type: string, format: uuid }
+        org_id: { type: string, format: uuid }
+        expires_at_seconds: { type: integer }
+        metadata:
+          type: object
+          additionalProperties: true
+    CreateApiKeyResponse:
+      type: object
+      properties:
+        api_key_id: { type: string, format: uuid }
+        api_key_token: { type: string, description: The plaintext API key — returned only once. }
+    ApiKeyValidationResult:
+      type: object
+      properties:
+        user:
+          type: object
+          additionalProperties: true
+        org:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+        rate_limit:
+          type: object
+          properties:
+            allowed: { type: boolean }
+            limit: { type: integer }
+            remaining: { type: integer }
+            reset_at_seconds: { type: integer }

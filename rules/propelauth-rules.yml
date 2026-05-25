@@ -1,0 +1,63 @@
+extends:
+  - spectral:oas
+formats:
+  - oas3
+documentationUrl: https://github.com/api-evangelist/propelauth
+functions: []
+rules:
+  propelauth-info-contact:
+    description: Info object MUST include PropelAuth support contact.
+    severity: error
+    given: "$.info.contact"
+    then:
+      - field: name
+        function: truthy
+      - field: email
+        function: truthy
+      - field: url
+        function: truthy
+  propelauth-server-base-path:
+    description: Server URL MUST point at a PropelAuth Auth URL (custom domain or *.propelauthtest.com).
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://[^/]+(/)?$'
+  propelauth-bearer-auth-required:
+    description: All backend operations MUST require BackendApiKey (bearer) authentication.
+    severity: warn
+    given: "$.security"
+    then:
+      function: truthy
+  propelauth-operation-summary-title-case:
+    description: Every operation summary MUST use Title Case.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^([A-Z][a-zA-Z0-9]*)(\s+(?:[A-Z][a-zA-Z0-9]*|2FA|API|MCP|OAuth2|ID|URL|OIDC|SSO|MFA|SCIM|SAML|By|To|For|In|From|Of|And|Or|The|A|An))*$'
+  propelauth-operation-id-camel-case:
+    description: operationId MUST be camelCase.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+  propelauth-tag-defined:
+    description: Operations MUST reference at least one tag.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+  propelauth-path-backend-prefix:
+    description: Backend API operations MUST live under /api/backend/v1/ (the public PropelAuth backend prefix).
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(/api/backend/v1/|/propelauth/oauth/|/oauth/2\.1/|/\.well-known/)'

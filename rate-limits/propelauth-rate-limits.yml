@@ -1,0 +1,50 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: PropelAuth
+providerId: propelauth
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Authentication
+  - Rate Limiting
+  - API Keys
+  - B2B
+description: |
+  Rate-limit posture for the PropelAuth backend APIs and end-user API key validation surface.
+  PropelAuth does not publish explicit per-tenant request-per-second limits for the backend
+  Integration API; production limits are tuned per customer. The end-user API key product
+  enforces customer-configured per-key rate limits (with a 5,000,000-validation Advanced API
+  Keys add-on) returned in the validation response payload.
+sources:
+  - https://www.propelauth.com/pricing
+  - https://docs.propelauth.com/reference/api/getting-started
+  - https://status.propelauth.com/
+headers:
+  limit: x-ratelimit-limit
+  remaining: x-ratelimit-remaining
+  reset: x-ratelimit-reset
+  retryAfter: retry-after
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+algorithm: token-bucket
+limits:
+  - surface: Backend Integration API
+    scope: per-project
+    rps: contact-support
+    notes: Production rate limits are tuned per customer; staging/test instances enforce conservative limits.
+  - surface: End-user API key validation
+    scope: per-end-user-key
+    rps: customer-configured
+    monthlyValidations: 5000000
+    notes: Customer-configured validation cap per key; Advanced API Keys add-on raises monthly validations.
+  - surface: Magic links
+    scope: per-user
+    rps: enforced
+    notes: PropelAuth throttles magic-link issuance per email to prevent abuse.
+  - surface: MCP OAuth 2.1 token endpoint
+    scope: per-client
+    rps: standard-oauth
+    notes: OAuth 2.1 token endpoint rate limits apply per registered MCP client.

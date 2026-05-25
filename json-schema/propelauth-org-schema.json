@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/propelauth/propelauth-org-schema.json",
+  "title": "PropelAuth Organization",
+  "description": "Schema for a PropelAuth organization (tenant) as returned by the backend Org API.",
+  "type": "object",
+  "required": ["org_id", "name"],
+  "properties": {
+    "org_id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string" },
+    "url_safe_org_name": { "type": "string" },
+    "is_saml_configured": { "type": "boolean" },
+    "is_saml_in_test_mode": { "type": "boolean" },
+    "max_users": { "type": ["integer", "null"] },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "domain": { "type": ["string", "null"] },
+    "domain_autojoin": { "type": "boolean" },
+    "domain_restrict": { "type": "boolean" },
+    "legacy_org_id": { "type": ["string", "null"] },
+    "custom_role_mapping_name": { "type": ["string", "null"] },
+    "can_setup_saml": { "type": "boolean" },
+    "created_at": { "type": "integer", "description": "Unix seconds." }
+  }
+}

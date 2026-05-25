@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth OAuth2 API
+  description: |
+    OAuth 2.0 and OpenID Connect endpoints exposed by your PropelAuth Auth URL. Use these
+    endpoints to integrate PropelAuth as an identity provider for first-party and third-party
+    OAuth clients, including no-code, low-code, and OIDC-aware backends.
+  version: "1.0.0"
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+  - url: https://auth.example.com
+    description: Your PropelAuth Auth URL
+tags:
+  - name: OAuth2
+    description: Authorize, token, refresh, and userinfo endpoints
+  - name: Discovery
+    description: OpenID Connect discovery
+paths:
+  /propelauth/oauth/authorize:
+    get:
+      summary: Authorize
+      description: |
+        Redirect the user-agent to the PropelAuth login page. After successful login PropelAuth
+        redirects back to your `redirect_uri` with a `code` parameter that you exchange at the
+        token endpoint.
+      operationId: authorize
+      tags: [OAuth2]
+      parameters:
+        - name: response_type
+          in: query
+          required: true
+          schema: { type: string, enum: [code] }
+        - name: client_id
+          in: query
+          required: true
+          schema: { type: string }
+        - name: redirect_uri
+          in: query
+          required: true
+          schema: { type: string, format: uri }
+        - name: scope
+          in: query
+          schema: { type: string }
+        - name: state
+          in: query
+          schema: { type: string }
+        - name: code_challenge
+          in: query
+          schema: { type: string }
+        - name: code_challenge_method
+          in: query
+          schema: { type: string, enum: [S256, plain] }
+      responses:
+        '302':
+          description: Redirect to login or to redirect_uri with authorization code
+  /propelauth/oauth/token:
+    post:
+      summary: Token
+      description: |
+        Exchange an authorization code for an access token and refresh token, or exchange an
+        existing refresh token for a fresh access token.
+      operationId: token
+      tags: [OAuth2]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [grant_type, client_id]
+              properties:
+                grant_type:
+                  type: string
+                  enum: [authorization_code, refresh_token]
+                code: { type: string }
+                redirect_uri: { type: string, format: uri }
+                refresh_token: { type: string }
+                client_id: { type: string }
+                client_secret: { type: string }
+                code_verifier: { type: string }
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token: { type: string }
+                  refresh_token: { type: string }
+                  id_token: { type: string }
+                  token_type: { type: string, example: Bearer }
+                  expires_in: { type: integer }
+                  scope: { type: string }
+  /propelauth/oauth/userinfo:
+    get:
+      summary: User Info
+      description: Return the OIDC user info document for the bearer token.
+      operationId: userInfo
+      tags: [OAuth2]
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/backend/v1/logout:
+    post:
+      summary: Logout
+      description: Invalidate the supplied refresh token. Backend-only.
+      operationId: logout
+      tags: [OAuth2]
+      security:
+        - BackendApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token: { type: string }
+      responses:
+        '200':
+          description: Token revoked
+  /.well-known/openid-configuration:
+    get:
+      summary: OpenID Connect Discovery
+      description: OpenID Connect discovery document for your PropelAuth Auth URL.
+      operationId: oidcDiscovery
+      tags: [Discovery]
+      responses:
+        '200':
+          description: Discovery document
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    BackendApiKey:
+      type: http
+      scheme: bearer
