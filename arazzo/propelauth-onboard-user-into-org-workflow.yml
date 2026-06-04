@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Onboard User Into Org
+  summary: Create a user, create an organization, and add the user to it with a role.
+  description: >-
+    The canonical B2B onboarding flow for PropelAuth. The workflow creates a new
+    end user, provisions a fresh tenant organization, and then makes that user a
+    member of the new organization with the supplied role. Every step spells out
+    its request inline — including the Backend Integration API key as a bearer
+    token — so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-user-into-org
+  summary: Create a user and a new org, then add the user to the org with a role.
+  description: >-
+    Provisions a brand new user and a brand new organization, then joins them by
+    adding the user as a member of the organization with the requested role.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    - orgName
+    - role
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address for the new user.
+      orgName:
+        type: string
+        description: Name of the new organization (tenant) to create.
+      role:
+        type: string
+        description: The role to assign the user within the organization (e.g. "Owner").
+  steps:
+  - stepId: createUser
+    description: Create the new end user from the supplied email address.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        email_confirmed: true
+        send_email_to_confirm_email_address: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: createOrg
+    description: Create the new organization that the user will be added to.
+    operationId: createOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.orgName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orgId: $response.body#/org_id
+  - stepId: addUserToOrg
+    description: Add the freshly created user to the new organization with the requested role.
+    operationId: addUserToOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        user_id: $steps.createUser.outputs.userId
+        org_id: $steps.createOrg.outputs.orgId
+        role: $inputs.role
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      addedStatus: $statusCode
+  outputs:
+    userId: $steps.createUser.outputs.userId
+    orgId: $steps.createOrg.outputs.orgId

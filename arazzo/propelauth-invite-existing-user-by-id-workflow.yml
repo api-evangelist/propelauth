@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Invite Existing User By ID
+  summary: Resolve an existing user by email, create a new org, and invite that user in by ID.
+  description: >-
+    Brings an existing user into a brand new tenant. The workflow resolves the
+    user by email to obtain their user ID, creates a new organization, and then
+    invites that existing user into the organization by ID with the supplied
+    role. Each step inlines its request, including the Backend Integration API
+    key as a bearer token, so the flow reads and runs without the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: invite-existing-user-by-id
+  summary: Resolve a user by email, create an org, then invite that user in by ID.
+  description: >-
+    Looks up an existing user by email, provisions a new organization, and
+    invites the resolved user into it by user ID with the requested role.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    - orgName
+    - role
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address of the existing user to invite.
+      orgName:
+        type: string
+        description: Name of the new organization to create.
+      role:
+        type: string
+        description: The role the invited user will hold in the organization.
+  steps:
+  - stepId: findUser
+    description: Resolve the existing user by email to obtain their user ID.
+    operationId: fetchUserByEmail
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: email
+      in: query
+      value: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: createOrg
+    description: Create the organization the user will be invited into.
+    operationId: createOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.orgName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orgId: $response.body#/org_id
+  - stepId: inviteById
+    description: Invite the resolved existing user into the new organization by ID.
+    operationId: inviteUserToOrgById
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        user_id: $steps.findUser.outputs.userId
+        org_id: $steps.createOrg.outputs.orgId
+        role: $inputs.role
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      invitedStatus: $statusCode
+  outputs:
+    userId: $steps.findUser.outputs.userId
+    orgId: $steps.createOrg.outputs.orgId

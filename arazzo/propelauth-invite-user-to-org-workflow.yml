@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Invite User To Org
+  summary: Create an organization, email an invite to a user, and confirm the invite is pending.
+  description: >-
+    Drives the invite-based onboarding path for PropelAuth B2B tenants. The
+    workflow creates a new organization, sends an invitation email for the
+    supplied address with a role, and then reads the pending invites for that
+    organization to confirm the invitation is outstanding. Each step inlines its
+    request, including the Backend Integration API key as a bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: invite-user-to-org
+  summary: Create an org, invite a user by email, then verify the invite is pending.
+  description: >-
+    Creates a tenant organization, emails an invite to the supplied address with
+    the requested role, and reads back the organization's pending invites to
+    confirm the invitation is outstanding.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - orgName
+    - inviteeEmail
+    - role
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      orgName:
+        type: string
+        description: Name of the new organization to create.
+      inviteeEmail:
+        type: string
+        description: Email address to invite into the organization.
+      role:
+        type: string
+        description: The role the invited user will hold once they accept.
+  steps:
+  - stepId: createOrg
+    description: Create the organization the user will be invited into.
+    operationId: createOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.orgName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orgId: $response.body#/org_id
+  - stepId: inviteUser
+    description: Send an invitation email for the supplied address with the requested role.
+    operationId: inviteUserToOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.inviteeEmail
+        org_id: $steps.createOrg.outputs.orgId
+        role: $inputs.role
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: verifyPending
+    description: Read the organization's pending invites to confirm the invitation is outstanding.
+    operationId: fetchPendingInvites
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: org_id
+      in: query
+      value: $steps.createOrg.outputs.orgId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalInvites: $response.body#/total_invites
+      firstInviteeEmail: $response.body#/invites/0/invitee_email
+  outputs:
+    orgId: $steps.createOrg.outputs.orgId
+    totalInvites: $steps.verifyPending.outputs.totalInvites

@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Revoke Pending Invite
+  summary: Find a pending invite for an org and revoke it when one is outstanding.
+  description: >-
+    A find-then-act flow for cleaning up outstanding invitations. The workflow
+    reads the pending invites for an organization and branches: when at least one
+    invite is outstanding it revokes the invite for the supplied email, and when
+    none are pending it ends without acting. Each step inlines its request,
+    including the Backend Integration API key as a bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: revoke-pending-invite
+  summary: Look up an org's pending invites and revoke the one for a given email.
+  description: >-
+    Reads an organization's pending invites and, when at least one is
+    outstanding, revokes the invitation for the supplied email address.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - orgId
+    - inviteeEmail
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      orgId:
+        type: string
+        description: Identifier of the organization whose invite should be revoked.
+      inviteeEmail:
+        type: string
+        description: Email address of the pending invite to revoke.
+  steps:
+  - stepId: findInvites
+    description: Read the organization's pending invites.
+    operationId: fetchPendingInvites
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: org_id
+      in: query
+      value: $inputs.orgId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalInvites: $response.body#/total_invites
+    onSuccess:
+    - name: invitesExist
+      type: goto
+      stepId: revokeInvite
+      criteria:
+      - context: $response.body
+        condition: $.total_invites > 0
+        type: jsonpath
+    - name: noInvites
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.total_invites == 0
+        type: jsonpath
+  - stepId: revokeInvite
+    description: Revoke the pending invite for the supplied email address.
+    operationId: revokePendingOrgInvite
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        org_id: $inputs.orgId
+        invitee_email: $inputs.inviteeEmail
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revokedStatus: $statusCode
+  outputs:
+    totalInvitesBefore: $steps.findInvites.outputs.totalInvites

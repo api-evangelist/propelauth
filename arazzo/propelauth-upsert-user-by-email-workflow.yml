@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Upsert User By Email
+  summary: Look a user up by email and update them if they exist, otherwise create them.
+  description: >-
+    A find-then-act flow that keeps user records idempotent. The workflow looks
+    up a user by email address and branches: when the user already exists it
+    patches their profile, and when no user is found it creates a new one. Each
+    step inlines its request, including the Backend Integration API key as a
+    bearer token, so the flow reads and runs without the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-user-by-email
+  summary: Upsert a single user keyed by email — update if found, create if missing.
+  description: >-
+    Resolves a user by email and either patches the matched user's profile
+    fields or creates a brand new user when no match is found.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    - firstName
+    - lastName
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address used to detect an existing user.
+      firstName:
+        type: string
+        description: First name to write to the user record.
+      lastName:
+        type: string
+        description: Last name to write to the user record.
+  steps:
+  - stepId: findUser
+    description: Look up the user by email address.
+    operationId: fetchUserByEmail
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: email
+      in: query
+      value: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedUserId: $response.body#/user_id
+    onSuccess:
+    - name: userExists
+      type: goto
+      stepId: updateExisting
+      criteria:
+      - context: $response.body
+        condition: $.user_id != null
+        type: jsonpath
+    onFailure:
+    - name: userMissing
+      type: goto
+      stepId: createNew
+      criteria:
+      - condition: $statusCode == 404
+  - stepId: updateExisting
+    description: Patch the matched user's name fields.
+    operationId: updateUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: userId
+      in: path
+      value: $steps.findUser.outputs.matchedUserId
+    requestBody:
+      contentType: application/json
+      payload:
+        first_name: $inputs.firstName
+        last_name: $inputs.lastName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $steps.findUser.outputs.matchedUserId
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createNew
+    description: Create a brand new user when no existing user matched the email.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        first_name: $inputs.firstName
+        last_name: $inputs.lastName
+        email_confirmed: true
+        send_email_to_confirm_email_address: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      userId: $response.body#/user_id
+  outputs:
+    updatedUserId: $steps.updateExisting.outputs.userId
+    createdUserId: $steps.createNew.outputs.userId

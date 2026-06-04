@@ -130,6 +130,48 @@ kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/propelauth-create-and-update-user-workflow.yml
+    name: PropelAuth Create And Update User
+    summary: Create a user, fetch it back, then enrich the profile with a follow-up update.
+  - url: arazzo/propelauth-invite-existing-user-by-id-workflow.yml
+    name: PropelAuth Invite Existing User By ID
+    summary: Resolve an existing user by email, create a new org, and invite that user in by ID.
+  - url: arazzo/propelauth-invite-user-to-org-workflow.yml
+    name: PropelAuth Invite User To Org
+    summary: Create an organization, email an invite to a user, and confirm the invite is pending.
+  - url: arazzo/propelauth-issue-magic-link-for-new-user-workflow.yml
+    name: PropelAuth Issue Magic Link For New User
+    summary: Create a new user, then mint a one-time magic link to sign them in.
+  - url: arazzo/propelauth-migrate-user-with-password-workflow.yml
+    name: PropelAuth Migrate User With Password
+    summary: Import a user from an external auth system, resolve their ID, then attach a legacy password hash.
+  - url: arazzo/propelauth-offboard-user-from-org-workflow.yml
+    name: PropelAuth Offboard User From Org
+    summary: Resolve a user by email, remove them from an org, and confirm the remaining membership.
+  - url: arazzo/propelauth-onboard-user-into-org-workflow.yml
+    name: PropelAuth Onboard User Into Org
+    summary: Create a user, create an organization, and add the user to it with a role.
+  - url: arazzo/propelauth-promote-org-member-workflow.yml
+    name: PropelAuth Promote Org Member
+    summary: Find a user by email, change their role within an org, and confirm the new role.
+  - url: arazzo/propelauth-provision-org-api-key-workflow.yml
+    name: PropelAuth Provision Org API Key
+    summary: Create an organization, issue an API key bound to it, then read the key's metadata back.
+  - url: arazzo/propelauth-provision-org-with-admin-workflow.yml
+    name: PropelAuth Provision Org With Admin
+    summary: Stand up a new organization, create its first admin user, add them, and verify membership.
+  - url: arazzo/propelauth-revoke-pending-invite-workflow.yml
+    name: PropelAuth Revoke Pending Invite
+    summary: Find a pending invite for an org and revoke it when one is outstanding.
+  - url: arazzo/propelauth-rotate-user-api-key-workflow.yml
+    name: PropelAuth Rotate User API Key
+    summary: Find a user's active API key, revoke it, and issue a fresh replacement.
+  - url: arazzo/propelauth-upsert-user-by-email-workflow.yml
+    name: PropelAuth Upsert User By Email
+    summary: Look a user up by email and update them if they exist, otherwise create them.
 - url: https://www.propelauth.com
   type: Portal
 - url: https://docs.propelauth.com

@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Promote Org Member
+  summary: Find a user by email, change their role within an org, and confirm the new role.
+  description: >-
+    A find-then-act role management flow. The workflow resolves a user by email,
+    changes that user's role within the supplied organization, and then lists the
+    organization's members filtered by the new role to confirm the promotion took
+    effect. Each step inlines its request, including the Backend Integration API
+    key as a bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: promote-org-member
+  summary: Resolve a user by email, change their org role, then verify the new role.
+  description: >-
+    Looks up a user by email, changes that user's role within the organization,
+    and reads back the organization's members filtered by the new role to confirm
+    the change.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    - orgId
+    - newRole
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address of the user to promote.
+      orgId:
+        type: string
+        description: Identifier of the organization the user belongs to.
+      newRole:
+        type: string
+        description: The role to assign the user within the organization.
+  steps:
+  - stepId: findUser
+    description: Resolve the user to promote by email address.
+    operationId: fetchUserByEmail
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: email
+      in: query
+      value: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: changeRole
+    description: Change the user's role within the organization.
+    operationId: changeRole
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        user_id: $steps.findUser.outputs.userId
+        org_id: $inputs.orgId
+        role: $inputs.newRole
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: verifyRole
+    description: List org members filtered by the new role to confirm the promotion.
+    operationId: fetchUsersInOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: orgId
+      in: path
+      value: $inputs.orgId
+    - name: role
+      in: query
+      value: $inputs.newRole
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalUsers: $response.body#/total_users
+  outputs:
+    userId: $steps.findUser.outputs.userId
+    totalUsersWithRole: $steps.verifyRole.outputs.totalUsers

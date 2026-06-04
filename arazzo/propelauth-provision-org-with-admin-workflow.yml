@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Provision Org With Admin
+  summary: Stand up a new organization, create its first admin user, add them, and verify membership.
+  description: >-
+    Provisions a complete tenant in one pass: it creates the organization first,
+    then creates the admin user, adds that user to the organization with an
+    administrative role, and finally lists the organization's members to confirm
+    the admin was attached. Every step inlines its request, including the Backend
+    Integration API key as a bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-org-with-admin
+  summary: Create an org, create its admin user, add them, and confirm membership.
+  description: >-
+    Creates a tenant organization, provisions its first administrative user, adds
+    that user to the organization with the supplied admin role, then reads back
+    the organization's user list to verify the admin is present.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - orgName
+    - adminEmail
+    - adminRole
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      orgName:
+        type: string
+        description: Name of the new organization to provision.
+      adminEmail:
+        type: string
+        description: Email address for the admin user.
+      adminRole:
+        type: string
+        description: The administrative role to grant within the org (e.g. "Owner").
+  steps:
+  - stepId: createOrg
+    description: Create the tenant organization.
+    operationId: createOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.orgName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orgId: $response.body#/org_id
+  - stepId: createAdmin
+    description: Create the administrative user for the new organization.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.adminEmail
+        email_confirmed: true
+        send_email_to_confirm_email_address: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: addAdminToOrg
+    description: Add the admin user to the organization with the administrative role.
+    operationId: addUserToOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        user_id: $steps.createAdmin.outputs.userId
+        org_id: $steps.createOrg.outputs.orgId
+        role: $inputs.adminRole
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: verifyMembers
+    description: List the organization's users to confirm the admin was added.
+    operationId: fetchUsersInOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: orgId
+      in: path
+      value: $steps.createOrg.outputs.orgId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalUsers: $response.body#/total_users
+  outputs:
+    orgId: $steps.createOrg.outputs.orgId
+    adminUserId: $steps.createAdmin.outputs.userId
+    totalUsers: $steps.verifyMembers.outputs.totalUsers

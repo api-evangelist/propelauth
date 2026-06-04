@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Offboard User From Org
+  summary: Resolve a user by email, remove them from an org, and confirm the remaining membership.
+  description: >-
+    A find-then-act offboarding flow for B2B tenants. The workflow resolves a
+    user by email, removes that user from the supplied organization, and then
+    lists the organization's remaining members to confirm the removal. Each step
+    inlines its request, including the Backend Integration API key as a bearer
+    token, so the flow reads and runs without the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: offboard-user-from-org
+  summary: Look a user up by email, remove them from an org, then verify the member list.
+  description: >-
+    Resolves a user by email, removes that user from the organization, and reads
+    back the organization's remaining members.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    - orgId
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address of the user to remove from the organization.
+      orgId:
+        type: string
+        description: Identifier of the organization to remove the user from.
+  steps:
+  - stepId: findUser
+    description: Resolve the user to offboard by email address.
+    operationId: fetchUserByEmail
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: email
+      in: query
+      value: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: removeUser
+    description: Remove the resolved user from the organization.
+    operationId: removeUserFromOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        user_id: $steps.findUser.outputs.userId
+        org_id: $inputs.orgId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: verifyMembers
+    description: List the organization's remaining members to confirm the removal.
+    operationId: fetchUsersInOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: orgId
+      in: path
+      value: $inputs.orgId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalUsers: $response.body#/total_users
+  outputs:
+    removedUserId: $steps.findUser.outputs.userId
+    remainingUsers: $steps.verifyMembers.outputs.totalUsers

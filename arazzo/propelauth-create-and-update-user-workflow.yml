@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Create And Update User
+  summary: Create a user, fetch it back, then enrich the profile with a follow-up update.
+  description: >-
+    A straightforward create-read-update flow. The workflow creates a new user,
+    fetches the freshly created record by its user ID to confirm it persisted,
+    and then patches the profile with the supplied display name and metadata.
+    Each step inlines its request, including the Backend Integration API key as a
+    bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-update-user
+  summary: Create a user, fetch it back by ID, then update its profile fields.
+  description: >-
+    Creates a user, reads the record back by user ID to confirm it persisted, and
+    patches the user's name and properties in a follow-up update.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    - firstName
+    - lastName
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address for the new user.
+      firstName:
+        type: string
+        description: First name to set on the user during the update step.
+      lastName:
+        type: string
+        description: Last name to set on the user during the update step.
+  steps:
+  - stepId: createUser
+    description: Create the user from the supplied email.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        email_confirmed: true
+        send_email_to_confirm_email_address: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: fetchUser
+    description: Fetch the newly created user by ID to confirm it persisted.
+    operationId: fetchUserById
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: userId
+      in: path
+      value: $steps.createUser.outputs.userId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/email
+  - stepId: updateUser
+    description: Patch the user's display name fields.
+    operationId: updateUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: userId
+      in: path
+      value: $steps.createUser.outputs.userId
+    requestBody:
+      contentType: application/json
+      payload:
+        first_name: $inputs.firstName
+        last_name: $inputs.lastName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedStatus: $statusCode
+  outputs:
+    userId: $steps.createUser.outputs.userId
+    email: $steps.fetchUser.outputs.email

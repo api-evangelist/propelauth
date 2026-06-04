@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Issue Magic Link For New User
+  summary: Create a new user, then mint a one-time magic link to sign them in.
+  description: >-
+    A passwordless onboarding flow. The workflow creates a new end user and then
+    generates a one-time magic link bound to that user's email, returning a URL
+    you can deliver to sign the user in or finish their signup. Each step inlines
+    its request, including the Backend Integration API key as a bearer token, so
+    the flow reads and runs without the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/propelauth-user-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: issue-magic-link-for-new-user
+  summary: Create a user, then generate a one-time magic link for that user.
+  description: >-
+    Creates a new user and mints a magic link for the same email, returning the
+    sign-in URL.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - email
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      email:
+        type: string
+        description: Email address for the new user and the magic link.
+      redirectToUrl:
+        type: string
+        description: Optional URL to redirect to after the magic link is used.
+  steps:
+  - stepId: createUser
+    description: Create the new user the magic link will sign in.
+    operationId: createUser
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        email_confirmed: true
+        send_email_to_confirm_email_address: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      userId: $response.body#/user_id
+  - stepId: createMagicLink
+    description: Generate a one-time magic link for the user's email.
+    operationId: createMagicLink
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        redirect_to_url: $inputs.redirectToUrl
+        create_new_user_if_one_doesnt_exist: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      magicLinkUrl: $response.body#/url
+  outputs:
+    userId: $steps.createUser.outputs.userId
+    magicLinkUrl: $steps.createMagicLink.outputs.magicLinkUrl

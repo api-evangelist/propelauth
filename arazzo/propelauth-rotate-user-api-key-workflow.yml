@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Rotate User API Key
+  summary: Find a user's active API key, revoke it, and issue a fresh replacement.
+  description: >-
+    A find-then-act key rotation flow. The workflow lists the active API keys for
+    a user, deletes the most recent one to revoke it, and issues a new API key
+    bound to the same user — returning the new plaintext token, which is only
+    shown once. Each step inlines its request, including the Backend Integration
+    API key as a bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: apiKeysApi
+  url: ../openapi/propelauth-api-keys-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rotate-user-api-key
+  summary: Revoke a user's existing API key and issue a fresh one in its place.
+  description: >-
+    Resolves a user's most recent active API key, revokes it, and issues a
+    replacement key bound to the same user.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - userId
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      userId:
+        type: string
+        description: Identifier of the user whose API key should be rotated.
+      expiresAtSeconds:
+        type: integer
+        description: Optional Unix-seconds expiry for the replacement API key.
+  steps:
+  - stepId: findActiveKey
+    description: List the user's active API keys and take the most recent.
+    operationId: fetchActiveApiKeys
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: user_id
+      in: query
+      value: $inputs.userId
+    - name: page_size
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentKeyId: $response.body#/api_keys/0/api_key_id
+  - stepId: revokeKey
+    description: Revoke the user's current API key so the old token stops validating.
+    operationId: deleteApiKey
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: apiKeyId
+      in: path
+      value: $steps.findActiveKey.outputs.currentKeyId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: issueNewKey
+    description: Issue a fresh API key bound to the same user.
+    operationId: createApiKey
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        user_id: $inputs.userId
+        expires_at_seconds: $inputs.expiresAtSeconds
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      newKeyId: $response.body#/api_key_id
+      newKeyToken: $response.body#/api_key_token
+  outputs:
+    revokedKeyId: $steps.findActiveKey.outputs.currentKeyId
+    newKeyId: $steps.issueNewKey.outputs.newKeyId
+    newKeyToken: $steps.issueNewKey.outputs.newKeyToken

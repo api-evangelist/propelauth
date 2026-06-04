@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: PropelAuth Provision Org API Key
+  summary: Create an organization, issue an API key bound to it, then read the key's metadata back.
+  description: >-
+    Provisions programmatic access for a new tenant. The workflow creates an
+    organization, issues an end-user API key bound to that organization, and then
+    fetches the key's metadata by ID to confirm it was created (the plaintext
+    token itself is only returned once, at creation time). Each step inlines its
+    request, including the Backend Integration API key as a bearer token.
+  version: 1.0.0
+sourceDescriptions:
+- name: orgApi
+  url: ../openapi/propelauth-org-api-openapi.yml
+  type: openapi
+- name: apiKeysApi
+  url: ../openapi/propelauth-api-keys-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-org-api-key
+  summary: Create an org, issue an org-scoped API key, then fetch the key metadata.
+  description: >-
+    Creates a tenant organization, issues an API key bound to that organization,
+    and reads back the key's metadata by ID.
+  inputs:
+    type: object
+    required:
+    - backendApiKey
+    - orgName
+    properties:
+      backendApiKey:
+        type: string
+        description: PropelAuth Backend Integration API key presented as a bearer token.
+      orgName:
+        type: string
+        description: Name of the organization to create and bind the API key to.
+      expiresAtSeconds:
+        type: integer
+        description: Optional Unix-seconds expiry for the issued API key.
+  steps:
+  - stepId: createOrg
+    description: Create the organization the API key will be bound to.
+    operationId: createOrg
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.orgName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orgId: $response.body#/org_id
+  - stepId: createApiKey
+    description: Issue an API key bound to the new organization.
+    operationId: createApiKey
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    requestBody:
+      contentType: application/json
+      payload:
+        org_id: $steps.createOrg.outputs.orgId
+        expires_at_seconds: $inputs.expiresAtSeconds
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      apiKeyId: $response.body#/api_key_id
+      apiKeyToken: $response.body#/api_key_token
+  - stepId: fetchApiKey
+    description: Read the issued API key's metadata back by ID.
+    operationId: fetchApiKey
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.backendApiKey"
+    - name: apiKeyId
+      in: path
+      value: $steps.createApiKey.outputs.apiKeyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      keyType: $response.body#/type
+      keyOrgId: $response.body#/org_id
+  outputs:
+    orgId: $steps.createOrg.outputs.orgId
+    apiKeyId: $steps.createApiKey.outputs.apiKeyId
+    apiKeyToken: $steps.createApiKey.outputs.apiKeyToken
