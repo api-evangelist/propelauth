@@ -1,0 +1,669 @@
+{
+  "info": {
+    "_postman_id": "e213d0ff-55f2-437a-9626-b1acb399fa12",
+    "name": "PropelAuth MCP Authentication API",
+    "description": "OAuth 2.1 authorization server endpoints PropelAuth exposes for Model Context Protocol\n(MCP) clients and AI agents. Includes dynamic client registration (RFC 7591), token\nintrospection, and the OAuth 2.1 authorization server metadata endpoint. Use this to\nsecure MCP servers with PropelAuth identities and organization-scoped permissions.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:33.000Z",
+    "updatedAt": "2026-06-05T15:14:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e213d0ff-55f2-437a-9626-b1acb399fa12"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "2.1",
+          "item": [
+            {
+              "name": "authorize",
+              "item": [
+                {
+                  "name": "MCP Authorize",
+                  "id": "1aa9b548-6892-4ad6-84ca-c54d1ddda0c3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/2.1/authorize?response_type=code&client_id=<string>&redirect_uri=<uri>&scope=<string>&state=<string>&code_challenge=<string>&code_challenge_method=S256",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "2.1",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "code_challenge",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "code_challenge_method",
+                          "value": "S256"
+                        }
+                      ]
+                    },
+                    "description": "Begin an OAuth 2.1 authorization code flow with PKCE for an MCP client."
+                  },
+                  "response": [
+                    {
+                      "id": "13dcfa7f-c5e4-4414-b7d1-c116c7c7c81a",
+                      "name": "Redirect to login or to redirect_uri with authorization code",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth/2.1/authorize?response_type=code&client_id=<string>&redirect_uri=<uri>&scope=<string>&state=<string>&code_challenge=<string>&code_challenge_method=S256",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth",
+                            "2.1",
+                            "authorize"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "response_type",
+                              "value": "code"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "code_challenge",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "code_challenge_method",
+                              "value": "S256"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Found",
+                      "code": 302,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:33.000Z",
+                      "updatedAt": "2026-06-05T15:14:33.000Z",
+                      "uid": "35240-13dcfa7f-c5e4-4414-b7d1-c116c7c7c81a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:33.000Z",
+                  "updatedAt": "2026-06-05T15:14:33.000Z",
+                  "uid": "35240-1aa9b548-6892-4ad6-84ca-c54d1ddda0c3"
+                }
+              ],
+              "id": "58a48974-47bf-40e6-ab36-97221cda7f68",
+              "createdAt": "2026-06-05T15:14:33.000Z",
+              "updatedAt": "2026-06-05T15:14:33.000Z",
+              "uid": "35240-58a48974-47bf-40e6-ab36-97221cda7f68"
+            },
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "MCP Token",
+                  "id": "8f7af873-78fb-4c41-a86d-e5fde397dc39",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/2.1/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "2.1",
+                        "token"
+                      ]
+                    },
+                    "description": "Exchange an authorization code for tokens, or refresh an existing token."
+                  },
+                  "response": [
+                    {
+                      "id": "42cfce47-2591-44bd-88ea-634ef48ec9a7",
+                      "name": "Token issued",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "grant_type",
+                              "value": "authorization_code"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code_verifier",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth/2.1/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth",
+                            "2.1",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:33.000Z",
+                      "updatedAt": "2026-06-05T15:14:33.000Z",
+                      "uid": "35240-42cfce47-2591-44bd-88ea-634ef48ec9a7"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:33.000Z",
+                  "updatedAt": "2026-06-05T15:14:33.000Z",
+                  "uid": "35240-8f7af873-78fb-4c41-a86d-e5fde397dc39"
+                }
+              ],
+              "id": "3f0755e9-cfd2-4c4c-ad4c-0a894b211f20",
+              "createdAt": "2026-06-05T15:14:33.000Z",
+              "updatedAt": "2026-06-05T15:14:33.000Z",
+              "uid": "35240-3f0755e9-cfd2-4c4c-ad4c-0a894b211f20"
+            },
+            {
+              "name": "introspect",
+              "item": [
+                {
+                  "name": "MCP Introspect",
+                  "id": "83daefb7-9125-4b85-a724-fc16e199493b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "refresh_token"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/2.1/introspect",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "2.1",
+                        "introspect"
+                      ]
+                    },
+                    "description": "Validate an access token and return associated user, organization, and scope information."
+                  },
+                  "response": [
+                    {
+                      "id": "d734c962-2dde-47a7-9a61-82238bbc0440",
+                      "name": "Introspection result",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "token_type_hint",
+                              "value": "refresh_token"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth/2.1/introspect",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth",
+                            "2.1",
+                            "introspect"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"active\": \"<boolean>\",\n  \"scope\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"sub\": \"<string>\",\n  \"exp\": \"<integer>\",\n  \"iat\": \"<integer>\",\n  \"org_id\": \"<uuid>\",\n  \"org_role\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:33.000Z",
+                      "updatedAt": "2026-06-05T15:14:33.000Z",
+                      "uid": "35240-d734c962-2dde-47a7-9a61-82238bbc0440"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:33.000Z",
+                  "updatedAt": "2026-06-05T15:14:33.000Z",
+                  "uid": "35240-83daefb7-9125-4b85-a724-fc16e199493b"
+                }
+              ],
+              "id": "6f57d10d-a9ff-4f4f-9dcc-16175574299d",
+              "createdAt": "2026-06-05T15:14:33.000Z",
+              "updatedAt": "2026-06-05T15:14:33.000Z",
+              "uid": "35240-6f57d10d-a9ff-4f4f-9dcc-16175574299d"
+            },
+            {
+              "name": "register",
+              "item": [
+                {
+                  "name": "Dynamic Client Registration",
+                  "id": "47b09443-00d8-431d-b0be-8bafa9c1db6b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"client_name\": \"<string>\",\n  \"client_uri\": \"<uri>\",\n  \"token_endpoint_auth_method\": \"none\",\n  \"grant_types\": [\n    \"refresh_token\",\n    \"refresh_token\"\n  ],\n  \"response_types\": [\n    \"code\",\n    \"code\"\n  ],\n  \"scope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/2.1/register",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "2.1",
+                        "register"
+                      ]
+                    },
+                    "description": "Register a new MCP client dynamically. Requires that dynamic client registration is\nenabled for your PropelAuth instance.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "521d91df-a155-4456-8e7a-15f832cdcbe9",
+                      "name": "Client registered",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"client_name\": \"<string>\",\n  \"client_uri\": \"<uri>\",\n  \"token_endpoint_auth_method\": \"none\",\n  \"grant_types\": [\n    \"refresh_token\",\n    \"refresh_token\"\n  ],\n  \"response_types\": [\n    \"code\",\n    \"code\"\n  ],\n  \"scope\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/oauth/2.1/register",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "oauth",
+                            "2.1",
+                            "register"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"client_id_issued_at\": \"<integer>\",\n  \"client_secret_expires_at\": \"<integer>\",\n  \"redirect_uris\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:33.000Z",
+                      "updatedAt": "2026-06-05T15:14:33.000Z",
+                      "uid": "35240-521d91df-a155-4456-8e7a-15f832cdcbe9"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:33.000Z",
+                  "updatedAt": "2026-06-05T15:14:33.000Z",
+                  "uid": "35240-47b09443-00d8-431d-b0be-8bafa9c1db6b"
+                }
+              ],
+              "id": "66c020ba-31cc-4a21-9583-286c381e87cf",
+              "createdAt": "2026-06-05T15:14:33.000Z",
+              "updatedAt": "2026-06-05T15:14:33.000Z",
+              "uid": "35240-66c020ba-31cc-4a21-9583-286c381e87cf"
+            }
+          ],
+          "id": "b498eefd-55a4-4e7e-bd9e-88ad7f48b455",
+          "createdAt": "2026-06-05T15:14:33.000Z",
+          "updatedAt": "2026-06-05T15:14:33.000Z",
+          "uid": "35240-b498eefd-55a4-4e7e-bd9e-88ad7f48b455"
+        }
+      ],
+      "id": "4d001b64-441a-420d-8e69-65f585faa0ff",
+      "createdAt": "2026-06-05T15:14:33.000Z",
+      "updatedAt": "2026-06-05T15:14:33.000Z",
+      "uid": "35240-4d001b64-441a-420d-8e69-65f585faa0ff"
+    },
+    {
+      "name": ".well-known",
+      "item": [
+        {
+          "name": "oauth-authorization-server",
+          "item": [
+            {
+              "name": "oauth",
+              "item": [
+                {
+                  "name": "2.1",
+                  "item": [
+                    {
+                      "name": "OAuth 2.1 Authorization Server Metadata",
+                      "id": "940e4f32-202e-4b42-ab4d-260423b49c27",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/.well-known/oauth-authorization-server/oauth/2.1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ".well-known",
+                            "oauth-authorization-server",
+                            "oauth",
+                            "2.1"
+                          ]
+                        },
+                        "description": "OAuth 2.1 authorization server metadata document, including supported scopes, grant\ntypes, response types, and PKCE methods.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "24d6a3d9-1c6d-44c1-8662-813454ab9823",
+                          "name": "Metadata document",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/.well-known/oauth-authorization-server/oauth/2.1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ".well-known",
+                                "oauth-authorization-server",
+                                "oauth",
+                                "2.1"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"issuer\": \"<uri>\",\n  \"authorization_endpoint\": \"<uri>\",\n  \"token_endpoint\": \"<uri>\",\n  \"introspection_endpoint\": \"<uri>\",\n  \"registration_endpoint\": \"<uri>\",\n  \"scopes_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grant_types_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"code_challenge_methods_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:33.000Z",
+                          "updatedAt": "2026-06-05T15:14:33.000Z",
+                          "uid": "35240-24d6a3d9-1c6d-44c1-8662-813454ab9823"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:33.000Z",
+                      "updatedAt": "2026-06-05T15:14:33.000Z",
+                      "uid": "35240-940e4f32-202e-4b42-ab4d-260423b49c27"
+                    }
+                  ],
+                  "id": "ce887c6f-4545-43dd-a1a7-a3df376e28cc",
+                  "createdAt": "2026-06-05T15:14:33.000Z",
+                  "updatedAt": "2026-06-05T15:14:33.000Z",
+                  "uid": "35240-ce887c6f-4545-43dd-a1a7-a3df376e28cc"
+                }
+              ],
+              "id": "06d25005-3183-40b1-8e12-44b20c70602c",
+              "createdAt": "2026-06-05T15:14:33.000Z",
+              "updatedAt": "2026-06-05T15:14:33.000Z",
+              "uid": "35240-06d25005-3183-40b1-8e12-44b20c70602c"
+            }
+          ],
+          "id": "97ef20d5-fed5-4baa-9bb6-02287c0d60a8",
+          "createdAt": "2026-06-05T15:14:33.000Z",
+          "updatedAt": "2026-06-05T15:14:33.000Z",
+          "uid": "35240-97ef20d5-fed5-4baa-9bb6-02287c0d60a8"
+        }
+      ],
+      "id": "04a9997b-c506-448d-b95d-6776bf709e32",
+      "createdAt": "2026-06-05T15:14:33.000Z",
+      "updatedAt": "2026-06-05T15:14:33.000Z",
+      "uid": "35240-04a9997b-c506-448d-b95d-6776bf709e32"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://auth.example.com"
+    }
+  ]
+}

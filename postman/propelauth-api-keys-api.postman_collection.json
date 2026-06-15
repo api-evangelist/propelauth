@@ -1,0 +1,1236 @@
+{
+  "info": {
+    "_postman_id": "e05d28ed-10f7-4dd2-a2c1-f1f6e9d29f8b",
+    "name": "PropelAuth End-User API Keys API",
+    "description": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:30.000Z",
+    "updatedAt": "2026-06-05T15:14:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e05d28ed-10f7-4dd2-a2c1-f1f6e9d29f8b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "backend",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "end_user_api_keys",
+                  "item": [
+                    {
+                      "name": "validate",
+                      "item": [
+                        {
+                          "name": "Validate API Key",
+                          "id": "a9e54596-a32b-4687-a296-d3bc80a5206b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"api_key_token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/validate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                "validate"
+                              ]
+                            },
+                            "description": "Validate an end-user API key and return the associated user, organization, and metadata.\nUse this endpoint at your API gateway / middleware layer to gate requests.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "0f888afe-efce-4644-a7f3-87caa1e3b929",
+                              "name": "API key validated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_key_token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/validate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    "validate"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"user\": {\n    \"eacd\": -57900679.920546286\n  },\n  \"org\": {\n    \"laborum_c\": false\n  },\n  \"metadata\": {\n    \"dolore_df\": false,\n    \"eiusmod_53d\": 58479998,\n    \"consequat5\": -63198016.76206085,\n    \"officia9d3\": 28087809\n  },\n  \"rate_limit\": {\n    \"allowed\": \"<boolean>\",\n    \"limit\": \"<integer>\",\n    \"remaining\": \"<integer>\",\n    \"reset_at_seconds\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-0f888afe-efce-4644-a7f3-87caa1e3b929"
+                            },
+                            {
+                              "id": "f618d582-ee0d-450f-a03b-c2e4bbe11d98",
+                              "name": "API key invalid or expired",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_key_token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/validate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    "validate"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-f618d582-ee0d-450f-a03b-c2e4bbe11d98"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-a9e54596-a32b-4687-a296-d3bc80a5206b"
+                        }
+                      ],
+                      "id": "f5e088f7-633f-4e37-a75e-650bce15a147",
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-f5e088f7-633f-4e37-a75e-650bce15a147"
+                    },
+                    {
+                      "name": "validate_imported",
+                      "item": [
+                        {
+                          "name": "Validate Imported API Key",
+                          "id": "56ad1c79-381e-477b-9df1-80021521a578",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"api_key_token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/validate_imported",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                "validate_imported"
+                              ]
+                            },
+                            "description": "Validate an API key previously imported from an external auth system."
+                          },
+                          "response": [
+                            {
+                              "id": "780adb57-1bd9-4e6f-85aa-abebca5369f8",
+                              "name": "Imported API key validated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_key_token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/validate_imported",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    "validate_imported"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"user\": {\n    \"eacd\": -57900679.920546286\n  },\n  \"org\": {\n    \"laborum_c\": false\n  },\n  \"metadata\": {\n    \"dolore_df\": false,\n    \"eiusmod_53d\": 58479998,\n    \"consequat5\": -63198016.76206085,\n    \"officia9d3\": 28087809\n  },\n  \"rate_limit\": {\n    \"allowed\": \"<boolean>\",\n    \"limit\": \"<integer>\",\n    \"remaining\": \"<integer>\",\n    \"reset_at_seconds\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-780adb57-1bd9-4e6f-85aa-abebca5369f8"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-56ad1c79-381e-477b-9df1-80021521a578"
+                        }
+                      ],
+                      "id": "834f91cc-d2a2-48e1-8821-06a9c7993d2b",
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-834f91cc-d2a2-48e1-8821-06a9c7993d2b"
+                    },
+                    {
+                      "name": "{apiKeyId}",
+                      "item": [
+                        {
+                          "name": "Fetch API Key",
+                          "id": "903fd883-632b-4c7d-b5ae-d847ba315d2f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a5d0fe69-054d-41e4-8d89-d03795df3983",
+                                  "key": "apiKeyId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Return the metadata for a single API key. The plaintext token is never returned."
+                          },
+                          "response": [
+                            {
+                              "id": "094732ee-2223-4515-b758-e898726f1248",
+                              "name": "API key metadata",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/:apiKeyId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    ":apiKeyId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "apiKeyId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"api_key_id\": \"<uuid>\",\n  \"created_at\": \"<integer>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"Excepteur_26f\": 7766460,\n    \"officiae\": -78446635\n  },\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"type\": \"org\"\n}",
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-094732ee-2223-4515-b758-e898726f1248"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-903fd883-632b-4c7d-b5ae-d847ba315d2f"
+                        },
+                        {
+                          "name": "Update API Key",
+                          "id": "67e5a684-400f-4da8-a968-2bab8e122aa3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"ad_5\": \"dol\",\n    \"cillum_2\": false\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "686a3de0-a4c7-48c9-a2e9-be6bd9aaa551",
+                                  "key": "apiKeyId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update mutable fields on an API key (metadata, expiration, etc.)."
+                          },
+                          "response": [
+                            {
+                              "id": "fffbd502-b250-4227-baef-1ade02711064",
+                              "name": "API key updated",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"ad_5\": \"dol\",\n    \"cillum_2\": false\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/:apiKeyId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    ":apiKeyId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "apiKeyId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-fffbd502-b250-4227-baef-1ade02711064"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-67e5a684-400f-4da8-a968-2bab8e122aa3"
+                        },
+                        {
+                          "name": "Delete API Key",
+                          "id": "fe177191-3268-47f3-9f3d-e388a0769482",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/:apiKeyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                ":apiKeyId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f6ca9b9f-c34d-4c88-92bd-f15e2664984b",
+                                  "key": "apiKeyId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Revoke an API key. Subsequent validations of the token will fail."
+                          },
+                          "response": [
+                            {
+                              "id": "77375856-ce3a-426b-bc23-613021e300f7",
+                              "name": "API key deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/:apiKeyId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    ":apiKeyId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "apiKeyId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-77375856-ce3a-426b-bc23-613021e300f7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-fe177191-3268-47f3-9f3d-e388a0769482"
+                        }
+                      ],
+                      "id": "6819daab-5796-4def-a7a5-782ba920cffa",
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-6819daab-5796-4def-a7a5-782ba920cffa"
+                    },
+                    {
+                      "name": "archived",
+                      "item": [
+                        {
+                          "name": "Fetch Expired API Keys",
+                          "id": "f95f4509-4127-47cd-ae21-cb976522c3fc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/archived?page_size=10&page_number=0&user_id=<uuid>&org_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                "archived"
+                              ],
+                              "query": [
+                                {
+                                  "key": "page_size",
+                                  "value": "10"
+                                },
+                                {
+                                  "key": "page_number",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "user_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "org_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Page through expired and revoked API keys."
+                          },
+                          "response": [
+                            {
+                              "id": "4152876d-d537-43e6-be3b-3ac993cef40b",
+                              "name": "Page of archived API keys",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/archived?page_size=10&page_number=0&user_id=<uuid>&org_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    "archived"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "page_size",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "key": "page_number",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "user_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "org_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"api_keys\": [\n    {\n      \"api_key_id\": \"<uuid>\",\n      \"created_at\": \"<integer>\",\n      \"expires_at_seconds\": \"<integer>\",\n      \"metadata\": {\n        \"amet9\": true,\n        \"sunt_1\": \"laboris in ex\"\n      },\n      \"user_id\": \"<uuid>\",\n      \"org_id\": \"<uuid>\",\n      \"type\": \"personal\"\n    },\n    {\n      \"api_key_id\": \"<uuid>\",\n      \"created_at\": \"<integer>\",\n      \"expires_at_seconds\": \"<integer>\",\n      \"metadata\": {\n        \"enim__8\": false,\n        \"adipisicing_fe8\": \"minim adipisicing commodo ullamco cupidatat\"\n      },\n      \"user_id\": \"<uuid>\",\n      \"org_id\": \"<uuid>\",\n      \"type\": \"personal\"\n    }\n  ],\n  \"total_api_keys\": \"<integer>\",\n  \"current_page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"has_more_results\": \"<boolean>\"\n}",
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-4152876d-d537-43e6-be3b-3ac993cef40b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-f95f4509-4127-47cd-ae21-cb976522c3fc"
+                        }
+                      ],
+                      "id": "00705e24-961b-4afb-8683-04cccc186460",
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-00705e24-961b-4afb-8683-04cccc186460"
+                    },
+                    {
+                      "name": "usage",
+                      "item": [
+                        {
+                          "name": "Fetch API Key Usage",
+                          "id": "6f218373-65b3-43e9-beb4-ad853f56d2ff",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/usage?start_time_seconds=<integer>&end_time_seconds=<integer>&user_id=<uuid>&org_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                "usage"
+                              ],
+                              "query": [
+                                {
+                                  "key": "start_time_seconds",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "end_time_seconds",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "key": "user_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "org_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Return validation counts and usage stats for end-user API keys."
+                          },
+                          "response": [
+                            {
+                              "id": "e3fe915a-4613-4271-a052-72fa2467eed7",
+                              "name": "Usage report",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/usage?start_time_seconds=<integer>&end_time_seconds=<integer>&user_id=<uuid>&org_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    "usage"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "start_time_seconds",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "end_time_seconds",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "user_id",
+                                      "value": "<uuid>"
+                                    },
+                                    {
+                                      "key": "org_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"validations\": \"<integer>\",\n  \"cache_hits\": \"<integer>\",\n  \"cache_misses\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-e3fe915a-4613-4271-a052-72fa2467eed7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-6f218373-65b3-43e9-beb4-ad853f56d2ff"
+                        }
+                      ],
+                      "id": "f6177908-c930-4e98-b175-9611d61773d8",
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-f6177908-c930-4e98-b175-9611d61773d8"
+                    },
+                    {
+                      "name": "import",
+                      "item": [
+                        {
+                          "name": "Import API Key",
+                          "id": "c7d7f44b-52a8-4dd5-bc64-a48cfe2b4ecd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"api_key_token\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"labore73c\": \"officia ipsum veniam\",\n    \"magna_d1\": \"occaecat voluptate Duis veniam\",\n    \"in_04\": -91301318.4061358\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/import",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys",
+                                "import"
+                              ]
+                            },
+                            "description": "Import an existing API key generated by a legacy auth system."
+                          },
+                          "response": [
+                            {
+                              "id": "32c3a4fb-cfc8-4fb5-9efb-19c31bf012e0",
+                              "name": "API key imported",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_key_token\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"labore73c\": \"officia ipsum veniam\",\n    \"magna_d1\": \"occaecat voluptate Duis veniam\",\n    \"in_04\": -91301318.4061358\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys/import",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "end_user_api_keys",
+                                    "import"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:31.000Z",
+                              "updatedAt": "2026-06-05T15:14:31.000Z",
+                              "uid": "35240-32c3a4fb-cfc8-4fb5-9efb-19c31bf012e0"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-c7d7f44b-52a8-4dd5-bc64-a48cfe2b4ecd"
+                        }
+                      ],
+                      "id": "e0ca7a66-6d55-49f2-95dc-8103ff18ec75",
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-e0ca7a66-6d55-49f2-95dc-8103ff18ec75"
+                    },
+                    {
+                      "name": "Fetch Active API Keys",
+                      "id": "b4c1ae40-16ed-4c40-9a6a-7635501a8040",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys?page_size=10&page_number=0&user_id=<uuid>&org_id=<uuid>&user_email=<email>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "end_user_api_keys"
+                          ],
+                          "query": [
+                            {
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page_number",
+                              "value": "0"
+                            },
+                            {
+                              "key": "user_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "org_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "user_email",
+                              "value": "<email>"
+                            }
+                          ]
+                        },
+                        "description": "Page through active API keys for your project."
+                      },
+                      "response": [
+                        {
+                          "id": "18742901-917c-4b9d-9351-63bfb4cb6be5",
+                          "name": "Page of API keys",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys?page_size=10&page_number=0&user_id=<uuid>&org_id=<uuid>&user_email=<email>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys"
+                              ],
+                              "query": [
+                                {
+                                  "key": "page_size",
+                                  "value": "10"
+                                },
+                                {
+                                  "key": "page_number",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "user_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "org_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "user_email",
+                                  "value": "<email>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"api_keys\": [\n    {\n      \"api_key_id\": \"<uuid>\",\n      \"created_at\": \"<integer>\",\n      \"expires_at_seconds\": \"<integer>\",\n      \"metadata\": {\n        \"amet9\": true,\n        \"sunt_1\": \"laboris in ex\"\n      },\n      \"user_id\": \"<uuid>\",\n      \"org_id\": \"<uuid>\",\n      \"type\": \"personal\"\n    },\n    {\n      \"api_key_id\": \"<uuid>\",\n      \"created_at\": \"<integer>\",\n      \"expires_at_seconds\": \"<integer>\",\n      \"metadata\": {\n        \"enim__8\": false,\n        \"adipisicing_fe8\": \"minim adipisicing commodo ullamco cupidatat\"\n      },\n      \"user_id\": \"<uuid>\",\n      \"org_id\": \"<uuid>\",\n      \"type\": \"personal\"\n    }\n  ],\n  \"total_api_keys\": \"<integer>\",\n  \"current_page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"has_more_results\": \"<boolean>\"\n}",
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-18742901-917c-4b9d-9351-63bfb4cb6be5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-b4c1ae40-16ed-4c40-9a6a-7635501a8040"
+                    },
+                    {
+                      "name": "Create API Key",
+                      "id": "708c2601-37d4-41bd-babf-55f2adbf13b2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"in_5c\": false,\n    \"officia_6ed\": 65736425,\n    \"reprehenderit_621\": false\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "end_user_api_keys"
+                          ]
+                        },
+                        "description": "Create a new API key bound to a user, organization, or both."
+                      },
+                      "response": [
+                        {
+                          "id": "33930de5-0580-4f21-b1d4-eeccf8c101cb",
+                          "name": "API key created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"in_5c\": false,\n    \"officia_6ed\": 65736425,\n    \"reprehenderit_621\": false\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/end_user_api_keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "end_user_api_keys"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"api_key_id\": \"<uuid>\",\n  \"api_key_token\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:31.000Z",
+                          "updatedAt": "2026-06-05T15:14:31.000Z",
+                          "uid": "35240-33930de5-0580-4f21-b1d4-eeccf8c101cb"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:31.000Z",
+                      "updatedAt": "2026-06-05T15:14:31.000Z",
+                      "uid": "35240-708c2601-37d4-41bd-babf-55f2adbf13b2"
+                    }
+                  ],
+                  "id": "cde42ab6-3a52-4e71-b013-b5f7bcfcc2c8",
+                  "createdAt": "2026-06-05T15:14:31.000Z",
+                  "updatedAt": "2026-06-05T15:14:31.000Z",
+                  "uid": "35240-cde42ab6-3a52-4e71-b013-b5f7bcfcc2c8"
+                }
+              ],
+              "id": "0a86e5f5-65dc-45c9-98bf-e29a7166340a",
+              "createdAt": "2026-06-05T15:14:31.000Z",
+              "updatedAt": "2026-06-05T15:14:31.000Z",
+              "uid": "35240-0a86e5f5-65dc-45c9-98bf-e29a7166340a"
+            }
+          ],
+          "id": "b9929ea5-240d-46cc-81bb-17f11b4536ba",
+          "createdAt": "2026-06-05T15:14:31.000Z",
+          "updatedAt": "2026-06-05T15:14:31.000Z",
+          "uid": "35240-b9929ea5-240d-46cc-81bb-17f11b4536ba"
+        }
+      ],
+      "id": "e88efbe2-23f7-48df-a735-c2e81fdc5eff",
+      "createdAt": "2026-06-05T15:14:31.000Z",
+      "updatedAt": "2026-06-05T15:14:31.000Z",
+      "uid": "35240-e88efbe2-23f7-48df-a735-c2e81fdc5eff"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "authId",
+      "value": "0000000000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{authId}}.propelauthtest.com"
+    }
+  ]
+}

@@ -1,0 +1,636 @@
+{
+  "item": [
+    {
+      "id": "d8d3cd68-6642-4711-ad7d-70b09e94e661",
+      "name": "MCP OAuth 2.1",
+      "description": {
+        "content": "OAuth 2.1 flows for MCP clients",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58c04752-1b57-48c3-a906-61a6e34d861d",
+          "name": "MCP Authorize",
+          "request": {
+            "name": "MCP Authorize",
+            "description": {
+              "content": "Begin an OAuth 2.1 authorization code flow with PKCE for an MCP client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "2.1",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge_method",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2019f830-4abf-453f-8055-3d986aedb879",
+              "name": "Redirect to login or to redirect_uri with authorization code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "2.1",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "read:user_data tools:execute"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad1ef98c-16a8-4f6f-824f-c5647c27877d",
+          "name": "MCP Token",
+          "request": {
+            "name": "MCP Token",
+            "description": {
+              "content": "Exchange an authorization code for tokens, or refresh an existing token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "2.1",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "code_verifier",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b321a09-526a-4c5a-827c-4c1cc6b9798a",
+              "name": "Token issued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "2.1",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "code_verifier",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 7527,\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59657f04-558b-4d40-b857-d3f512ab3169",
+          "name": "MCP Introspect",
+          "request": {
+            "name": "MCP Introspect",
+            "description": {
+              "content": "Validate an access token and return associated user, organization, and scope information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "2.1",
+                "introspect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "token_type_hint",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bf53f821-d7aa-42c8-be51-64121f006637",
+              "name": "Introspection result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "2.1",
+                    "introspect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": false,\n  \"scope\": \"string\",\n  \"client_id\": \"string\",\n  \"username\": \"string\",\n  \"sub\": \"string\",\n  \"exp\": 180,\n  \"iat\": 5410,\n  \"org_id\": \"c3b94dd0-b819-24b4-28d7-cc2ccd6f531b\",\n  \"org_role\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4f07b048-79b7-4334-b2c7-8c13576ace41",
+      "name": "Dynamic Client Registration",
+      "description": {
+        "content": "RFC 7591 dynamic client registration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2dcfc3f5-cc15-4b29-b600-e384a1f7ff28",
+          "name": "Dynamic Client Registration",
+          "request": {
+            "name": "Dynamic Client Registration",
+            "description": {
+              "content": "Register a new MCP client dynamically. Requires that dynamic client registration is\nenabled for your PropelAuth instance.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "2.1",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"client_name\": \"<string>\",\n  \"client_uri\": \"<uri>\",\n  \"token_endpoint_auth_method\": \"<string>\",\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "772fbc4e-e2e7-4e05-aa3e-ea8d4d352de9",
+              "name": "Client registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "2.1",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"client_name\": \"<string>\",\n  \"client_uri\": \"<uri>\",\n  \"token_endpoint_auth_method\": \"<string>\",\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_id\": \"string\",\n  \"client_secret\": \"string\",\n  \"client_id_issued_at\": 2413,\n  \"client_secret_expires_at\": 7391,\n  \"redirect_uris\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bbadfce8-0363-4c78-97c9-9b8bbeb3610c",
+      "name": "Metadata",
+      "description": {
+        "content": "Authorization server metadata discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b241a8ae-078c-4215-ae42-bb81b1e2d70f",
+          "name": "OAuth 2.1 Authorization Server Metadata",
+          "request": {
+            "name": "OAuth 2.1 Authorization Server Metadata",
+            "description": {
+              "content": "OAuth 2.1 authorization server metadata document, including supported scopes, grant\ntypes, response types, and PKCE methods.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "oauth-authorization-server",
+                "oauth",
+                "2.1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d2b138f-0d60-496a-9d51-46e70c0ee7ec",
+              "name": "Metadata document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "oauth-authorization-server",
+                    "oauth",
+                    "2.1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuer\": \"https://APArmirwBEnyH.ykBHujOukqtcXJ2h,VJX08KeUapY77yZbbQ3ZS0YMYaL8aBQDeVAydVi\",\n  \"authorization_endpoint\": \"https://kurqmJobwpnnDwgcEYURYgxBcrqBWmp.hcgwX7BYHCrvSQ.P8TFCHP3xwHgtmQ-VdlGUguztwx2K5KeGv1jHRDAQGExv\",\n  \"token_endpoint\": \"https://TcEhdMGWeMxVhcrKCzxLZAukmLESkps.lphtl1xQgbIJGHpterq1DK-POVyoa5FYHTKGiKQBqNqnFRRo5kVbBim7eu36qqorU4\",\n  \"introspection_endpoint\": \"https://KZwfYgTeUoFvapVXDxpwcpBgeBG.vxUOOrAqhDaxruH1O4yZPJR3P\",\n  \"registration_endpoint\": \"http://dAbJdlgNDIOmzd.tiJ-fmJxalsbk.-R6SV6GKneGj.QCydamBnxcbRz7\",\n  \"scopes_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"response_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"grant_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code_challenge_methods_supported\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auth.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6350a226-ded5-404d-9f8e-73d9c416c844",
+    "name": "PropelAuth MCP Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OAuth 2.1 authorization server endpoints PropelAuth exposes for Model Context Protocol\n(MCP) clients and AI agents. Includes dynamic client registration (RFC 7591), token\nintrospection, and the OAuth 2.1 authorization server metadata endpoint. Use this to\nsecure MCP servers with PropelAuth identities and organization-scoped permissions.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

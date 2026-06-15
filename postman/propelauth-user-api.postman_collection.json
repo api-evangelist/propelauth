@@ -1,0 +1,2322 @@
+{
+  "info": {
+    "_postman_id": "f61895c8-fd16-4ea5-8ab3-854e76f5dc04",
+    "name": "PropelAuth User API",
+    "description": "Backend REST API for managing users in PropelAuth. Create, fetch, query, update, delete,\ndisable / enable, and migrate users; manage 2FA, sessions, magic links, and access tokens.\nAll endpoints are called server-to-server using a PropelAuth Backend Integration API key\npresented as a Bearer token. The base URL is your PropelAuth Auth URL \u2014 `https://<id>.propelauthtest.com`\nin test environments and your custom domain (e.g. `https://auth.acme.com`) in staging and production.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:27.000Z",
+    "updatedAt": "2026-06-05T15:14:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f61895c8-fd16-4ea5-8ab3-854e76f5dc04"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "backend",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "user",
+                  "item": [
+                    {
+                      "name": "{userId}",
+                      "item": [
+                        {
+                          "name": "email",
+                          "item": [
+                            {
+                              "name": "Update User Email",
+                              "id": "a4e77505-52d5-4791-abfe-170722f546e9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"new_email\": \"<email>\",\n  \"require_email_confirmation\": true\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/email",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "email"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1f8e695f-a945-4f8f-9220-dffa7c6e8f48",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Change a user's email address. Optionally require email verification."
+                              },
+                              "response": [
+                                {
+                                  "id": "891a7dca-ddea-4ca0-89d6-1bfd98d99958",
+                                  "name": "Email updated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"new_email\": \"<email>\",\n  \"require_email_confirmation\": true\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/email",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "email"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-891a7dca-ddea-4ca0-89d6-1bfd98d99958"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-a4e77505-52d5-4791-abfe-170722f546e9"
+                            }
+                          ],
+                          "id": "a4dd1539-52b1-40db-9794-d571d211ff5a",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-a4dd1539-52b1-40db-9794-d571d211ff5a"
+                        },
+                        {
+                          "name": "password",
+                          "item": [
+                            {
+                              "name": "Update User Password",
+                              "id": "0447aa51-856d-441c-99b7-a33ff521f23c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"password\": \"<string>\",\n  \"ask_user_to_update_password_on_login\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/password",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "password"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c0bb92c9-fb89-4f04-9876-c753a6914286",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Programmatically set a user's password."
+                              },
+                              "response": [
+                                {
+                                  "id": "d465b9f9-5741-4173-a604-b8f95559a175",
+                                  "name": "Password updated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"password\": \"<string>\",\n  \"ask_user_to_update_password_on_login\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/password",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "password"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-d465b9f9-5741-4173-a604-b8f95559a175"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-0447aa51-856d-441c-99b7-a33ff521f23c"
+                            }
+                          ],
+                          "id": "483459c8-e69c-4ad0-81b9-8f0046789ea9",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-483459c8-e69c-4ad0-81b9-8f0046789ea9"
+                        },
+                        {
+                          "name": "clear_password",
+                          "item": [
+                            {
+                              "name": "Clear User Password",
+                              "id": "7d88d95a-be16-4284-ad8c-cb7b1f85918b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/clear_password",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "clear_password"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0997cb14-510e-4e19-bd6f-c477ae7b6339",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Remove a user's password, forcing them to reset on next login."
+                              },
+                              "response": [
+                                {
+                                  "id": "39f31472-5357-4370-a1a6-54ddb7be4051",
+                                  "name": "Password cleared",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/clear_password",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "clear_password"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-39f31472-5357-4370-a1a6-54ddb7be4051"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-7d88d95a-be16-4284-ad8c-cb7b1f85918b"
+                            }
+                          ],
+                          "id": "b6996247-97b5-4cb3-80dd-bbaa30899e69",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-b6996247-97b5-4cb3-80dd-bbaa30899e69"
+                        },
+                        {
+                          "name": "disable",
+                          "item": [
+                            {
+                              "name": "Disable User",
+                              "id": "7e3122f0-97c2-484a-a7ac-64c51b273164",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/disable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "disable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "131fc2ca-cbbf-405f-ae69-05bce4dab73d",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Block the user from signing in. Existing sessions are invalidated."
+                              },
+                              "response": [
+                                {
+                                  "id": "26db80cb-bf64-447d-857b-34b3c7fa01b1",
+                                  "name": "User disabled",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/disable",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "disable"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-26db80cb-bf64-447d-857b-34b3c7fa01b1"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-7e3122f0-97c2-484a-a7ac-64c51b273164"
+                            }
+                          ],
+                          "id": "2f3c0d11-4e3f-4588-b0a8-a2482cc581f7",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-2f3c0d11-4e3f-4588-b0a8-a2482cc581f7"
+                        },
+                        {
+                          "name": "enable",
+                          "item": [
+                            {
+                              "name": "Enable User",
+                              "id": "3f2c7544-de71-4e1d-8ec9-02c7da5fecd2",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ae3cd80f-d385-4a02-ad03-2c7e4295a4e9",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Re-enable a previously disabled user."
+                              },
+                              "response": [
+                                {
+                                  "id": "8952fcaf-4656-4a03-80ed-2d39233af3dc",
+                                  "name": "User enabled",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/enable",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "enable"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-8952fcaf-4656-4a03-80ed-2d39233af3dc"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-3f2c7544-de71-4e1d-8ec9-02c7da5fecd2"
+                            }
+                          ],
+                          "id": "7bf55d3e-ff34-4243-bd55-13a8a8ff90f2",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-7bf55d3e-ff34-4243-bd55-13a8a8ff90f2"
+                        },
+                        {
+                          "name": "disable_2fa",
+                          "item": [
+                            {
+                              "name": "Disable User 2FA",
+                              "id": "2ef197d2-e8f4-44d4-8bda-5a4224224682",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/disable_2fa",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "disable_2fa"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6598ed24-a0c4-49e6-8c86-b6e2188e9b25",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Remove the user's two-factor authentication enrollment."
+                              },
+                              "response": [
+                                {
+                                  "id": "4fb99cdd-88c5-4b3d-8d61-914e3fd52cbb",
+                                  "name": "2FA disabled",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/disable_2fa",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "disable_2fa"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-4fb99cdd-88c5-4b3d-8d61-914e3fd52cbb"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-2ef197d2-e8f4-44d4-8bda-5a4224224682"
+                            }
+                          ],
+                          "id": "53597533-2111-49d7-85d9-f9272fd9d48e",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-53597533-2111-49d7-85d9-f9272fd9d48e"
+                        },
+                        {
+                          "name": "logout_all_sessions",
+                          "item": [
+                            {
+                              "name": "Logout All User Sessions",
+                              "id": "d7dfb639-fd91-49ce-be04-ad33399309d4",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId/logout_all_sessions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId",
+                                    "logout_all_sessions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "c137d674-5f8c-48d1-b9d3-db2882c0cdc8",
+                                      "key": "userId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Invalidate every refresh token / session for the user."
+                              },
+                              "response": [
+                                {
+                                  "id": "ed71932f-71af-4447-970a-b01db7737486",
+                                  "name": "All sessions invalidated",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/:userId/logout_all_sessions",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        ":userId",
+                                        "logout_all_sessions"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:14:28.000Z",
+                                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                                  "uid": "35240-ed71932f-71af-4447-970a-b01db7737486"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-d7dfb639-fd91-49ce-be04-ad33399309d4"
+                            }
+                          ],
+                          "id": "f219b287-720c-4496-a400-492eb1714923",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-f219b287-720c-4496-a400-492eb1714923"
+                        },
+                        {
+                          "name": "Fetch User By User ID",
+                          "id": "6179a9fe-4e96-4996-b3f5-613ad4424bb9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                ":userId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6366aea5-8353-48c2-b214-60e66141cba3",
+                                  "key": "userId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the user with the supplied user ID."
+                          },
+                          "response": [
+                            {
+                              "id": "48cbb867-e1fc-4854-9bda-1197df9e08e8",
+                              "name": "User found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"user_id\": \"<uuid>\",\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"has_password\": \"<boolean>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"tempor424\": \"magna enim eu\",\n    \"proidentd71\": 51196918,\n    \"ad_a\": true\n  },\n  \"metadata\": {\n    \"sit3_f\": false,\n    \"nulla_277\": \"Excepteur i\"\n  },\n  \"locked\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"can_create_orgs\": \"<boolean>\",\n  \"created_at\": \"<integer>\",\n  \"last_active_at\": \"<integer>\",\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\",\n  \"org_id_to_org_info\": {\n    \"enim175\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"consequatd2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"officia835\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"in_2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-48cbb867-e1fc-4854-9bda-1197df9e08e8"
+                            },
+                            {
+                              "id": "92cd7775-1f4a-4a13-9669-e3f3f4734a31",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"user_facing_error\": \"<string>\",\n  \"user_facing_errors\": {\n    \"exercitation_2ab\": \"<string>\",\n    \"et_5\": \"<string>\",\n    \"ipsum7\": \"<string>\",\n    \"incididuntc_3\": \"<string>\"\n  },\n  \"field_to_errors\": {\n    \"consequat7\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur_d3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Excepteur_b1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-92cd7775-1f4a-4a13-9669-e3f3f4734a31"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-6179a9fe-4e96-4996-b3f5-613ad4424bb9"
+                        },
+                        {
+                          "name": "Update User",
+                          "id": "824be553-0b9a-4455-9406-19e5d0fbb3ff",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"metadata\": {\n    \"laborum_8f\": 77498230,\n    \"enim_b8b\": -92392692\n  },\n  \"properties\": {\n    \"veniam_2fb\": -54373539\n  },\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                ":userId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "23ea8f34-9695-47ed-a1ff-acb22b5aeb3b",
+                                  "key": "userId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update mutable user fields (metadata, locked state, properties, etc.)."
+                          },
+                          "response": [
+                            {
+                              "id": "c0d4dd03-aa65-4ad0-bff7-1884b15e57a2",
+                              "name": "User updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"metadata\": {\n    \"laborum_8f\": 77498230,\n    \"enim_b8b\": -92392692\n  },\n  \"properties\": {\n    \"veniam_2fb\": -54373539\n  },\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-c0d4dd03-aa65-4ad0-bff7-1884b15e57a2"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-824be553-0b9a-4455-9406-19e5d0fbb3ff"
+                        },
+                        {
+                          "name": "Delete User",
+                          "id": "7e814bb2-5c69-4479-8a0b-df68401ed4e8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                ":userId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e6499ab1-2d46-40ad-acec-a867bb3fce83",
+                                  "key": "userId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Permanently delete a user. This action cannot be undone."
+                          },
+                          "response": [
+                            {
+                              "id": "adcb118b-fc1c-4e47-850e-f0330bf376d2",
+                              "name": "User deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/:userId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    ":userId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-adcb118b-fc1c-4e47-850e-f0330bf376d2"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-7e814bb2-5c69-4479-8a0b-df68401ed4e8"
+                        }
+                      ],
+                      "id": "973efc45-d4b7-4eed-a031-cae3f888eaec",
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-973efc45-d4b7-4eed-a031-cae3f888eaec"
+                    },
+                    {
+                      "name": "email",
+                      "item": [
+                        {
+                          "name": "Fetch User By Email",
+                          "id": "087a6fbe-b5b7-4646-899a-af044fad8ee5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/email?email=<email>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                "email"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "email",
+                                  "value": "<email>"
+                                }
+                              ]
+                            },
+                            "description": "Returns the user with the supplied email address."
+                          },
+                          "response": [
+                            {
+                              "id": "ccda66e2-6c13-4964-963c-660001911c3d",
+                              "name": "User found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/email?email=<email>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    "email"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "email",
+                                      "value": "<email>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"user_id\": \"<uuid>\",\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"has_password\": \"<boolean>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"tempor424\": \"magna enim eu\",\n    \"proidentd71\": 51196918,\n    \"ad_a\": true\n  },\n  \"metadata\": {\n    \"sit3_f\": false,\n    \"nulla_277\": \"Excepteur i\"\n  },\n  \"locked\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"can_create_orgs\": \"<boolean>\",\n  \"created_at\": \"<integer>\",\n  \"last_active_at\": \"<integer>\",\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\",\n  \"org_id_to_org_info\": {\n    \"enim175\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"consequatd2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"officia835\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"in_2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-ccda66e2-6c13-4964-963c-660001911c3d"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-087a6fbe-b5b7-4646-899a-af044fad8ee5"
+                        }
+                      ],
+                      "id": "644a6e27-fae2-4129-818e-5ed822e255c3",
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-644a6e27-fae2-4129-818e-5ed822e255c3"
+                    },
+                    {
+                      "name": "username",
+                      "item": [
+                        {
+                          "name": "Fetch User By Username",
+                          "id": "06d39642-51f3-4876-8ced-bb93fea12a88",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/username?username=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                "username"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "username",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "Returns the user with the supplied username."
+                          },
+                          "response": [
+                            {
+                              "id": "7733fe1b-56c7-4f13-84f8-41523ebc6025",
+                              "name": "User found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/username?username=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    "username"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "username",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"user_id\": \"<uuid>\",\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"has_password\": \"<boolean>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"tempor424\": \"magna enim eu\",\n    \"proidentd71\": 51196918,\n    \"ad_a\": true\n  },\n  \"metadata\": {\n    \"sit3_f\": false,\n    \"nulla_277\": \"Excepteur i\"\n  },\n  \"locked\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"can_create_orgs\": \"<boolean>\",\n  \"created_at\": \"<integer>\",\n  \"last_active_at\": \"<integer>\",\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\",\n  \"org_id_to_org_info\": {\n    \"enim175\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"consequatd2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"officia835\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"in_2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-7733fe1b-56c7-4f13-84f8-41523ebc6025"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-06d39642-51f3-4876-8ced-bb93fea12a88"
+                        }
+                      ],
+                      "id": "a6c5ff0e-ac82-4706-8b17-8f8edb0e1427",
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-a6c5ff0e-ac82-4706-8b17-8f8edb0e1427"
+                    },
+                    {
+                      "name": "query",
+                      "item": [
+                        {
+                          "name": "Query For Users",
+                          "id": "1a6b1fa0-43e8-444c-b11e-2c30ed6cba56",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/query?page_size=10&page_number=0&order_by=LAST_ACTIVE_AT_ASC&email_or_username=<string>&include_orgs=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                "query"
+                              ],
+                              "query": [
+                                {
+                                  "key": "page_size",
+                                  "value": "10"
+                                },
+                                {
+                                  "key": "page_number",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "order_by",
+                                  "value": "LAST_ACTIVE_AT_ASC"
+                                },
+                                {
+                                  "key": "email_or_username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "key": "include_orgs",
+                                  "value": "<boolean>"
+                                }
+                              ]
+                            },
+                            "description": "Page through users filtered by email substring, legacy user ID, role, and more."
+                          },
+                          "response": [
+                            {
+                              "id": "af17af23-efd6-48ac-ac48-cf69d06fb3aa",
+                              "name": "Page of users",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/query?page_size=10&page_number=0&order_by=LAST_ACTIVE_AT_ASC&email_or_username=<string>&include_orgs=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    "query"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "page_size",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "key": "page_number",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "order_by",
+                                      "value": "LAST_ACTIVE_AT_ASC"
+                                    },
+                                    {
+                                      "key": "email_or_username",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "include_orgs",
+                                      "value": "<boolean>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"users\": [\n    {\n      \"user_id\": \"<uuid>\",\n      \"email\": \"<email>\",\n      \"email_confirmed\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"username\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"picture_url\": \"<uri>\",\n      \"properties\": {\n        \"nullabc1\": true\n      },\n      \"metadata\": {\n        \"Duis_c3\": \"in anim eni\"\n      },\n      \"locked\": \"<boolean>\",\n      \"enabled\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"can_create_orgs\": \"<boolean>\",\n      \"created_at\": \"<integer>\",\n      \"last_active_at\": \"<integer>\",\n      \"update_password_required\": \"<boolean>\",\n      \"legacy_user_id\": \"<string>\",\n      \"org_id_to_org_info\": {\n        \"dolor001\": {\n          \"org_id\": \"<uuid>\",\n          \"org_name\": \"<string>\",\n          \"user_role\": \"<string>\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user_permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"laborum8f\": {\n          \"org_id\": \"<uuid>\",\n          \"org_name\": \"<string>\",\n          \"user_role\": \"<string>\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user_permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"anima2\": {\n          \"org_id\": \"<uuid>\",\n          \"org_name\": \"<string>\",\n          \"user_role\": \"<string>\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user_permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"velit_d\": {\n          \"org_id\": \"<uuid>\",\n          \"org_name\": \"<string>\",\n          \"user_role\": \"<string>\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user_permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    },\n    {\n      \"user_id\": \"<uuid>\",\n      \"email\": \"<email>\",\n      \"email_confirmed\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"username\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"picture_url\": \"<uri>\",\n      \"properties\": {\n        \"aute_d5\": 42815097.10798192,\n        \"esse87e\": true,\n        \"cupidatat5\": -46245416.81323686,\n        \"consectetur3f\": 52743195.738616854,\n        \"ipsum2\": true\n      },\n      \"metadata\": {\n        \"nisi_d94\": 19726574.463709667,\n        \"qui3a3\": 84046538\n      },\n      \"locked\": \"<boolean>\",\n      \"enabled\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"can_create_orgs\": \"<boolean>\",\n      \"created_at\": \"<integer>\",\n      \"last_active_at\": \"<integer>\",\n      \"update_password_required\": \"<boolean>\",\n      \"legacy_user_id\": \"<string>\",\n      \"org_id_to_org_info\": {\n        \"velit5\": {\n          \"org_id\": \"<uuid>\",\n          \"org_name\": \"<string>\",\n          \"user_role\": \"<string>\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user_permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"Excepteurfc\": {\n          \"org_id\": \"<uuid>\",\n          \"org_name\": \"<string>\",\n          \"user_role\": \"<string>\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user_permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    }\n  ],\n  \"total_users\": \"<integer>\",\n  \"current_page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"has_more_results\": \"<boolean>\"\n}",
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-af17af23-efd6-48ac-ac48-cf69d06fb3aa"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-1a6b1fa0-43e8-444c-b11e-2c30ed6cba56"
+                        }
+                      ],
+                      "id": "985f8cc4-ea9c-49c7-b5b8-0065151c5f38",
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-985f8cc4-ea9c-49c7-b5b8-0065151c5f38"
+                    },
+                    {
+                      "name": "Create User",
+                      "id": "4c35e29e-5279-4d3e-95b9-caa3c2c35b55",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"veniam_9\": 99091132.55418247,\n    \"ex_8d\": \"proident eu\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/user/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "user",
+                            ""
+                          ]
+                        },
+                        "description": "Create a new user in your PropelAuth instance."
+                      },
+                      "response": [
+                        {
+                          "id": "4c74cb8e-32d3-4d79-a23f-8ac0c31d1a05",
+                          "name": "User created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"veniam_9\": 99091132.55418247,\n    \"ex_8d\": \"proident eu\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"user_id\": \"<uuid>\",\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"has_password\": \"<boolean>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"tempor424\": \"magna enim eu\",\n    \"proidentd71\": 51196918,\n    \"ad_a\": true\n  },\n  \"metadata\": {\n    \"sit3_f\": false,\n    \"nulla_277\": \"Excepteur i\"\n  },\n  \"locked\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"can_create_orgs\": \"<boolean>\",\n  \"created_at\": \"<integer>\",\n  \"last_active_at\": \"<integer>\",\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\",\n  \"org_id_to_org_info\": {\n    \"enim175\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"consequatd2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"officia835\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"in_2\": {\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"user_role\": \"<string>\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"user_permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-4c74cb8e-32d3-4d79-a23f-8ac0c31d1a05"
+                        },
+                        {
+                          "id": "9fa9d891-fdd8-45c1-81bd-50461eeaa95a",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"veniam_9\": 99091132.55418247,\n    \"ex_8d\": \"proident eu\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"user_facing_error\": \"<string>\",\n  \"user_facing_errors\": {\n    \"exercitation_2ab\": \"<string>\",\n    \"et_5\": \"<string>\",\n    \"ipsum7\": \"<string>\",\n    \"incididuntc_3\": \"<string>\"\n  },\n  \"field_to_errors\": {\n    \"consequat7\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur_d3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Excepteur_b1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-9fa9d891-fdd8-45c1-81bd-50461eeaa95a"
+                        },
+                        {
+                          "id": "60f601e8-6979-4132-855d-8da968f403d6",
+                          "name": "Missing or invalid API key",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"veniam_9\": 99091132.55418247,\n    \"ex_8d\": \"proident eu\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/user/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "user",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error_code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"user_facing_error\": \"<string>\",\n  \"user_facing_errors\": {\n    \"exercitation_2ab\": \"<string>\",\n    \"et_5\": \"<string>\",\n    \"ipsum7\": \"<string>\",\n    \"incididuntc_3\": \"<string>\"\n  },\n  \"field_to_errors\": {\n    \"consequat7\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur_d3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"Excepteur_b1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-60f601e8-6979-4132-855d-8da968f403d6"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-4c35e29e-5279-4d3e-95b9-caa3c2c35b55"
+                    }
+                  ],
+                  "id": "b1ed4131-46d7-4eae-a5a7-8d6da2a742fe",
+                  "createdAt": "2026-06-05T15:14:28.000Z",
+                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                  "uid": "35240-b1ed4131-46d7-4eae-a5a7-8d6da2a742fe"
+                },
+                {
+                  "name": "resend_email_confirmation",
+                  "item": [
+                    {
+                      "name": "Resend Email Confirmation",
+                      "id": "0cb027e1-6f89-4e89-8919-f598fee24d3c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/resend_email_confirmation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "resend_email_confirmation"
+                          ]
+                        },
+                        "description": "Resend the email verification message to a user."
+                      },
+                      "response": [
+                        {
+                          "id": "13e3ab04-bc38-413f-a8da-53cae778da6a",
+                          "name": "Confirmation email queued",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/resend_email_confirmation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "resend_email_confirmation"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-13e3ab04-bc38-413f-a8da-53cae778da6a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-0cb027e1-6f89-4e89-8919-f598fee24d3c"
+                    }
+                  ],
+                  "id": "3582f220-8854-443a-b762-8a897470693c",
+                  "createdAt": "2026-06-05T15:14:28.000Z",
+                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                  "uid": "35240-3582f220-8854-443a-b762-8a897470693c"
+                },
+                {
+                  "name": "magic_link",
+                  "item": [
+                    {
+                      "name": "Create Magic Link",
+                      "id": "07c0174f-202c-4c32-9060-91359f98a059",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"redirect_to_url\": \"<uri>\",\n  \"expires_in_hours\": \"<integer>\",\n  \"create_new_user_if_one_doesnt_exist\": \"<boolean>\",\n  \"user_signup_query_parameters\": {\n    \"elit_47\": \"<string>\",\n    \"consectetur_8\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/magic_link",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "magic_link"
+                          ]
+                        },
+                        "description": "Generate a one-time magic link that signs in or signs up the supplied user."
+                      },
+                      "response": [
+                        {
+                          "id": "b9b540fb-87fb-4091-88d1-0a6e4c023b68",
+                          "name": "Magic link created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"redirect_to_url\": \"<uri>\",\n  \"expires_in_hours\": \"<integer>\",\n  \"create_new_user_if_one_doesnt_exist\": \"<boolean>\",\n  \"user_signup_query_parameters\": {\n    \"elit_47\": \"<string>\",\n    \"consectetur_8\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/magic_link",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "magic_link"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-b9b540fb-87fb-4091-88d1-0a6e4c023b68"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-07c0174f-202c-4c32-9060-91359f98a059"
+                    }
+                  ],
+                  "id": "74aceee3-c007-4252-be3b-ec79c0d82c38",
+                  "createdAt": "2026-06-05T15:14:28.000Z",
+                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                  "uid": "35240-74aceee3-c007-4252-be3b-ec79c0d82c38"
+                },
+                {
+                  "name": "access_token",
+                  "item": [
+                    {
+                      "name": "Create Access Token",
+                      "id": "c21ea5ff-24f5-4ca1-a7b2-66492a8d9994",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"duration_in_minutes\": \"<integer>\",\n  \"active_org_id\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/access_token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "access_token"
+                          ]
+                        },
+                        "description": "Mint a short-lived access token for a user (impersonation, testing, scripted automation)."
+                      },
+                      "response": [
+                        {
+                          "id": "08c7c1d1-2f03-464e-92b4-6605fe271f02",
+                          "name": "Access token created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"duration_in_minutes\": \"<integer>\",\n  \"active_org_id\": \"<uuid>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/access_token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "access_token"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_token\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-08c7c1d1-2f03-464e-92b4-6605fe271f02"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-c21ea5ff-24f5-4ca1-a7b2-66492a8d9994"
+                    }
+                  ],
+                  "id": "be07b99e-f51e-4ee7-8271-d1b70712a6f6",
+                  "createdAt": "2026-06-05T15:14:28.000Z",
+                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                  "uid": "35240-be07b99e-f51e-4ee7-8271-d1b70712a6f6"
+                },
+                {
+                  "name": "migrate_user",
+                  "item": [
+                    {
+                      "name": "password",
+                      "item": [
+                        {
+                          "name": "Migrate User Password",
+                          "id": "ccf4ef8f-f708-400c-82b7-409a666a8c9e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"password_hash\": \"<string>\",\n  \"password_hash_type\": \"pbkdf2_sha256\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/migrate_user/password",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "migrate_user",
+                                "password"
+                              ]
+                            },
+                            "description": "Attach a legacy hashed password to an existing user."
+                          },
+                          "response": [
+                            {
+                              "id": "dc7817e0-6d74-418b-9235-c5fe019682f9",
+                              "name": "Password migrated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"password_hash\": \"<string>\",\n  \"password_hash_type\": \"pbkdf2_sha256\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/migrate_user/password",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "migrate_user",
+                                    "password"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-dc7817e0-6d74-418b-9235-c5fe019682f9"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-ccf4ef8f-f708-400c-82b7-409a666a8c9e"
+                        }
+                      ],
+                      "id": "cbd6c233-5e82-4049-8d5b-21f79329bdb8",
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-cbd6c233-5e82-4049-8d5b-21f79329bdb8"
+                    },
+                    {
+                      "name": "Migrate User From External Source",
+                      "id": "c91b2a96-8756-47b7-b4f3-2312a56f0a86",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"existing_user_id\": \"<string>\",\n  \"existing_password_hash\": \"<string>\",\n  \"existing_mfa_base32_encoded_secret\": \"<string>\",\n  \"update_password_required\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"username\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"animbbf\": 55175476.08642447,\n    \"dolore_2\": \"quis nostrud laborum cupidatat\",\n    \"eiusmod4_\": true\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/migrate_user/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "migrate_user",
+                            ""
+                          ]
+                        },
+                        "description": "Import a user from another auth provider, optionally including a hashed password."
+                      },
+                      "response": [
+                        {
+                          "id": "1c7c0bb1-94ee-4944-8771-7bf50899d122",
+                          "name": "User migrated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"existing_user_id\": \"<string>\",\n  \"existing_password_hash\": \"<string>\",\n  \"existing_mfa_base32_encoded_secret\": \"<string>\",\n  \"update_password_required\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"username\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"animbbf\": 55175476.08642447,\n    \"dolore_2\": \"quis nostrud laborum cupidatat\",\n    \"eiusmod4_\": true\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/migrate_user/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "migrate_user",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-1c7c0bb1-94ee-4944-8771-7bf50899d122"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-c91b2a96-8756-47b7-b4f3-2312a56f0a86"
+                    }
+                  ],
+                  "id": "f116f07a-c26b-4914-97f1-c58df91a4eb0",
+                  "createdAt": "2026-06-05T15:14:28.000Z",
+                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                  "uid": "35240-f116f07a-c26b-4914-97f1-c58df91a4eb0"
+                },
+                {
+                  "name": "employee",
+                  "item": [
+                    {
+                      "name": "{employeeId}",
+                      "item": [
+                        {
+                          "name": "Fetch Employee By ID",
+                          "id": "28a9eeb7-b6ea-4223-a6e9-0675b3af57ac",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/employee/:employeeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "employee",
+                                ":employeeId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6c526a99-6e45-44b5-b8a3-aafe52c07866",
+                                  "key": "employeeId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Look up a PropelAuth dashboard employee (your internal team member) by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "f866876c-7e93-4770-901a-1dca8934f128",
+                              "name": "Employee found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/employee/:employeeId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "employee",
+                                    ":employeeId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "employeeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:28.000Z",
+                              "updatedAt": "2026-06-05T15:14:28.000Z",
+                              "uid": "35240-f866876c-7e93-4770-901a-1dca8934f128"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:28.000Z",
+                          "updatedAt": "2026-06-05T15:14:28.000Z",
+                          "uid": "35240-28a9eeb7-b6ea-4223-a6e9-0675b3af57ac"
+                        }
+                      ],
+                      "id": "bfe92cd7-c1df-43bf-848d-2d6f4f8f1a42",
+                      "createdAt": "2026-06-05T15:14:28.000Z",
+                      "updatedAt": "2026-06-05T15:14:28.000Z",
+                      "uid": "35240-bfe92cd7-c1df-43bf-848d-2d6f4f8f1a42"
+                    }
+                  ],
+                  "id": "9c610a75-e97d-4ca0-8894-e5e4334f9d3e",
+                  "createdAt": "2026-06-05T15:14:28.000Z",
+                  "updatedAt": "2026-06-05T15:14:28.000Z",
+                  "uid": "35240-9c610a75-e97d-4ca0-8894-e5e4334f9d3e"
+                }
+              ],
+              "id": "6d60f7c0-574d-4a86-a25a-56e403cffabb",
+              "createdAt": "2026-06-05T15:14:28.000Z",
+              "updatedAt": "2026-06-05T15:14:28.000Z",
+              "uid": "35240-6d60f7c0-574d-4a86-a25a-56e403cffabb"
+            }
+          ],
+          "id": "47cf7cc4-2f0c-4364-93f9-f1bc6f88e974",
+          "createdAt": "2026-06-05T15:14:28.000Z",
+          "updatedAt": "2026-06-05T15:14:28.000Z",
+          "uid": "35240-47cf7cc4-2f0c-4364-93f9-f1bc6f88e974"
+        }
+      ],
+      "id": "b5f1814d-3733-481e-8841-291d6f13bd16",
+      "createdAt": "2026-06-05T15:14:28.000Z",
+      "updatedAt": "2026-06-05T15:14:28.000Z",
+      "uid": "35240-b5f1814d-3733-481e-8841-291d6f13bd16"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "authId",
+      "value": "0000000000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{authId}}.propelauthtest.com"
+    }
+  ]
+}

@@ -1,0 +1,2594 @@
+{
+  "item": [
+    {
+      "id": "9edf102e-5c05-4d0b-a9eb-355544e2eb8b",
+      "name": "Users",
+      "description": {
+        "content": "Create, query, update, disable, delete, and inspect users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c996ee58-c91a-4480-9c32-59aab515deb0",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Create a new user in your PropelAuth instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<password>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"key_0\": 2551.8113501072316,\n    \"key_1\": true,\n    \"key_2\": false,\n    \"key_3\": 8365.186477043871\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ccc037c-6cda-4167-9c25-ab0867e59f7d",
+              "name": "User created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<password>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": 8951,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_id\": \"c99ac85e-b74c-ff95-03f4-b4e07744e39d\",\n  \"email\": \"9EOeZgUtS@d.kcr\",\n  \"email_confirmed\": true,\n  \"has_password\": false,\n  \"username\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"picture_url\": \"https://tMqDMVzftGajpSSqrmvlNSkfjlHmMvJM.hmsiPuzoiwDJM,9z5Dh9DtwtyYL4p1fQKAvPPKA6Bj7DSqI3fwoC-q1GD-BOBKC\",\n  \"properties\": {\n    \"key_0\": false\n  },\n  \"metadata\": {\n    \"key_0\": 2369.1607353140453\n  },\n  \"locked\": true,\n  \"enabled\": true,\n  \"mfa_enabled\": true,\n  \"can_create_orgs\": false,\n  \"created_at\": 3321,\n  \"last_active_at\": 6070,\n  \"update_password_required\": false,\n  \"legacy_user_id\": \"string\",\n  \"org_id_to_org_info\": {\n    \"key_0\": {\n      \"org_id\": \"a974868b-2fe1-c4b7-df64-869f3a377d9f\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"org_id\": \"7c5ed12d-8a1a-5119-14af-c752e9a99842\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_2\": {\n      \"org_id\": \"3ddb9434-693a-21aa-71dc-84fb8438623a\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38a9fc0c-c900-4da8-a53a-49570a9f55a9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<password>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": 8951,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"user_facing_error\": \"string\",\n  \"user_facing_errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"field_to_errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ffaa46b-5d0a-40f3-b3f4-2af359910295",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": false,\n  \"send_email_to_confirm_email_address\": true,\n  \"ask_user_to_update_password_on_login\": \"<boolean>\",\n  \"password\": \"<password>\",\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": 8951,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"user_facing_error\": \"string\",\n  \"user_facing_errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"field_to_errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9da60132-deb2-4635-80b0-8612bc866fd4",
+          "name": "Fetch User By User ID",
+          "request": {
+            "name": "Fetch User By User ID",
+            "description": {
+              "content": "Returns the user with the supplied user ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd596583-3033-43f5-b1ec-d9da5a040922",
+              "name": "User found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_id\": \"c99ac85e-b74c-ff95-03f4-b4e07744e39d\",\n  \"email\": \"9EOeZgUtS@d.kcr\",\n  \"email_confirmed\": true,\n  \"has_password\": false,\n  \"username\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"picture_url\": \"https://tMqDMVzftGajpSSqrmvlNSkfjlHmMvJM.hmsiPuzoiwDJM,9z5Dh9DtwtyYL4p1fQKAvPPKA6Bj7DSqI3fwoC-q1GD-BOBKC\",\n  \"properties\": {\n    \"key_0\": false\n  },\n  \"metadata\": {\n    \"key_0\": 2369.1607353140453\n  },\n  \"locked\": true,\n  \"enabled\": true,\n  \"mfa_enabled\": true,\n  \"can_create_orgs\": false,\n  \"created_at\": 3321,\n  \"last_active_at\": 6070,\n  \"update_password_required\": false,\n  \"legacy_user_id\": \"string\",\n  \"org_id_to_org_info\": {\n    \"key_0\": {\n      \"org_id\": \"a974868b-2fe1-c4b7-df64-869f3a377d9f\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"org_id\": \"7c5ed12d-8a1a-5119-14af-c752e9a99842\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_2\": {\n      \"org_id\": \"3ddb9434-693a-21aa-71dc-84fb8438623a\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebfc6de3-78a5-4235-90d7-0de235484a88",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": \"string\",\n  \"message\": \"string\",\n  \"user_facing_error\": \"string\",\n  \"user_facing_errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"field_to_errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "506b2ef6-fbfb-4518-8066-ac4497a31141",
+          "name": "Update User",
+          "request": {
+            "name": "Update User",
+            "description": {
+              "content": "Update mutable user fields (metadata, locked state, properties, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"properties\": {\n    \"key_0\": 8404,\n    \"key_1\": true\n  },\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0dfa3f95-f6ce-4349-a1ab-875e29e8a7d3",
+              "name": "User updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": true\n  },\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5707.897333260399\n  },\n  \"update_password_required\": \"<boolean>\",\n  \"legacy_user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e54570f0-f469-40cf-8c35-de3ae72a8c40",
+          "name": "Delete User",
+          "request": {
+            "name": "Delete User",
+            "description": {
+              "content": "Permanently delete a user. This action cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9fac6a2-bf3e-4e85-97a4-79e66d27e55f",
+              "name": "User deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79c2a1e6-3c58-44e3-a145-6453aff1e957",
+          "name": "Fetch User By Email",
+          "request": {
+            "name": "Fetch User By Email",
+            "description": {
+              "content": "Returns the user with the supplied email address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c63b56a1-eb2d-4cea-bab0-c74fac958b59",
+              "name": "User found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_id\": \"c99ac85e-b74c-ff95-03f4-b4e07744e39d\",\n  \"email\": \"9EOeZgUtS@d.kcr\",\n  \"email_confirmed\": true,\n  \"has_password\": false,\n  \"username\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"picture_url\": \"https://tMqDMVzftGajpSSqrmvlNSkfjlHmMvJM.hmsiPuzoiwDJM,9z5Dh9DtwtyYL4p1fQKAvPPKA6Bj7DSqI3fwoC-q1GD-BOBKC\",\n  \"properties\": {\n    \"key_0\": false\n  },\n  \"metadata\": {\n    \"key_0\": 2369.1607353140453\n  },\n  \"locked\": true,\n  \"enabled\": true,\n  \"mfa_enabled\": true,\n  \"can_create_orgs\": false,\n  \"created_at\": 3321,\n  \"last_active_at\": 6070,\n  \"update_password_required\": false,\n  \"legacy_user_id\": \"string\",\n  \"org_id_to_org_info\": {\n    \"key_0\": {\n      \"org_id\": \"a974868b-2fe1-c4b7-df64-869f3a377d9f\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"org_id\": \"7c5ed12d-8a1a-5119-14af-c752e9a99842\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_2\": {\n      \"org_id\": \"3ddb9434-693a-21aa-71dc-84fb8438623a\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "babdb5f8-4da2-46c4-956a-8ba403e23bb0",
+          "name": "Fetch User By Username",
+          "request": {
+            "name": "Fetch User By Username",
+            "description": {
+              "content": "Returns the user with the supplied username.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                "username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc8a9854-19ed-463b-8ce8-51415aa844fe",
+              "name": "User found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    "username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_id\": \"c99ac85e-b74c-ff95-03f4-b4e07744e39d\",\n  \"email\": \"9EOeZgUtS@d.kcr\",\n  \"email_confirmed\": true,\n  \"has_password\": false,\n  \"username\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"picture_url\": \"https://tMqDMVzftGajpSSqrmvlNSkfjlHmMvJM.hmsiPuzoiwDJM,9z5Dh9DtwtyYL4p1fQKAvPPKA6Bj7DSqI3fwoC-q1GD-BOBKC\",\n  \"properties\": {\n    \"key_0\": false\n  },\n  \"metadata\": {\n    \"key_0\": 2369.1607353140453\n  },\n  \"locked\": true,\n  \"enabled\": true,\n  \"mfa_enabled\": true,\n  \"can_create_orgs\": false,\n  \"created_at\": 3321,\n  \"last_active_at\": 6070,\n  \"update_password_required\": false,\n  \"legacy_user_id\": \"string\",\n  \"org_id_to_org_info\": {\n    \"key_0\": {\n      \"org_id\": \"a974868b-2fe1-c4b7-df64-869f3a377d9f\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"org_id\": \"7c5ed12d-8a1a-5119-14af-c752e9a99842\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_2\": {\n      \"org_id\": \"3ddb9434-693a-21aa-71dc-84fb8438623a\",\n      \"org_name\": \"string\",\n      \"user_role\": \"string\",\n      \"inherited_user_roles_plus_current_role\": [\n        \"string\",\n        \"string\"\n      ],\n      \"user_permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "467f5325-7a65-4fe0-bd1b-02de8fe92ee7",
+          "name": "Query For Users",
+          "request": {
+            "name": "Query For Users",
+            "description": {
+              "content": "Page through users filtered by email substring, legacy user ID, role, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_number",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email_or_username",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_orgs",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26d9ddfd-4ab0-48f3-b666-b2eb11ef493e",
+              "name": "Page of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email_or_username",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_orgs",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"user_id\": \"fe8e7cb1-912a-faee-66cb-27d4b6886840\",\n      \"email\": \"xisHMQ7wh9bqHq@E.vp\",\n      \"email_confirmed\": false,\n      \"has_password\": false,\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"picture_url\": \"http://ROWTJUAsnrXMTS.knKf,Hip3XJW2PprJPhBeMB0dBJCixAdjIOLVec2GUaigwFqZzSIVymPvJ\",\n      \"properties\": {\n        \"key_0\": true,\n        \"key_1\": false\n      },\n      \"metadata\": {\n        \"key_0\": 5300.0545052595935\n      },\n      \"locked\": true,\n      \"enabled\": true,\n      \"mfa_enabled\": true,\n      \"can_create_orgs\": true,\n      \"created_at\": 1500,\n      \"last_active_at\": 9546,\n      \"update_password_required\": false,\n      \"legacy_user_id\": \"string\",\n      \"org_id_to_org_info\": {\n        \"key_0\": {\n          \"org_id\": \"fb0e97ba-75d0-3c3a-ee32-31586dd678aa\",\n          \"org_name\": \"string\",\n          \"user_role\": \"string\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user_permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      }\n    },\n    {\n      \"user_id\": \"032b6e70-427e-8ae5-826e-0668c5f13b54\",\n      \"email\": \"HrrTm@mOMhVWChslmSDhpmKL.wpp\",\n      \"email_confirmed\": true,\n      \"has_password\": true,\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"picture_url\": \"https://MbgQoOcEZHVoqlVFyaYlvuPFmtznX.ybwpBX-p3t9fUHfQ\",\n      \"properties\": {\n        \"key_0\": \"string\",\n        \"key_1\": 8489\n      },\n      \"metadata\": {\n        \"key_0\": 5552.387324706434,\n        \"key_1\": \"string\"\n      },\n      \"locked\": true,\n      \"enabled\": true,\n      \"mfa_enabled\": false,\n      \"can_create_orgs\": true,\n      \"created_at\": 1253,\n      \"last_active_at\": 4790,\n      \"update_password_required\": false,\n      \"legacy_user_id\": \"string\",\n      \"org_id_to_org_info\": {\n        \"key_0\": {\n          \"org_id\": \"b3f6f6e8-39f8-1528-b0e4-4817f593280f\",\n          \"org_name\": \"string\",\n          \"user_role\": \"string\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user_permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"key_1\": {\n          \"org_id\": \"8cc2588b-e5a9-7292-93b2-9152d2c72aeb\",\n          \"org_name\": \"string\",\n          \"user_role\": \"string\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user_permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"key_2\": {\n          \"org_id\": \"c2a664bb-ea2c-7420-3411-e198ddd4fbd3\",\n          \"org_name\": \"string\",\n          \"user_role\": \"string\",\n          \"inherited_user_roles_plus_current_role\": [\n            \"string\",\n            \"string\"\n          ],\n          \"user_permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      }\n    }\n  ],\n  \"total_users\": 3758,\n  \"current_page\": 4478,\n  \"page_size\": 7546,\n  \"has_more_results\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a8e3616-2e19-47db-aa67-730306100ce2",
+          "name": "Update User Email",
+          "request": {
+            "name": "Update User Email",
+            "description": {
+              "content": "Change a user's email address. Optionally require email verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"new_email\": \"<email>\",\n  \"require_email_confirmation\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c7005da-c75a-44f6-ac81-76cceecbd98c",
+              "name": "Email updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_email\": \"<email>\",\n  \"require_email_confirmation\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1ed05b7-77a3-4311-8cf8-f447c6ed3bf5",
+          "name": "Update User Password",
+          "request": {
+            "name": "Update User Password",
+            "description": {
+              "content": "Programmatically set a user's password.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<password>\",\n  \"ask_user_to_update_password_on_login\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69baa2a4-8c9c-4b2c-b43e-371c39b71e55",
+              "name": "Password updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<password>\",\n  \"ask_user_to_update_password_on_login\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ab4033d-0165-4ed6-8e55-22d40ce73455",
+          "name": "Clear User Password",
+          "request": {
+            "name": "Clear User Password",
+            "description": {
+              "content": "Remove a user's password, forcing them to reset on next login.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "clear_password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39347aee-384b-41a0-90b8-9250173d1a14",
+              "name": "Password cleared",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "clear_password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77f3f67a-02db-438c-b7ca-bf0ec28e20c1",
+          "name": "Disable User",
+          "request": {
+            "name": "Disable User",
+            "description": {
+              "content": "Block the user from signing in. Existing sessions are invalidated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a16149b-b0d8-4484-9ae7-ca02ed3c7dc9",
+              "name": "User disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72a02554-3a99-4d14-a8c7-17e300b33449",
+          "name": "Enable User",
+          "request": {
+            "name": "Enable User",
+            "description": {
+              "content": "Re-enable a previously disabled user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6576e24d-9230-4067-890b-868390cb23f7",
+              "name": "User enabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d8f2384-bfc7-4b69-ba21-1903a06bdc56",
+          "name": "Disable User 2FA",
+          "request": {
+            "name": "Disable User 2FA",
+            "description": {
+              "content": "Remove the user's two-factor authentication enrollment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "disable_2fa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5aade2cb-be32-4425-abc6-a57a5983bc0f",
+              "name": "2FA disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "disable_2fa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "243ec89a-3b2b-4abc-90be-1d1b54afb94f",
+          "name": "Resend Email Confirmation",
+          "request": {
+            "name": "Resend Email Confirmation",
+            "description": {
+              "content": "Resend the email verification message to a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "resend_email_confirmation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec5c7dd3-743c-4257-90e8-cc0ef6a27997",
+              "name": "Confirmation email queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "resend_email_confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bb9cdc73-e372-4a17-88a4-3213128f269f",
+      "name": "Magic Links",
+      "description": {
+        "content": "Issue one-time magic links for login flows",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18907f27-9a94-4086-a993-bd409985a540",
+          "name": "Create Magic Link",
+          "request": {
+            "name": "Create Magic Link",
+            "description": {
+              "content": "Generate a one-time magic link that signs in or signs up the supplied user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "magic_link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"redirect_to_url\": \"<uri>\",\n  \"expires_in_hours\": \"<integer>\",\n  \"create_new_user_if_one_doesnt_exist\": \"<boolean>\",\n  \"user_signup_query_parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "774fa7c8-373a-4ba7-b094-8500d5d16344",
+              "name": "Magic link created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "magic_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"redirect_to_url\": \"<uri>\",\n  \"expires_in_hours\": \"<integer>\",\n  \"create_new_user_if_one_doesnt_exist\": \"<boolean>\",\n  \"user_signup_query_parameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://ifYapaqHLKleVsNFWKLRjVD.coleG9lRXyEyDdBbw13mgSniUZtpNHVs-lZQEvsyu\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4ec8d298-a59b-4b92-9371-874c7e8d4f76",
+      "name": "Access Tokens",
+      "description": {
+        "content": "Mint short-lived access tokens for impersonation and testing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "417e225b-63fe-42f4-805a-3895963285c1",
+          "name": "Create Access Token",
+          "request": {
+            "name": "Create Access Token",
+            "description": {
+              "content": "Mint a short-lived access token for a user (impersonation, testing, scripted automation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"duration_in_minutes\": \"<integer>\",\n  \"active_org_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebd65c75-95de-4581-bd49-38f568b84e9d",
+              "name": "Access token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"duration_in_minutes\": \"<integer>\",\n  \"active_org_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8be269ee-e53e-4b1e-b2f2-f594a869c0b4",
+      "name": "Migration",
+      "description": {
+        "content": "Migrate users from external authentication providers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e4d65fc-771b-4417-bdc2-f05ff31bce60",
+          "name": "Migrate User From External Source",
+          "request": {
+            "name": "Migrate User From External Source",
+            "description": {
+              "content": "Import a user from another auth provider, optionally including a hashed password.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "migrate_user",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"existing_user_id\": \"<string>\",\n  \"existing_password_hash\": \"<string>\",\n  \"existing_mfa_base32_encoded_secret\": \"<string>\",\n  \"update_password_required\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"username\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"key_0\": 5921\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8dea2824-ecbe-4677-a730-0d54b1402b58",
+              "name": "User migrated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "migrate_user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"existing_user_id\": \"<string>\",\n  \"existing_password_hash\": \"<string>\",\n  \"existing_mfa_base32_encoded_secret\": \"<string>\",\n  \"update_password_required\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"username\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"key_0\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a710a9fe-9b5d-45e4-b641-8e815713fe44",
+          "name": "Migrate User Password",
+          "request": {
+            "name": "Migrate User Password",
+            "description": {
+              "content": "Attach a legacy hashed password to an existing user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "migrate_user",
+                "password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"password_hash\": \"<string>\",\n  \"password_hash_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "645d9ad4-47fd-46fb-a973-bf755d886b03",
+              "name": "Password migrated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "migrate_user",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"password_hash\": \"<string>\",\n  \"password_hash_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "56fecacc-d528-42a1-aa87-830202d11485",
+      "name": "Sessions",
+      "description": {
+        "content": "Manage user sessions and forced logout",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1057f9f-50b7-45a6-b7e8-4892ed577933",
+          "name": "Logout All User Sessions",
+          "request": {
+            "name": "Logout All User Sessions",
+            "description": {
+              "content": "Invalidate every refresh token / session for the user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "logout_all_sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1745b40a-0c61-49af-ae28-846efe2322a3",
+              "name": "All sessions invalidated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "logout_all_sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6663a50e-f519-4063-b225-b8c45973e312",
+      "name": "Employees",
+      "description": {
+        "content": "Inspect PropelAuth dashboard employees (internal team)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6900d6ee-dc03-4412-9212-0d3518b328ef",
+          "name": "Fetch Employee By ID",
+          "request": {
+            "name": "Fetch Employee By ID",
+            "description": {
+              "content": "Look up a PropelAuth dashboard employee (your internal team member) by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "employee",
+                ":employeeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your PropelAuth test environment ID",
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c22818e-9b24-47dd-a7e2-b36c9908ec67",
+              "name": "Employee found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "employee",
+                    ":employeeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your PropelAuth test environment ID",
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your PropelAuth test environment ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "73328e90-09ea-41f1-b1e3-f3f5774fc78f",
+    "name": "PropelAuth User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for managing users in PropelAuth. Create, fetch, query, update, delete,\ndisable / enable, and migrate users; manage 2FA, sessions, magic links, and access tokens.\nAll endpoints are called server-to-server using a PropelAuth Backend Integration API key\npresented as a Bearer token. The base URL is your PropelAuth Auth URL — `https://<id>.propelauthtest.com`\nin test environments and your custom domain (e.g. `https://auth.acme.com`) in staging and production.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

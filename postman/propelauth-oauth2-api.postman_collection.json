@@ -1,0 +1,653 @@
+{
+  "info": {
+    "_postman_id": "efd5eb1b-cc28-4be5-8f0e-a0dbd1714e35",
+    "name": "PropelAuth OAuth2 API",
+    "description": "OAuth 2.0 and OpenID Connect endpoints exposed by your PropelAuth Auth URL. Use these\nendpoints to integrate PropelAuth as an identity provider for first-party and third-party\nOAuth clients, including no-code, low-code, and OIDC-aware backends.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:32.000Z",
+    "updatedAt": "2026-06-05T15:14:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-efd5eb1b-cc28-4be5-8f0e-a0dbd1714e35"
+  },
+  "item": [
+    {
+      "name": "propelauth",
+      "item": [
+        {
+          "name": "oauth",
+          "item": [
+            {
+              "name": "authorize",
+              "item": [
+                {
+                  "name": "Authorize",
+                  "id": "31707091-5ca6-49b7-8592-79c33a2fb68f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/propelauth/oauth/authorize?response_type=code&client_id=<string>&redirect_uri=<uri>&scope=<string>&state=<string>&code_challenge=<string>&code_challenge_method=S256",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "propelauth",
+                        "oauth",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_challenge",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_challenge_method",
+                          "value": "S256"
+                        }
+                      ]
+                    },
+                    "description": "Redirect the user-agent to the PropelAuth login page. After successful login PropelAuth\nredirects back to your `redirect_uri` with a `code` parameter that you exchange at the\ntoken endpoint.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "55ba1930-c5b4-44a6-b6a1-1129a9e4f1f0",
+                      "name": "Redirect to login or to redirect_uri with authorization code",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/propelauth/oauth/authorize?response_type=code&client_id=<string>&redirect_uri=<uri>&scope=<string>&state=<string>&code_challenge=<string>&code_challenge_method=S256",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "propelauth",
+                            "oauth",
+                            "authorize"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "response_type",
+                              "value": "code"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "key": "scope",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "state",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code_challenge",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code_challenge_method",
+                              "value": "S256"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Found",
+                      "code": 302,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:32.000Z",
+                      "updatedAt": "2026-06-05T15:14:32.000Z",
+                      "uid": "35240-55ba1930-c5b4-44a6-b6a1-1129a9e4f1f0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:32.000Z",
+                  "updatedAt": "2026-06-05T15:14:32.000Z",
+                  "uid": "35240-31707091-5ca6-49b7-8592-79c33a2fb68f"
+                }
+              ],
+              "id": "84c91c44-d934-4e83-a75b-80619e7551b5",
+              "createdAt": "2026-06-05T15:14:32.000Z",
+              "updatedAt": "2026-06-05T15:14:32.000Z",
+              "uid": "35240-84c91c44-d934-4e83-a75b-80619e7551b5"
+            },
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Token",
+                  "id": "a1ed81bb-34ba-436e-95ce-ce62693732fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "grant_type",
+                          "value": "refresh_token"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "key": "refresh_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/propelauth/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "propelauth",
+                        "oauth",
+                        "token"
+                      ]
+                    },
+                    "description": "Exchange an authorization code for an access token and refresh token, or exchange an\nexisting refresh token for a fresh access token.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "76d7eb6b-a41b-4a11-9385-78f7219f2854",
+                      "name": "Token issued",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) ",
+                              "key": "grant_type",
+                              "value": "refresh_token"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "redirect_uri",
+                              "value": "<uri>"
+                            },
+                            {
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "client_secret",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "code_verifier",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/propelauth/oauth/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "propelauth",
+                            "oauth",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"id_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:32.000Z",
+                      "updatedAt": "2026-06-05T15:14:32.000Z",
+                      "uid": "35240-76d7eb6b-a41b-4a11-9385-78f7219f2854"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:32.000Z",
+                  "updatedAt": "2026-06-05T15:14:32.000Z",
+                  "uid": "35240-a1ed81bb-34ba-436e-95ce-ce62693732fa"
+                }
+              ],
+              "id": "8c3fd097-080e-4bb3-a96f-15799c0bfb32",
+              "createdAt": "2026-06-05T15:14:32.000Z",
+              "updatedAt": "2026-06-05T15:14:32.000Z",
+              "uid": "35240-8c3fd097-080e-4bb3-a96f-15799c0bfb32"
+            },
+            {
+              "name": "userinfo",
+              "item": [
+                {
+                  "name": "User Info",
+                  "id": "d5b7e986-681c-4246-9a0c-819ecf1bc468",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/propelauth/oauth/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "propelauth",
+                        "oauth",
+                        "userinfo"
+                      ]
+                    },
+                    "description": "Return the OIDC user info document for the bearer token."
+                  },
+                  "response": [
+                    {
+                      "id": "2372c66c-0492-415f-a085-21f2f19dd778",
+                      "name": "User info",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/propelauth/oauth/userinfo",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "propelauth",
+                            "oauth",
+                            "userinfo"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"exercitation_a\": -44063184\n}",
+                      "createdAt": "2026-06-05T15:14:32.000Z",
+                      "updatedAt": "2026-06-05T15:14:32.000Z",
+                      "uid": "35240-2372c66c-0492-415f-a085-21f2f19dd778"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:32.000Z",
+                  "updatedAt": "2026-06-05T15:14:32.000Z",
+                  "uid": "35240-d5b7e986-681c-4246-9a0c-819ecf1bc468"
+                }
+              ],
+              "id": "4540d0be-3c56-4d4d-86c9-e8de94e1195f",
+              "createdAt": "2026-06-05T15:14:32.000Z",
+              "updatedAt": "2026-06-05T15:14:32.000Z",
+              "uid": "35240-4540d0be-3c56-4d4d-86c9-e8de94e1195f"
+            }
+          ],
+          "id": "8aace70b-fcff-47a4-851b-3dbebaad16f8",
+          "createdAt": "2026-06-05T15:14:32.000Z",
+          "updatedAt": "2026-06-05T15:14:32.000Z",
+          "uid": "35240-8aace70b-fcff-47a4-851b-3dbebaad16f8"
+        }
+      ],
+      "id": "a1954f71-41d1-4c8b-851b-e6eae8c52d4a",
+      "createdAt": "2026-06-05T15:14:32.000Z",
+      "updatedAt": "2026-06-05T15:14:32.000Z",
+      "uid": "35240-a1954f71-41d1-4c8b-851b-e6eae8c52d4a"
+    },
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "backend",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "logout",
+                  "item": [
+                    {
+                      "name": "Logout",
+                      "id": "2a00bcb2-6aa7-45b6-ab75-f78d2c0a0cc2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/logout",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "logout"
+                          ]
+                        },
+                        "description": "Invalidate the supplied refresh token. Backend-only."
+                      },
+                      "response": [
+                        {
+                          "id": "5a8b27ea-5e40-4192-9320-9c148fa61fed",
+                          "name": "Token revoked",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/logout",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "logout"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:32.000Z",
+                          "updatedAt": "2026-06-05T15:14:32.000Z",
+                          "uid": "35240-5a8b27ea-5e40-4192-9320-9c148fa61fed"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:32.000Z",
+                      "updatedAt": "2026-06-05T15:14:32.000Z",
+                      "uid": "35240-2a00bcb2-6aa7-45b6-ab75-f78d2c0a0cc2"
+                    }
+                  ],
+                  "id": "f5d4e209-cd9e-4927-8e9f-19de31586193",
+                  "createdAt": "2026-06-05T15:14:32.000Z",
+                  "updatedAt": "2026-06-05T15:14:32.000Z",
+                  "uid": "35240-f5d4e209-cd9e-4927-8e9f-19de31586193"
+                }
+              ],
+              "id": "bfd292f5-c3d3-46ac-acbf-4066170f3e99",
+              "createdAt": "2026-06-05T15:14:32.000Z",
+              "updatedAt": "2026-06-05T15:14:32.000Z",
+              "uid": "35240-bfd292f5-c3d3-46ac-acbf-4066170f3e99"
+            }
+          ],
+          "id": "de834d3c-4d75-4eb3-b9d1-f37995b0a2dc",
+          "createdAt": "2026-06-05T15:14:32.000Z",
+          "updatedAt": "2026-06-05T15:14:32.000Z",
+          "uid": "35240-de834d3c-4d75-4eb3-b9d1-f37995b0a2dc"
+        }
+      ],
+      "id": "5267bcfb-88ac-4c7d-9422-65c3ad554a15",
+      "createdAt": "2026-06-05T15:14:32.000Z",
+      "updatedAt": "2026-06-05T15:14:32.000Z",
+      "uid": "35240-5267bcfb-88ac-4c7d-9422-65c3ad554a15"
+    },
+    {
+      "name": ".well-known",
+      "item": [
+        {
+          "name": "openid-configuration",
+          "item": [
+            {
+              "name": "OpenID Connect Discovery",
+              "id": "98a5c91c-7a61-44c3-b12f-555ca84a5956",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ]
+                },
+                "description": "OpenID Connect discovery document for your PropelAuth Auth URL."
+              },
+              "response": [
+                {
+                  "id": "a5075a8f-b1fc-47a9-bc1d-a1e9b50d1627",
+                  "name": "Discovery document",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"exercitation_a\": -44063184\n}",
+                  "createdAt": "2026-06-05T15:14:32.000Z",
+                  "updatedAt": "2026-06-05T15:14:32.000Z",
+                  "uid": "35240-a5075a8f-b1fc-47a9-bc1d-a1e9b50d1627"
+                }
+              ],
+              "createdAt": "2026-06-05T15:14:32.000Z",
+              "updatedAt": "2026-06-05T15:14:32.000Z",
+              "uid": "35240-98a5c91c-7a61-44c3-b12f-555ca84a5956"
+            }
+          ],
+          "id": "0daee97f-d2e7-4d15-a153-6676af647a12",
+          "createdAt": "2026-06-05T15:14:32.000Z",
+          "updatedAt": "2026-06-05T15:14:32.000Z",
+          "uid": "35240-0daee97f-d2e7-4d15-a153-6676af647a12"
+        }
+      ],
+      "id": "9e0b6663-f429-4ac8-83a0-7849092e13ff",
+      "createdAt": "2026-06-05T15:14:32.000Z",
+      "updatedAt": "2026-06-05T15:14:32.000Z",
+      "uid": "35240-9e0b6663-f429-4ac8-83a0-7849092e13ff"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://auth.example.com"
+    }
+  ]
+}

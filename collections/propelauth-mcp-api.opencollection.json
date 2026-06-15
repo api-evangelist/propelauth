@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth MCP Authentication API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MCP OAuth 2.1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "MCP Authorize",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.example.com/oauth/2.1/authorize",
+            "params": [
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Begin an OAuth 2.1 authorization code flow with PKCE for an MCP client."
+        },
+        {
+          "info": {
+            "name": "MCP Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.example.com/oauth/2.1/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "code_verifier",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange an authorization code for tokens, or refresh an existing token."
+        },
+        {
+          "info": {
+            "name": "MCP Introspect",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.example.com/oauth/2.1/introspect",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "token",
+                  "value": ""
+                },
+                {
+                  "name": "token_type_hint",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Validate an access token and return associated user, organization, and scope information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dynamic Client Registration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dynamic Client Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.example.com/oauth/2.1/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new MCP client dynamically. Requires that dynamic client registration is\nenabled for your PropelAuth instance.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OAuth 2.1 Authorization Server Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.example.com/.well-known/oauth-authorization-server/oauth/2.1"
+          },
+          "docs": "OAuth 2.1 authorization server metadata document, including supported scopes, grant\ntypes, response types, and PKCE methods.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

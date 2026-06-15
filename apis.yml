@@ -1,395 +1,393 @@
 aid: propelauth
 url: https://raw.githubusercontent.com/api-evangelist/propelauth/refs/heads/main/apis.yml
 apis:
-- aid: propelauth:propelauth-user-api
-  name: PropelAuth User API
-  tags:
-  - Authentication
-  - Users
-  - B2B
-  - Identity
-  humanURL: https://docs.propelauth.com/reference/api/user
-  properties:
-  - url: https://docs.propelauth.com/reference/api/user
-    type: Documentation
-  - url: https://docs.propelauth.com/reference/api/getting-started
-    type: GettingStarted
-  - url: openapi/propelauth-user-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/propelauth-user-schema.json
-    type: JSONSchema
-  - url: json-ld/propelauth-context.jsonld
-    type: JSONLD
-  - url: examples/propelauth-create-user-example.json
-    type: Example
-  - url: examples/propelauth-create-magic-link-example.json
-    type: Example
-  - type: NaftikoCapability
-    url: capabilities/user-management.yaml
-  description: Backend REST API for managing PropelAuth-managed end users. Create, fetch, query, update, delete,
-    enable/disable, and migrate users; issue magic links and short-lived access tokens; manage 2FA and force-logout
-    sessions. Authenticated with a PropelAuth Backend Integration API key as a Bearer token.
-- aid: propelauth:propelauth-org-api
-  name: PropelAuth Organization API
-  tags:
-  - Authentication
-  - Organizations
-  - Multi-Tenancy
-  - B2B
-  humanURL: https://docs.propelauth.com/reference/api/org
-  properties:
-  - url: https://docs.propelauth.com/reference/api/org
-    type: Documentation
-  - url: openapi/propelauth-org-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/propelauth-org-schema.json
-    type: JSONSchema
-  - url: json-ld/propelauth-context.jsonld
-    type: JSONLD
-  - url: examples/propelauth-create-org-example.json
-    type: Example
-  - type: NaftikoCapability
-    url: capabilities/org-management.yaml
-  description: Backend REST API for managing tenant organizations in PropelAuth. CRUD on organizations, member
-    management (add, remove, change role), invite flows, custom role mappings, and pending invite revocation. The
-    multi-tenant core of every B2B SaaS PropelAuth deployment.
-- aid: propelauth:propelauth-api-keys-api
-  name: PropelAuth End-User API Keys API
-  tags:
-  - Authentication
-  - API Keys
-  - Machine-to-Machine
-  - B2B
-  humanURL: https://docs.propelauth.com/reference/api/apikey
-  properties:
-  - url: https://docs.propelauth.com/reference/api/apikey
-    type: Documentation
-  - url: openapi/propelauth-api-keys-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/propelauth-api-key-schema.json
-    type: JSONSchema
-  - url: examples/propelauth-validate-api-key-example.json
-    type: Example
-  - type: NaftikoCapability
-    url: capabilities/api-key-validation.yaml
-  description: Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that
-    PropelAuth manages on behalf of your users and tenant organizations. Includes personal and org-scoped keys,
-    imported legacy keys, and per-key usage reporting. Up to 5M validations / month with the Advanced API Keys
-    add-on.
-- aid: propelauth:propelauth-oauth2-api
-  name: PropelAuth OAuth2 API
-  tags:
-  - Authentication
-  - OAuth 2.0
-  - OpenID Connect
-  - Identity Provider
-  humanURL: https://docs.propelauth.com/reference/api/oauth2
-  properties:
-  - url: https://docs.propelauth.com/reference/api/oauth2
-    type: Documentation
-  - url: openapi/propelauth-oauth2-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/oauth2-identity-provider.yaml
-  description: OAuth 2.0 / OpenID Connect identity-provider endpoints exposed by your PropelAuth Auth URL. Use
-    PropelAuth as an OIDC provider for first-party and third-party OAuth clients, including no-code / low-code and
-    OIDC-aware backends. Authorize, token exchange, refresh, userinfo, logout, and OIDC discovery.
-- aid: propelauth:propelauth-mcp-api
-  name: PropelAuth MCP Authentication API
-  tags:
-  - Authentication
-  - MCP
-  - OAuth 2.1
-  - AI Agents
-  - Beta
-  humanURL: https://docs.propelauth.com/mcp-authentication/overview
-  properties:
-  - url: https://docs.propelauth.com/mcp-authentication/overview
-    type: Documentation
-  - url: openapi/propelauth-mcp-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/mcp-authentication.yaml
-  description: OAuth 2.1 authorization-server endpoints for Model Context Protocol (MCP) clients and AI agents.
-    Authorize with PKCE, exchange and refresh tokens, introspect access tokens, dynamically register MCP clients
-    (RFC 7591), and discover OAuth 2.1 server metadata. Secure MCP servers with PropelAuth identities and
-    organization-scoped permissions.
+  - aid: propelauth:propelauth-user-api
+    name: PropelAuth User API
+    tags:
+      - Authentication
+      - Users
+      - B2B
+      - Identity
+    humanURL: https://docs.propelauth.com/reference/api/user
+    properties:
+      - url: https://docs.propelauth.com/reference/api/user
+        type: Documentation
+      - url: https://docs.propelauth.com/reference/api/getting-started
+        type: GettingStarted
+      - url: openapi/propelauth-user-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/propelauth-user-schema.json
+        type: JSONSchema
+      - url: json-ld/propelauth-context.jsonld
+        type: JSONLD
+      - url: examples/propelauth-create-user-example.json
+        type: Example
+      - url: examples/propelauth-create-magic-link-example.json
+        type: Example
+    description: >-
+      Backend REST API for managing PropelAuth-managed end users. Create, fetch, query, update, delete, enable/disable,
+      and migrate users; issue magic links and short-lived access tokens; manage 2FA and force-logout sessions.
+      Authenticated with a PropelAuth Backend Integration API key as a Bearer token.
+  - aid: propelauth:propelauth-org-api
+    name: PropelAuth Organization API
+    tags:
+      - Authentication
+      - Organizations
+      - Multi-Tenancy
+      - B2B
+    humanURL: https://docs.propelauth.com/reference/api/org
+    properties:
+      - url: https://docs.propelauth.com/reference/api/org
+        type: Documentation
+      - url: openapi/propelauth-org-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/propelauth-org-schema.json
+        type: JSONSchema
+      - url: json-ld/propelauth-context.jsonld
+        type: JSONLD
+      - url: examples/propelauth-create-org-example.json
+        type: Example
+    description: >-
+      Backend REST API for managing tenant organizations in PropelAuth. CRUD on organizations, member management (add,
+      remove, change role), invite flows, custom role mappings, and pending invite revocation. The multi-tenant core of
+      every B2B SaaS PropelAuth deployment.
+  - aid: propelauth:propelauth-api-keys-api
+    name: PropelAuth End-User API Keys API
+    tags:
+      - Authentication
+      - API Keys
+      - Machine-to-Machine
+      - B2B
+    humanURL: https://docs.propelauth.com/reference/api/apikey
+    properties:
+      - url: https://docs.propelauth.com/reference/api/apikey
+        type: Documentation
+      - url: openapi/propelauth-api-keys-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/propelauth-api-key-schema.json
+        type: JSONSchema
+      - url: examples/propelauth-validate-api-key-example.json
+        type: Example
+    description: >-
+      Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that PropelAuth
+      manages on behalf of your users and tenant organizations. Includes personal and org-scoped keys, imported legacy
+      keys, and per-key usage reporting. Up to 5M validations / month with the Advanced API Keys add-on.
+  - aid: propelauth:propelauth-oauth2-api
+    name: PropelAuth OAuth2 API
+    tags:
+      - Authentication
+      - OAuth 2.0
+      - OpenID Connect
+      - Identity Provider
+    humanURL: https://docs.propelauth.com/reference/api/oauth2
+    properties:
+      - url: https://docs.propelauth.com/reference/api/oauth2
+        type: Documentation
+      - url: openapi/propelauth-oauth2-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      OAuth 2.0 / OpenID Connect identity-provider endpoints exposed by your PropelAuth Auth URL. Use PropelAuth as an
+      OIDC provider for first-party and third-party OAuth clients, including no-code / low-code and OIDC-aware backends.
+      Authorize, token exchange, refresh, userinfo, logout, and OIDC discovery.
+  - aid: propelauth:propelauth-mcp-api
+    name: PropelAuth MCP Authentication API
+    tags:
+      - Authentication
+      - MCP
+      - OAuth 2.1
+      - AI Agents
+      - Beta
+    humanURL: https://docs.propelauth.com/mcp-authentication/overview
+    properties:
+      - url: https://docs.propelauth.com/mcp-authentication/overview
+        type: Documentation
+      - url: openapi/propelauth-mcp-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      OAuth 2.1 authorization-server endpoints for Model Context Protocol (MCP) clients and AI agents. Authorize with
+      PKCE, exchange and refresh tokens, introspect access tokens, dynamically register MCP clients (RFC 7591), and
+      discover OAuth 2.1 server metadata. Secure MCP servers with PropelAuth identities and organization-scoped
+      permissions.
 name: PropelAuth
 tags:
-- Authentication
-- Identity
-- B2B
-- Multi-Tenancy
-- Authorization
-- RBAC
-- SSO
-- SCIM
-- MCP
-- API Keys
+  - Authentication
+  - Identity
+  - B2B
+  - Multi-Tenancy
+  - Authorization
+  - RBAC
+  - SSO
+  - SCIM
+  - MCP
+  - API Keys
 kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/propelauth-create-and-update-user-workflow.yml
-    name: PropelAuth Create And Update User
-    summary: Create a user, fetch it back, then enrich the profile with a follow-up update.
-  - url: arazzo/propelauth-invite-existing-user-by-id-workflow.yml
-    name: PropelAuth Invite Existing User By ID
-    summary: Resolve an existing user by email, create a new org, and invite that user in by ID.
-  - url: arazzo/propelauth-invite-user-to-org-workflow.yml
-    name: PropelAuth Invite User To Org
-    summary: Create an organization, email an invite to a user, and confirm the invite is pending.
-  - url: arazzo/propelauth-issue-magic-link-for-new-user-workflow.yml
-    name: PropelAuth Issue Magic Link For New User
-    summary: Create a new user, then mint a one-time magic link to sign them in.
-  - url: arazzo/propelauth-migrate-user-with-password-workflow.yml
-    name: PropelAuth Migrate User With Password
-    summary: Import a user from an external auth system, resolve their ID, then attach a legacy password hash.
-  - url: arazzo/propelauth-offboard-user-from-org-workflow.yml
-    name: PropelAuth Offboard User From Org
-    summary: Resolve a user by email, remove them from an org, and confirm the remaining membership.
-  - url: arazzo/propelauth-onboard-user-into-org-workflow.yml
-    name: PropelAuth Onboard User Into Org
-    summary: Create a user, create an organization, and add the user to it with a role.
-  - url: arazzo/propelauth-promote-org-member-workflow.yml
-    name: PropelAuth Promote Org Member
-    summary: Find a user by email, change their role within an org, and confirm the new role.
-  - url: arazzo/propelauth-provision-org-api-key-workflow.yml
-    name: PropelAuth Provision Org API Key
-    summary: Create an organization, issue an API key bound to it, then read the key's metadata back.
-  - url: arazzo/propelauth-provision-org-with-admin-workflow.yml
-    name: PropelAuth Provision Org With Admin
-    summary: Stand up a new organization, create its first admin user, add them, and verify membership.
-  - url: arazzo/propelauth-revoke-pending-invite-workflow.yml
-    name: PropelAuth Revoke Pending Invite
-    summary: Find a pending invite for an org and revoke it when one is outstanding.
-  - url: arazzo/propelauth-rotate-user-api-key-workflow.yml
-    name: PropelAuth Rotate User API Key
-    summary: Find a user's active API key, revoke it, and issue a fresh replacement.
-  - url: arazzo/propelauth-upsert-user-by-email-workflow.yml
-    name: PropelAuth Upsert User By Email
-    summary: Look a user up by email and update them if they exist, otherwise create them.
-- url: https://www.propelauth.com
-  type: Portal
-- url: https://docs.propelauth.com
-  name: PropelAuth Docs
-  type: Documentation
-- url: https://docs.propelauth.com/getting-started
-  name: Getting Started
-  type: GettingStarted
-- url: https://docs.propelauth.com/reference
-  name: Reference Documentation
-  type: Documentation
-- url: https://docs.propelauth.com/reference/api/getting-started
-  name: Backend API — Getting Started
-  type: Documentation
-- url: https://docs.propelauth.com/reference/api/user
-  name: User API Reference
-  type: Documentation
-- url: https://docs.propelauth.com/reference/api/org
-  name: Organization API Reference
-  type: Documentation
-- url: https://docs.propelauth.com/reference/api/apikey
-  name: API Keys Reference
-  type: Documentation
-- url: https://docs.propelauth.com/reference/api/oauth2
-  name: OAuth2 API Reference
-  type: Documentation
-- url: https://docs.propelauth.com/mcp-authentication/overview
-  name: MCP Authentication Overview
-  type: Documentation
-- url: https://www.propelauth.com/pricing
-  name: PropelAuth Pricing
-  type: Pricing
-- url: https://status.propelauth.com/
-  name: PropelAuth Status
-  type: StatusPage
-- url: https://status.propelauth.com/default/history.rss
-  name: PropelAuth Status RSS
-  type: StatusPage
-- url: https://www.propelauth.com/blog
-  name: PropelAuth Blog
-  type: Blog
-- url: https://www.propelauth.com/legal/terms-of-service
-  type: TermsOfService
-- url: https://www.propelauth.com/legal/privacy-policy
-  type: PrivacyPolicy
-- url: https://auth.propelauth.com/en/signup
-  name: Sign Up
-  type: SignUp
-- url: https://byo.propelauth.com
-  name: Bring Your Own Auth
-  type: Documentation
-- url: https://docs.propelauth.com/files/PropelAuth.postman_collection.json
-  name: Postman Collection
-  type: Documentation
-- url: support@propelauth.com
-  type: Support
-- url: https://github.com/PropelAuth
-  type: GitHubOrganization
-- url: https://github.com/PropelAuth/react
-  name: React SDK
-  type: SDK
-- url: https://github.com/PropelAuth/javascript
-  name: JavaScript SDK
-  type: SDK
-- url: https://github.com/PropelAuth/nextjs
-  name: Next.js SDK (App + Pages Router)
-  type: SDK
-- url: https://github.com/PropelAuth/node
-  name: Node.js SDK
-  type: SDK
-- url: https://github.com/PropelAuth/express
-  name: Express Middleware
-  type: SDK
-- url: https://github.com/PropelAuth/propelauth-fastapi
-  name: FastAPI SDK
-  type: SDK
-- url: https://github.com/PropelAuth/propelauth-flask
-  name: Flask SDK
-  type: SDK
-- url: https://github.com/PropelAuth/propelauth-py
-  name: Python SDK
-  type: SDK
-- url: https://github.com/PropelAuth/propelauth-django-rest-framework
-  name: Django REST Framework SDK
-  type: SDK
-- url: https://github.com/PropelAuth/propelauth-go
-  name: Go SDK
-  type: SDK
-- url: https://github.com/PropelAuth/rust
-  name: Rust Crate
-  type: SDK
-- url: https://github.com/PropelAuth/dotnet
-  name: .NET SDK
-  type: SDK
-- url: https://github.com/PropelAuth/propelauth-rb
-  name: Ruby SDK
-  type: SDK
-- url: https://github.com/PropelAuth/cloudflare-worker
-  name: Cloudflare Worker SDK
-  type: SDK
-- url: https://github.com/PropelAuth/frontend-apis
-  name: Frontend APIs
-  type: SDK
-- url: https://github.com/PropelAuth/node-apis
-  name: Node Backend APIs
-  type: SDK
-- url: https://github.com/PropelAuth/cli
-  name: PropelAuth CLI
-  type: Tool
-- url: https://github.com/PropelAuth/terraform-provider-propelauth
-  name: Terraform Provider
-  type: Tool
-- url: https://github.com/PropelAuth/byo-go
-  name: BYO Auth (Go)
-  type: Tool
-- url: https://github.com/PropelAuth/propelauth-byo-java
-  name: BYO Auth (Java)
-  type: Tool
-- url: https://github.com/PropelAuth/base-elements
-  name: React Base Elements
-  type: Tool
-- url: https://github.com/PropelAuth/documentation
-  name: Documentation Source
-  type: Documentation
-- url: https://github.com/PropelAuth/react-frontend-starter
-  name: React Frontend Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/express-backend-starter
-  name: Express Backend Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/flask-backend-starter
-  name: Flask Backend Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/fastapi-backend-starter
-  name: FastAPI Backend Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/python-chalice-backend-starter
-  name: Python Chalice Backend Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/rust-axum-starter
-  name: Rust Axum Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/redwood
-  name: RedwoodJS Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/postgraphile-propelauth-starter
-  name: PostGraphile Starter
-  type: CodeExamples
-- url: https://github.com/PropelAuth/nextjs-example-app
-  name: Next.js Example App
-  type: CodeExamples
-- url: https://github.com/PropelAuth/react-express-comment-example
-  name: React + Express Comment Example
-  type: CodeExamples
-- url: https://github.com/PropelAuth/demo-genai-api-keys
-  name: GenAI API Keys Demo
-  type: CodeExamples
-- url: https://github.com/PropelAuth/demo-b2b-coupon-generator
-  name: B2B Coupon Generator Demo
-  type: CodeExamples
-- url: https://github.com/PropelAuth/windows-login-pages
-  name: Windows Login Pages
-  type: CodeExamples
-- url: plans/propelauth-plans-pricing.yml
-  type: Plans
-- url: rate-limits/propelauth-rate-limits.yml
-  type: RateLimits
-- url: finops/propelauth-finops.yml
-  type: FinOps
-- url: vocabulary/propelauth-vocabulary.yml
-  type: Vocabulary
-- url: rules/propelauth-rules.yml
-  type: SpectralRuleset
-- type: Features
-  data:
-  - Hosted, customizable login UIs for B2B SaaS
-  - First-class organizations / tenants with custom roles and granular permissions (RBAC)
-  - End-user API keys (personal and org-scoped) with validation, usage stats, and import of legacy keys
-  - Enterprise SSO via SAML and OIDC with self-service per-organization setup (Okta, Entra ID, etc.)
-  - SCIM directory sync for enterprise customers (Growth Plus and Enterprise tiers)
-  - MCP server authentication via OAuth 2.1, PKCE, dynamic client registration, and token introspection
-  - User impersonation with audit trail and alerting
-  - Multi-factor authentication (TOTP) enforceable per organization
-  - Magic links and password authentication with configurable password policies
-  - Per-organization 2FA enforcement and session controls
-  - OAuth 2.0 / OpenID Connect identity-provider endpoints including discovery
-  - User migration from external auth providers (bcrypt, argon2, scrypt, pbkdf2, firebase scrypt)
-  - Separate staging environment included on Growth tier and above
-  - Custom domain on the free tier
-  - Backend SDKs for Node, Express, FastAPI, Flask, Django REST Framework, Python, Go, Rust, .NET, Ruby, and Cloudflare Workers
-  - Frontend SDKs for React, JavaScript, and Next.js (App + Pages Router)
-  - Official PropelAuth CLI and Terraform provider for infrastructure-as-code
-  - Postman collection for the entire backend API
-  - 10,000 MAU included on every tier; overage $0.05/MAU on Growth and Growth Plus
-  - Advanced API Keys add-on for 5,000,000 monthly validations
-  - Bring-Your-Own-Auth deployment mode (`byo.propelauth.com`)
-  sources:
-  - https://www.propelauth.com
-  - https://www.propelauth.com/pricing
-  - https://docs.propelauth.com
-  - https://docs.propelauth.com/reference/api/getting-started
-  - https://github.com/PropelAuth
-  updated: '2026-05-25'
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/propelauth/overview
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+      - url: arazzo/propelauth-create-and-update-user-workflow.yml
+        name: PropelAuth Create And Update User
+        summary: Create a user, fetch it back, then enrich the profile with a follow-up update.
+      - url: arazzo/propelauth-invite-existing-user-by-id-workflow.yml
+        name: PropelAuth Invite Existing User By ID
+        summary: Resolve an existing user by email, create a new org, and invite that user in by ID.
+      - url: arazzo/propelauth-invite-user-to-org-workflow.yml
+        name: PropelAuth Invite User To Org
+        summary: Create an organization, email an invite to a user, and confirm the invite is pending.
+      - url: arazzo/propelauth-issue-magic-link-for-new-user-workflow.yml
+        name: PropelAuth Issue Magic Link For New User
+        summary: Create a new user, then mint a one-time magic link to sign them in.
+      - url: arazzo/propelauth-migrate-user-with-password-workflow.yml
+        name: PropelAuth Migrate User With Password
+        summary: Import a user from an external auth system, resolve their ID, then attach a legacy password hash.
+      - url: arazzo/propelauth-offboard-user-from-org-workflow.yml
+        name: PropelAuth Offboard User From Org
+        summary: Resolve a user by email, remove them from an org, and confirm the remaining membership.
+      - url: arazzo/propelauth-onboard-user-into-org-workflow.yml
+        name: PropelAuth Onboard User Into Org
+        summary: Create a user, create an organization, and add the user to it with a role.
+      - url: arazzo/propelauth-promote-org-member-workflow.yml
+        name: PropelAuth Promote Org Member
+        summary: Find a user by email, change their role within an org, and confirm the new role.
+      - url: arazzo/propelauth-provision-org-api-key-workflow.yml
+        name: PropelAuth Provision Org API Key
+        summary: Create an organization, issue an API key bound to it, then read the key's metadata back.
+      - url: arazzo/propelauth-provision-org-with-admin-workflow.yml
+        name: PropelAuth Provision Org With Admin
+        summary: Stand up a new organization, create its first admin user, add them, and verify membership.
+      - url: arazzo/propelauth-revoke-pending-invite-workflow.yml
+        name: PropelAuth Revoke Pending Invite
+        summary: Find a pending invite for an org and revoke it when one is outstanding.
+      - url: arazzo/propelauth-rotate-user-api-key-workflow.yml
+        name: PropelAuth Rotate User API Key
+        summary: Find a user's active API key, revoke it, and issue a fresh replacement.
+      - url: arazzo/propelauth-upsert-user-by-email-workflow.yml
+        name: PropelAuth Upsert User By Email
+        summary: Look a user up by email and update them if they exist, otherwise create them.
+  - url: https://www.propelauth.com
+    type: Portal
+  - url: https://docs.propelauth.com
+    name: PropelAuth Docs
+    type: Documentation
+  - url: https://docs.propelauth.com/getting-started
+    name: Getting Started
+    type: GettingStarted
+  - url: https://docs.propelauth.com/reference
+    name: Reference Documentation
+    type: Documentation
+  - url: https://docs.propelauth.com/reference/api/getting-started
+    name: Backend API — Getting Started
+    type: Documentation
+  - url: https://docs.propelauth.com/reference/api/user
+    name: User API Reference
+    type: Documentation
+  - url: https://docs.propelauth.com/reference/api/org
+    name: Organization API Reference
+    type: Documentation
+  - url: https://docs.propelauth.com/reference/api/apikey
+    name: API Keys Reference
+    type: Documentation
+  - url: https://docs.propelauth.com/reference/api/oauth2
+    name: OAuth2 API Reference
+    type: Documentation
+  - url: https://docs.propelauth.com/mcp-authentication/overview
+    name: MCP Authentication Overview
+    type: Documentation
+  - url: https://www.propelauth.com/pricing
+    name: PropelAuth Pricing
+    type: Pricing
+  - url: https://status.propelauth.com/
+    name: PropelAuth Status
+    type: StatusPage
+  - url: https://status.propelauth.com/default/history.rss
+    name: PropelAuth Status RSS
+    type: StatusPage
+  - url: https://www.propelauth.com/blog
+    name: PropelAuth Blog
+    type: Blog
+  - url: https://www.propelauth.com/legal/terms-of-service
+    type: TermsOfService
+  - url: https://www.propelauth.com/legal/privacy-policy
+    type: PrivacyPolicy
+  - url: https://auth.propelauth.com/en/signup
+    name: Sign Up
+    type: SignUp
+  - url: https://byo.propelauth.com
+    name: Bring Your Own Auth
+    type: Documentation
+  - url: https://docs.propelauth.com/files/PropelAuth.postman_collection.json
+    name: Postman Collection
+    type: Documentation
+  - url: support@propelauth.com
+    type: Support
+  - url: https://github.com/PropelAuth
+    type: GitHubOrganization
+  - url: https://github.com/PropelAuth/react
+    name: React SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/javascript
+    name: JavaScript SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/nextjs
+    name: Next.js SDK (App + Pages Router)
+    type: SDK
+  - url: https://github.com/PropelAuth/node
+    name: Node.js SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/express
+    name: Express Middleware
+    type: SDK
+  - url: https://github.com/PropelAuth/propelauth-fastapi
+    name: FastAPI SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/propelauth-flask
+    name: Flask SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/propelauth-py
+    name: Python SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/propelauth-django-rest-framework
+    name: Django REST Framework SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/propelauth-go
+    name: Go SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/rust
+    name: Rust Crate
+    type: SDK
+  - url: https://github.com/PropelAuth/dotnet
+    name: .NET SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/propelauth-rb
+    name: Ruby SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/cloudflare-worker
+    name: Cloudflare Worker SDK
+    type: SDK
+  - url: https://github.com/PropelAuth/frontend-apis
+    name: Frontend APIs
+    type: SDK
+  - url: https://github.com/PropelAuth/node-apis
+    name: Node Backend APIs
+    type: SDK
+  - url: https://github.com/PropelAuth/cli
+    name: PropelAuth CLI
+    type: Tool
+  - url: https://github.com/PropelAuth/terraform-provider-propelauth
+    name: Terraform Provider
+    type: Tool
+  - url: https://github.com/PropelAuth/byo-go
+    name: BYO Auth (Go)
+    type: Tool
+  - url: https://github.com/PropelAuth/propelauth-byo-java
+    name: BYO Auth (Java)
+    type: Tool
+  - url: https://github.com/PropelAuth/base-elements
+    name: React Base Elements
+    type: Tool
+  - url: https://github.com/PropelAuth/documentation
+    name: Documentation Source
+    type: Documentation
+  - url: https://github.com/PropelAuth/react-frontend-starter
+    name: React Frontend Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/express-backend-starter
+    name: Express Backend Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/flask-backend-starter
+    name: Flask Backend Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/fastapi-backend-starter
+    name: FastAPI Backend Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/python-chalice-backend-starter
+    name: Python Chalice Backend Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/rust-axum-starter
+    name: Rust Axum Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/redwood
+    name: RedwoodJS Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/postgraphile-propelauth-starter
+    name: PostGraphile Starter
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/nextjs-example-app
+    name: Next.js Example App
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/react-express-comment-example
+    name: React + Express Comment Example
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/demo-genai-api-keys
+    name: GenAI API Keys Demo
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/demo-b2b-coupon-generator
+    name: B2B Coupon Generator Demo
+    type: CodeExamples
+  - url: https://github.com/PropelAuth/windows-login-pages
+    name: Windows Login Pages
+    type: CodeExamples
+  - url: plans/propelauth-plans-pricing.yml
+    type: Plans
+  - url: rate-limits/propelauth-rate-limits.yml
+    type: RateLimits
+  - url: finops/propelauth-finops.yml
+    type: FinOps
+  - url: vocabulary/propelauth-vocabulary.yml
+    type: Vocabulary
+  - url: rules/propelauth-rules.yml
+    type: SpectralRuleset
+  - type: Features
+    data:
+      - Hosted, customizable login UIs for B2B SaaS
+      - First-class organizations / tenants with custom roles and granular permissions (RBAC)
+      - End-user API keys (personal and org-scoped) with validation, usage stats, and import of legacy keys
+      - Enterprise SSO via SAML and OIDC with self-service per-organization setup (Okta, Entra ID, etc.)
+      - SCIM directory sync for enterprise customers (Growth Plus and Enterprise tiers)
+      - MCP server authentication via OAuth 2.1, PKCE, dynamic client registration, and token introspection
+      - User impersonation with audit trail and alerting
+      - Multi-factor authentication (TOTP) enforceable per organization
+      - Magic links and password authentication with configurable password policies
+      - Per-organization 2FA enforcement and session controls
+      - OAuth 2.0 / OpenID Connect identity-provider endpoints including discovery
+      - User migration from external auth providers (bcrypt, argon2, scrypt, pbkdf2, firebase scrypt)
+      - Separate staging environment included on Growth tier and above
+      - Custom domain on the free tier
+      - >-
+        Backend SDKs for Node, Express, FastAPI, Flask, Django REST Framework, Python, Go, Rust, .NET, Ruby, and
+        Cloudflare Workers
+      - Frontend SDKs for React, JavaScript, and Next.js (App + Pages Router)
+      - Official PropelAuth CLI and Terraform provider for infrastructure-as-code
+      - Postman collection for the entire backend API
+      - 10,000 MAU included on every tier; overage $0.05/MAU on Growth and Growth Plus
+      - Advanced API Keys add-on for 5,000,000 monthly validations
+      - Bring-Your-Own-Auth deployment mode (`byo.propelauth.com`)
+    sources:
+      - https://www.propelauth.com
+      - https://www.propelauth.com/pricing
+      - https://docs.propelauth.com
+      - https://docs.propelauth.com/reference/api/getting-started
+      - https://github.com/PropelAuth
+    updated: '2026-05-25'
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-05-25'
 position: Providing
-description: PropelAuth is a B2B SaaS authentication and multi-tenant user management platform purpose-built for
-  organizations that sell to other organizations. It provides hosted login UIs, first-class organizations / tenants
-  with custom roles and permissions, enterprise SSO via SAML and OIDC, SCIM directory sync, end-user API keys with
-  validation and usage reporting, OAuth 2.0 / OpenID Connect identity-provider endpoints, and OAuth 2.1 MCP server
-  authentication with dynamic client registration for AI agents. Backend SDKs span Node, Express, FastAPI, Flask,
-  Django REST Framework, Python, Go, Rust, .NET, Ruby, and Cloudflare Workers; frontend SDKs cover React,
-  JavaScript, and Next.js (App + Pages Router). A Terraform provider and official CLI back infrastructure-as-code
-  workflows. Pricing starts free with 10,000 MAU and scales through Growth ($150/mo) and Growth Plus ($500/mo) to
-  custom Enterprise contracts.
+description: >-
+  PropelAuth is a B2B SaaS authentication and multi-tenant user management platform purpose-built for organizations that
+  sell to other organizations. It provides hosted login UIs, first-class organizations / tenants with custom roles and
+  permissions, enterprise SSO via SAML and OIDC, SCIM directory sync, end-user API keys with validation and usage
+  reporting, OAuth 2.0 / OpenID Connect identity-provider endpoints, and OAuth 2.1 MCP server authentication with
+  dynamic client registration for AI agents. Backend SDKs span Node, Express, FastAPI, Flask, Django REST Framework,
+  Python, Go, Rust, .NET, Ruby, and Cloudflare Workers; frontend SDKs cover React, JavaScript, and Next.js (App + Pages
+  Router). A Terraform provider and official CLI back infrastructure-as-code workflows. Pricing starts free with 10,000
+  MAU and scales through Growth ($150/mo) and Growth Plus ($500/mo) to custom Enterprise contracts.
 maintainers:
-- FN: Kin Lane
-  email: info@apievangelist.com
-  X: apievangelist
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: info@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com
 specificationVersion: '0.16'

@@ -1,0 +1,1559 @@
+{
+  "info": {
+    "_postman_id": "568adb14-7fed-4ef6-b2ff-d151d86ddce0",
+    "name": "PropelAuth Organization API",
+    "description": "Backend REST API for managing tenants (organizations) in PropelAuth. Create and update\norganizations, add and remove members, invite users, change roles, manage role mappings,\nand revoke pending invites. All endpoints require a PropelAuth Backend Integration API key\npresented as a Bearer token.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:29.000Z",
+    "updatedAt": "2026-06-05T15:14:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-568adb14-7fed-4ef6-b2ff-d151d86ddce0"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "backend",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "org",
+                  "item": [
+                    {
+                      "name": "{orgId}",
+                      "item": [
+                        {
+                          "name": "Fetch Org",
+                          "id": "0f5c8ca4-6c79-4183-8bb3-1d92dc506548",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/:orgId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                ":orgId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "aab14784-64a9-4c77-a363-ce27c0bf7360",
+                                  "key": "orgId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get an organization by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "9e935bad-af5d-4bc0-8b8b-35bd80d1f583",
+                              "name": "Org found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/:orgId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    ":orgId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orgId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"url_safe_org_name\": \"<string>\",\n  \"is_saml_configured\": \"<boolean>\",\n  \"is_saml_in_test_mode\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"metadata\": {\n    \"laborum_d\": 92588690,\n    \"amet2\": false,\n    \"aliquip4\": \"adipisicing in\"\n  },\n  \"domain\": \"<string>\",\n  \"domain_autojoin\": \"<boolean>\",\n  \"domain_restrict\": \"<boolean>\",\n  \"legacy_org_id\": \"<string>\",\n  \"custom_role_mapping_name\": \"<string>\",\n  \"can_setup_saml\": \"<boolean>\",\n  \"created_at\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-9e935bad-af5d-4bc0-8b8b-35bd80d1f583"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-0f5c8ca4-6c79-4183-8bb3-1d92dc506548"
+                        },
+                        {
+                          "name": "Update Org",
+                          "id": "bc09d855-544b-43a6-8fd2-5d7ca471b1fd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"can_setup_saml\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"metadata\": {\n    \"nulla_4\": \"ea mollit\"\n  },\n  \"domain\": \"<string>\",\n  \"require_2fa_by\": \"<integer>\",\n  \"extra_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_role_mapping_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/:orgId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                ":orgId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "51b817eb-e263-4b64-8b14-62c60f2575b9",
+                                  "key": "orgId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update mutable organization fields."
+                          },
+                          "response": [
+                            {
+                              "id": "1e0ed5f6-3fe6-4d05-a27e-31e9be0bc9c5",
+                              "name": "Org updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"can_setup_saml\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"metadata\": {\n    \"nulla_4\": \"ea mollit\"\n  },\n  \"domain\": \"<string>\",\n  \"require_2fa_by\": \"<integer>\",\n  \"extra_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_role_mapping_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/:orgId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    ":orgId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orgId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-1e0ed5f6-3fe6-4d05-a27e-31e9be0bc9c5"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-bc09d855-544b-43a6-8fd2-5d7ca471b1fd"
+                        },
+                        {
+                          "name": "Delete Org",
+                          "id": "0d7d0503-db4a-4f15-a683-29c9bf00229e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/:orgId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                ":orgId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4cca187b-8216-45a2-8db0-73d3f9ed0e06",
+                                  "key": "orgId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Permanently delete an organization."
+                          },
+                          "response": [
+                            {
+                              "id": "ea7ffe18-67e9-4769-812a-015917a1e331",
+                              "name": "Org deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/:orgId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    ":orgId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orgId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-ea7ffe18-67e9-4769-812a-015917a1e331"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-0d7d0503-db4a-4f15-a683-29c9bf00229e"
+                        }
+                      ],
+                      "id": "72efb815-7448-4c25-8f50-2678216ca893",
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-72efb815-7448-4c25-8f50-2678216ca893"
+                    },
+                    {
+                      "name": "query",
+                      "item": [
+                        {
+                          "name": "Fetch Orgs",
+                          "id": "8607d687-18a0-4023-94fa-f67d251f822f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"page_size\": 10,\n  \"page_number\": 0,\n  \"order_by\": \"CREATED_AT_ASC\",\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                "query"
+                              ]
+                            },
+                            "description": "Page through organizations with optional filters and ordering."
+                          },
+                          "response": [
+                            {
+                              "id": "52fc2ff9-a638-40c1-84ea-e172a1b6b018",
+                              "name": "Page of orgs",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"page_size\": 10,\n  \"page_number\": 0,\n  \"order_by\": \"CREATED_AT_ASC\",\n  \"name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    "query"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"orgs\": [\n    {\n      \"org_id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"url_safe_org_name\": \"<string>\",\n      \"is_saml_configured\": \"<boolean>\",\n      \"is_saml_in_test_mode\": \"<boolean>\",\n      \"max_users\": \"<integer>\",\n      \"metadata\": {\n        \"Duise\": 81931419,\n        \"ut_c\": true,\n        \"Ut_e\": 34825638,\n        \"quis_a19\": false\n      },\n      \"domain\": \"<string>\",\n      \"domain_autojoin\": \"<boolean>\",\n      \"domain_restrict\": \"<boolean>\",\n      \"legacy_org_id\": \"<string>\",\n      \"custom_role_mapping_name\": \"<string>\",\n      \"can_setup_saml\": \"<boolean>\",\n      \"created_at\": \"<integer>\"\n    },\n    {\n      \"org_id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"url_safe_org_name\": \"<string>\",\n      \"is_saml_configured\": \"<boolean>\",\n      \"is_saml_in_test_mode\": \"<boolean>\",\n      \"max_users\": \"<integer>\",\n      \"metadata\": {\n        \"enim__8c\": \"sunt fugiat dolore mollit\",\n        \"dolor77\": false\n      },\n      \"domain\": \"<string>\",\n      \"domain_autojoin\": \"<boolean>\",\n      \"domain_restrict\": \"<boolean>\",\n      \"legacy_org_id\": \"<string>\",\n      \"custom_role_mapping_name\": \"<string>\",\n      \"can_setup_saml\": \"<boolean>\",\n      \"created_at\": \"<integer>\"\n    }\n  ],\n  \"total_orgs\": \"<integer>\",\n  \"current_page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"has_more_results\": \"<boolean>\"\n}",
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-52fc2ff9-a638-40c1-84ea-e172a1b6b018"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-8607d687-18a0-4023-94fa-f67d251f822f"
+                        }
+                      ],
+                      "id": "f450315c-38dc-49f9-a30e-625e57f397aa",
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-f450315c-38dc-49f9-a30e-625e57f397aa"
+                    },
+                    {
+                      "name": "add_user",
+                      "item": [
+                        {
+                          "name": "Add User To Org",
+                          "id": "c516c682-ba25-4684-9691-5db0db39645f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/add_user",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                "add_user"
+                              ]
+                            },
+                            "description": "Add an existing user to an organization with a specified role."
+                          },
+                          "response": [
+                            {
+                              "id": "5a739637-8232-499f-9b83-29f6eac788a7",
+                              "name": "User added",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/add_user",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    "add_user"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-5a739637-8232-499f-9b83-29f6eac788a7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-c516c682-ba25-4684-9691-5db0db39645f"
+                        }
+                      ],
+                      "id": "dd89828e-0e3d-4806-984e-8691eed3d937",
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-dd89828e-0e3d-4806-984e-8691eed3d937"
+                    },
+                    {
+                      "name": "change_role",
+                      "item": [
+                        {
+                          "name": "Change Role",
+                          "id": "9b94905f-24ce-46ed-b068-265549b634f4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/change_role",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                "change_role"
+                              ]
+                            },
+                            "description": "Change a user's role within an organization."
+                          },
+                          "response": [
+                            {
+                              "id": "c1b37b59-263b-4812-9d60-fe1916c4c19c",
+                              "name": "Role updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/change_role",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    "change_role"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-c1b37b59-263b-4812-9d60-fe1916c4c19c"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-9b94905f-24ce-46ed-b068-265549b634f4"
+                        }
+                      ],
+                      "id": "d1eb71db-06ab-4a77-82a6-92b3bf1636b2",
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-d1eb71db-06ab-4a77-82a6-92b3bf1636b2"
+                    },
+                    {
+                      "name": "remove_user",
+                      "item": [
+                        {
+                          "name": "Remove User From Org",
+                          "id": "be899555-4671-4316-935b-d4c87446540d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/remove_user",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                "remove_user"
+                              ]
+                            },
+                            "description": "Remove a user from an organization."
+                          },
+                          "response": [
+                            {
+                              "id": "53432341-7ec6-44e0-b0cc-d5ad7aa733c0",
+                              "name": "User removed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/org/remove_user",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "org",
+                                    "remove_user"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-53432341-7ec6-44e0-b0cc-d5ad7aa733c0"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-be899555-4671-4316-935b-d4c87446540d"
+                        }
+                      ],
+                      "id": "bbb43f5e-37b3-4c44-8720-ef96df7d12c0",
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-bbb43f5e-37b3-4c44-8720-ef96df7d12c0"
+                    },
+                    {
+                      "name": "Create Org",
+                      "id": "353654f1-0b03-4216-9bfc-cb6fb08fc041",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"enable_auto_joining_by_domain\": \"<boolean>\",\n  \"members_must_have_matching_domain\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"custom_role_mapping_name\": \"<string>\",\n  \"legacy_org_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/org/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "org",
+                            ""
+                          ]
+                        },
+                        "description": "Create a new organization (tenant)."
+                      },
+                      "response": [
+                        {
+                          "id": "ac18cfb1-e62e-4676-8002-176e41cbefcf",
+                          "name": "Org created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"enable_auto_joining_by_domain\": \"<boolean>\",\n  \"members_must_have_matching_domain\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"custom_role_mapping_name\": \"<string>\",\n  \"legacy_org_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/org/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "org",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"org_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"url_safe_org_name\": \"<string>\",\n  \"is_saml_configured\": \"<boolean>\",\n  \"is_saml_in_test_mode\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"metadata\": {\n    \"laborum_d\": 92588690,\n    \"amet2\": false,\n    \"aliquip4\": \"adipisicing in\"\n  },\n  \"domain\": \"<string>\",\n  \"domain_autojoin\": \"<boolean>\",\n  \"domain_restrict\": \"<boolean>\",\n  \"legacy_org_id\": \"<string>\",\n  \"custom_role_mapping_name\": \"<string>\",\n  \"can_setup_saml\": \"<boolean>\",\n  \"created_at\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-ac18cfb1-e62e-4676-8002-176e41cbefcf"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-353654f1-0b03-4216-9bfc-cb6fb08fc041"
+                    }
+                  ],
+                  "id": "fce4a507-aac0-4ded-b57e-79e970dadae9",
+                  "createdAt": "2026-06-05T15:14:30.000Z",
+                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                  "uid": "35240-fce4a507-aac0-4ded-b57e-79e970dadae9"
+                },
+                {
+                  "name": "user",
+                  "item": [
+                    {
+                      "name": "org",
+                      "item": [
+                        {
+                          "name": "{orgId}",
+                          "item": [
+                            {
+                              "name": "Fetch Users In Org",
+                              "id": "f87638ca-619b-42ea-8b95-86973cd42ab4",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/backend/v1/user/org/:orgId?page_size=10&page_number=0&role=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "backend",
+                                    "v1",
+                                    "user",
+                                    "org",
+                                    ":orgId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "page_size",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "key": "page_number",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "key": "role",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b499de8c-ac1e-4ed1-b963-4bdf9dc7bb2f",
+                                      "key": "orgId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "List users that belong to the supplied organization."
+                              },
+                              "response": [
+                                {
+                                  "id": "533d16ae-4078-4566-8e9d-36dbdd3b1f6d",
+                                  "name": "Page of users",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/backend/v1/user/org/:orgId?page_size=10&page_number=0&role=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "backend",
+                                        "v1",
+                                        "user",
+                                        "org",
+                                        ":orgId"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "page_size",
+                                          "value": "10"
+                                        },
+                                        {
+                                          "key": "page_number",
+                                          "value": "0"
+                                        },
+                                        {
+                                          "key": "role",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "orgId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"users\": [\n    {\n      \"ad_09\": -28672647\n    },\n    {\n      \"culpab42\": false,\n      \"consequat_a58\": true\n    }\n  ],\n  \"total_users\": \"<integer>\",\n  \"current_page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"has_more_results\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:30.000Z",
+                                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                                  "uid": "35240-533d16ae-4078-4566-8e9d-36dbdd3b1f6d"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:30.000Z",
+                              "updatedAt": "2026-06-05T15:14:30.000Z",
+                              "uid": "35240-f87638ca-619b-42ea-8b95-86973cd42ab4"
+                            }
+                          ],
+                          "id": "fbc75b20-520b-41a7-af76-e7eb7aae047a",
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-fbc75b20-520b-41a7-af76-e7eb7aae047a"
+                        }
+                      ],
+                      "id": "bee73671-8490-40f2-a2ab-465d4503490e",
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-bee73671-8490-40f2-a2ab-465d4503490e"
+                    }
+                  ],
+                  "id": "bd891d78-628c-4545-a0ba-4812f170e58c",
+                  "createdAt": "2026-06-05T15:14:30.000Z",
+                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                  "uid": "35240-bd891d78-628c-4545-a0ba-4812f170e58c"
+                },
+                {
+                  "name": "invite_user",
+                  "item": [
+                    {
+                      "name": "Invite User To Org",
+                      "id": "29a1cc4d-84f6-4318-acee-6f346a2366ef",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/invite_user",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "invite_user"
+                          ]
+                        },
+                        "description": "Send an invite email for a user to join an organization."
+                      },
+                      "response": [
+                        {
+                          "id": "02550083-2223-4ed9-ae18-2a820fa2344e",
+                          "name": "Invite sent",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/invite_user",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "invite_user"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-02550083-2223-4ed9-ae18-2a820fa2344e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-29a1cc4d-84f6-4318-acee-6f346a2366ef"
+                    }
+                  ],
+                  "id": "833dfd2e-7db3-428c-8016-c99ac2eb305c",
+                  "createdAt": "2026-06-05T15:14:30.000Z",
+                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                  "uid": "35240-833dfd2e-7db3-428c-8016-c99ac2eb305c"
+                },
+                {
+                  "name": "invite_user_by_id",
+                  "item": [
+                    {
+                      "name": "Invite User To Org By User ID",
+                      "id": "62b6850c-dc40-4033-9e5e-5f9962c800f6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/invite_user_by_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "invite_user_by_id"
+                          ]
+                        },
+                        "description": "Invite an existing user (by ID) into an organization."
+                      },
+                      "response": [
+                        {
+                          "id": "d8edfe87-dd29-45fe-bdae-c17a2d87fa93",
+                          "name": "Invite created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/invite_user_by_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "invite_user_by_id"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-d8edfe87-dd29-45fe-bdae-c17a2d87fa93"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-62b6850c-dc40-4033-9e5e-5f9962c800f6"
+                    }
+                  ],
+                  "id": "d3b07572-560a-4221-b627-da6b0d09a87a",
+                  "createdAt": "2026-06-05T15:14:30.000Z",
+                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                  "uid": "35240-d3b07572-560a-4221-b627-da6b0d09a87a"
+                },
+                {
+                  "name": "custom_role_mappings",
+                  "item": [
+                    {
+                      "name": "Fetch Role Mappings",
+                      "id": "95e61bd7-1afa-485e-856e-e7a11dcfa803",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/custom_role_mappings",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "custom_role_mappings"
+                          ]
+                        },
+                        "description": "List custom role mappings configured for your project."
+                      },
+                      "response": [
+                        {
+                          "id": "d4b9b316-74e6-4e72-9764-28b8cc8b392f",
+                          "name": "Role mappings",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/custom_role_mappings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "custom_role_mappings"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"custom_role_mappings\": [\n    {\n      \"custom_role_mapping_name\": \"<string>\",\n      \"num_orgs_subscribed\": \"<integer>\",\n      \"roles\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"is_internal\": \"<boolean>\",\n          \"is_visible_to_end_user\": \"<boolean>\",\n          \"permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"is_internal\": \"<boolean>\",\n          \"is_visible_to_end_user\": \"<boolean>\",\n          \"permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"custom_role_mapping_name\": \"<string>\",\n      \"num_orgs_subscribed\": \"<integer>\",\n      \"roles\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"is_internal\": \"<boolean>\",\n          \"is_visible_to_end_user\": \"<boolean>\",\n          \"permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"is_internal\": \"<boolean>\",\n          \"is_visible_to_end_user\": \"<boolean>\",\n          \"permissions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-d4b9b316-74e6-4e72-9764-28b8cc8b392f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-95e61bd7-1afa-485e-856e-e7a11dcfa803"
+                    }
+                  ],
+                  "id": "f8096848-2fbc-4f32-9c1e-2e8cbeacd3d7",
+                  "createdAt": "2026-06-05T15:14:30.000Z",
+                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                  "uid": "35240-f8096848-2fbc-4f32-9c1e-2e8cbeacd3d7"
+                },
+                {
+                  "name": "pending_org_invites",
+                  "item": [
+                    {
+                      "name": "Fetch Pending Invites",
+                      "id": "cbf95bec-a051-4f56-bda6-e879ceb9095f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/pending_org_invites?org_id=<uuid>&page_size=10&page_number=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "pending_org_invites"
+                          ],
+                          "query": [
+                            {
+                              "key": "org_id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page_number",
+                              "value": "0"
+                            }
+                          ]
+                        },
+                        "description": "Page through pending invites for an organization or across the whole project."
+                      },
+                      "response": [
+                        {
+                          "id": "28aecf8a-8c92-4bd1-b2ac-b7775814169a",
+                          "name": "Pending invites",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/pending_org_invites?org_id=<uuid>&page_size=10&page_number=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "pending_org_invites"
+                              ],
+                              "query": [
+                                {
+                                  "key": "org_id",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "key": "page_size",
+                                  "value": "10"
+                                },
+                                {
+                                  "key": "page_number",
+                                  "value": "0"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"invites\": [\n    {\n      \"invitee_email\": \"<email>\",\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"role_in_org\": \"<string>\",\n      \"additional_roles_in_org\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<integer>\",\n      \"expires_at\": \"<integer>\",\n      \"inviter_email\": \"<email>\",\n      \"inviter_user_id\": \"<uuid>\"\n    },\n    {\n      \"invitee_email\": \"<email>\",\n      \"org_id\": \"<uuid>\",\n      \"org_name\": \"<string>\",\n      \"role_in_org\": \"<string>\",\n      \"additional_roles_in_org\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<integer>\",\n      \"expires_at\": \"<integer>\",\n      \"inviter_email\": \"<email>\",\n      \"inviter_user_id\": \"<uuid>\"\n    }\n  ],\n  \"total_invites\": \"<integer>\",\n  \"has_more_results\": \"<boolean>\"\n}",
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-28aecf8a-8c92-4bd1-b2ac-b7775814169a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-cbf95bec-a051-4f56-bda6-e879ceb9095f"
+                    },
+                    {
+                      "name": "Revoke Pending Org Invite",
+                      "id": "93fd2be3-8744-41d3-8795-bb7ced7e121c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"org_id\": \"<uuid>\",\n  \"invitee_email\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/backend/v1/pending_org_invites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "backend",
+                            "v1",
+                            "pending_org_invites"
+                          ]
+                        },
+                        "description": "Revoke a pending invite."
+                      },
+                      "response": [
+                        {
+                          "id": "f04b8676-d090-4955-848f-2154a6d27e6e",
+                          "name": "Invite revoked",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"org_id\": \"<uuid>\",\n  \"invitee_email\": \"<email>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/backend/v1/pending_org_invites",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "backend",
+                                "v1",
+                                "pending_org_invites"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:30.000Z",
+                          "updatedAt": "2026-06-05T15:14:30.000Z",
+                          "uid": "35240-f04b8676-d090-4955-848f-2154a6d27e6e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:30.000Z",
+                      "updatedAt": "2026-06-05T15:14:30.000Z",
+                      "uid": "35240-93fd2be3-8744-41d3-8795-bb7ced7e121c"
+                    }
+                  ],
+                  "id": "2a087d16-9827-4bf9-b3ae-5380d950dd88",
+                  "createdAt": "2026-06-05T15:14:30.000Z",
+                  "updatedAt": "2026-06-05T15:14:30.000Z",
+                  "uid": "35240-2a087d16-9827-4bf9-b3ae-5380d950dd88"
+                }
+              ],
+              "id": "ff731d94-154c-434a-a69d-ef498968c7a4",
+              "createdAt": "2026-06-05T15:14:30.000Z",
+              "updatedAt": "2026-06-05T15:14:30.000Z",
+              "uid": "35240-ff731d94-154c-434a-a69d-ef498968c7a4"
+            }
+          ],
+          "id": "ef7b50c8-4cd9-48eb-98a3-0435e6836e6f",
+          "createdAt": "2026-06-05T15:14:30.000Z",
+          "updatedAt": "2026-06-05T15:14:30.000Z",
+          "uid": "35240-ef7b50c8-4cd9-48eb-98a3-0435e6836e6f"
+        }
+      ],
+      "id": "f17ed3e4-cbe0-4eea-96eb-5e8e32562acb",
+      "createdAt": "2026-06-05T15:14:30.000Z",
+      "updatedAt": "2026-06-05T15:14:30.000Z",
+      "uid": "35240-f17ed3e4-cbe0-4eea-96eb-5e8e32562acb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "authId",
+      "value": "0000000000"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{authId}}.propelauthtest.com"
+    }
+  ]
+}
