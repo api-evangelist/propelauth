@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/propelauth-api-keys-api-openapi.yml, openapi/propelauth-oauth2-api-openapi.yml,
+  openapi/propelauth-org-api-openapi.yml, openapi/propelauth-user-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BackendApiKey
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/propelauth-api-keys-api-openapi.yml
+  - openapi/propelauth-oauth2-api-openapi.yml
+  - openapi/propelauth-org-api-openapi.yml
+  - openapi/propelauth-user-api-openapi.yml
