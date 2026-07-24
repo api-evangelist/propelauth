@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Members API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Members
+  description: Add, remove, invite, and change roles for users within an organization
+paths:
+  /api/backend/v1/user/org/{orgId}:
+    get:
+      summary: Fetch Users In Org
+      description: List users that belong to the supplied organization.
+      operationId: fetchUsersInOrg
+      tags:
+      - Members
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: page_number
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: role
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Page of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPage'
+  /api/backend/v1/org/add_user:
+    post:
+      summary: Add User To Org
+      description: Add an existing user to an organization with a specified role.
+      operationId: addUserToOrg
+      tags:
+      - Members
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - org_id
+              - role
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                org_id:
+                  type: string
+                  format: uuid
+                role:
+                  type: string
+                additional_roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: User added
+  /api/backend/v1/org/change_role:
+    post:
+      summary: Change Role
+      description: Change a user's role within an organization.
+      operationId: changeRole
+      tags:
+      - Members
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - org_id
+              - role
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                org_id:
+                  type: string
+                  format: uuid
+                role:
+                  type: string
+                additional_roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Role updated
+  /api/backend/v1/org/remove_user:
+    post:
+      summary: Remove User From Org
+      description: Remove a user from an organization.
+      operationId: removeUserFromOrg
+      tags:
+      - Members
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - org_id
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                org_id:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: User removed
+components:
+  schemas:
+    UserPage:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        total_users:
+          type: integer
+        current_page:
+          type: integer
+        page_size:
+          type: integer
+        has_more_results:
+          type: boolean
+  parameters:
+    OrgId:
+      name: orgId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

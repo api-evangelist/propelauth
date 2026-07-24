@@ -1,0 +1,498 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Users API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Users
+  description: Create, query, update, disable, delete, and inspect users
+paths:
+  /api/backend/v1/user/:
+    post:
+      summary: Create User
+      description: Create a new user in your PropelAuth instance.
+      operationId: createUser
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/backend/v1/user/{userId}:
+    get:
+      summary: Fetch User By User ID
+      description: Returns the user with the supplied user ID.
+      operationId: fetchUserById
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update User
+      description: Update mutable user fields (metadata, locked state, properties, etc.).
+      operationId: updateUser
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete User
+      description: Permanently delete a user. This action cannot be undone.
+      operationId: deleteUser
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User deleted
+  /api/backend/v1/user/email:
+    get:
+      summary: Fetch User By Email
+      description: Returns the user with the supplied email address.
+      operationId: fetchUserByEmail
+      tags:
+      - Users
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+          format: email
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/backend/v1/user/username:
+    get:
+      summary: Fetch User By Username
+      description: Returns the user with the supplied username.
+      operationId: fetchUserByUsername
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/backend/v1/user/query:
+    get:
+      summary: Query For Users
+      description: Page through users filtered by email substring, legacy user ID, role, and more.
+      operationId: queryUsers
+      tags:
+      - Users
+      parameters:
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+      - name: page_number
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: order_by
+        in: query
+        schema:
+          type: string
+          enum:
+          - CREATED_AT_ASC
+          - CREATED_AT_DESC
+          - LAST_ACTIVE_AT_ASC
+          - LAST_ACTIVE_AT_DESC
+          - EMAIL
+          - USERNAME
+      - name: email_or_username
+        in: query
+        schema:
+          type: string
+      - name: include_orgs
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Page of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPage'
+  /api/backend/v1/user/{userId}/email:
+    put:
+      summary: Update User Email
+      description: Change a user's email address. Optionally require email verification.
+      operationId: updateUserEmail
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - new_email
+              properties:
+                new_email:
+                  type: string
+                  format: email
+                require_email_confirmation:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: Email updated
+  /api/backend/v1/user/{userId}/password:
+    put:
+      summary: Update User Password
+      description: Programmatically set a user's password.
+      operationId: updateUserPassword
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - password
+              properties:
+                password:
+                  type: string
+                  format: password
+                ask_user_to_update_password_on_login:
+                  type: boolean
+      responses:
+        '200':
+          description: Password updated
+  /api/backend/v1/user/{userId}/clear_password:
+    put:
+      summary: Clear User Password
+      description: Remove a user's password, forcing them to reset on next login.
+      operationId: clearUserPassword
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Password cleared
+  /api/backend/v1/user/{userId}/disable:
+    post:
+      summary: Disable User
+      description: Block the user from signing in. Existing sessions are invalidated.
+      operationId: disableUser
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User disabled
+  /api/backend/v1/user/{userId}/enable:
+    post:
+      summary: Enable User
+      description: Re-enable a previously disabled user.
+      operationId: enableUser
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User enabled
+  /api/backend/v1/user/{userId}/disable_2fa:
+    post:
+      summary: Disable User 2FA
+      description: Remove the user's two-factor authentication enrollment.
+      operationId: disableUser2fa
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: 2FA disabled
+  /api/backend/v1/resend_email_confirmation:
+    post:
+      summary: Resend Email Confirmation
+      description: Resend the email verification message to a user.
+      operationId: resendEmailConfirmation
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Confirmation email queued
+components:
+  schemas:
+    UserPage:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        total_users:
+          type: integer
+        current_page:
+          type: integer
+        page_size:
+          type: integer
+        has_more_results:
+          type: boolean
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        email_confirmed:
+          type: boolean
+        has_password:
+          type: boolean
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        picture_url:
+          type: string
+          format: uri
+        properties:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+        locked:
+          type: boolean
+        enabled:
+          type: boolean
+        mfa_enabled:
+          type: boolean
+        can_create_orgs:
+          type: boolean
+        created_at:
+          type: integer
+          description: Unix seconds
+        last_active_at:
+          type: integer
+          description: Unix seconds
+        update_password_required:
+          type: boolean
+        legacy_user_id:
+          type: string
+        org_id_to_org_info:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/OrgMembership'
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        email_confirmed:
+          type: boolean
+          default: false
+        send_email_to_confirm_email_address:
+          type: boolean
+          default: true
+        ask_user_to_update_password_on_login:
+          type: boolean
+        password:
+          type: string
+          format: password
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        properties:
+          type: object
+          additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string
+        user_facing_error:
+          type: string
+        user_facing_errors:
+          type: object
+          additionalProperties:
+            type: string
+        field_to_errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    OrgMembership:
+      type: object
+      properties:
+        org_id:
+          type: string
+          format: uuid
+        org_name:
+          type: string
+        user_role:
+          type: string
+        inherited_user_roles_plus_current_role:
+          type: array
+          items:
+            type: string
+        user_permissions:
+          type: array
+          items:
+            type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        picture_url:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties: true
+        properties:
+          type: object
+          additionalProperties: true
+        update_password_required:
+          type: boolean
+        legacy_user_id:
+          type: string
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

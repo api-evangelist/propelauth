@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: PropelAuth End-User API Keys Access Tokens OAuth2 API
+  title: PropelAuth End-User API Keys Access Tokens MCP OAuth 2.1 API
   description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
 
     manages on behalf of your end users and tenant organizations. API keys can be scoped to a
@@ -29,22 +29,16 @@ servers:
 security:
 - BackendApiKey: []
 tags:
-- name: OAuth2
-  description: Authorize, token, refresh, and userinfo endpoints
+- name: MCP OAuth 2.1
+  description: OAuth 2.1 flows for MCP clients
 paths:
-  /propelauth/oauth/authorize:
+  /oauth/2.1/authorize:
     get:
-      summary: Authorize
-      description: 'Redirect the user-agent to the PropelAuth login page. After successful login PropelAuth
-
-        redirects back to your `redirect_uri` with a `code` parameter that you exchange at the
-
-        token endpoint.
-
-        '
-      operationId: authorize
+      summary: MCP Authorize
+      description: Begin an OAuth 2.1 authorization code flow with PKCE for an MCP client.
+      operationId: mcpAuthorize
       tags:
-      - OAuth2
+      - MCP OAuth 2.1
       parameters:
       - name: response_type
         in: query
@@ -68,35 +62,33 @@ paths:
         in: query
         schema:
           type: string
+          example: read:user_data tools:execute
       - name: state
         in: query
         schema:
           type: string
       - name: code_challenge
         in: query
+        required: true
         schema:
           type: string
       - name: code_challenge_method
         in: query
+        required: true
         schema:
           type: string
           enum:
           - S256
-          - plain
       responses:
         '302':
           description: Redirect to login or to redirect_uri with authorization code
-  /propelauth/oauth/token:
+  /oauth/2.1/token:
     post:
-      summary: Token
-      description: 'Exchange an authorization code for an access token and refresh token, or exchange an
-
-        existing refresh token for a fresh access token.
-
-        '
-      operationId: token
+      summary: MCP Token
+      description: Exchange an authorization code for tokens, or refresh an existing token.
+      operationId: mcpToken
       tags:
-      - OAuth2
+      - MCP OAuth 2.1
       requestBody:
         required: true
         content:
@@ -137,55 +129,62 @@ paths:
                     type: string
                   refresh_token:
                     type: string
-                  id_token:
-                    type: string
                   token_type:
                     type: string
-                    example: Bearer
                   expires_in:
                     type: integer
                   scope:
                     type: string
-  /propelauth/oauth/userinfo:
-    get:
-      summary: User Info
-      description: Return the OIDC user info document for the bearer token.
-      operationId: userInfo
+  /oauth/2.1/introspect:
+    post:
+      summary: MCP Introspect
+      description: Validate an access token and return associated user, organization, and scope information.
+      operationId: mcpIntrospect
       tags:
-      - OAuth2
-      security:
-      - BearerAuth: []
+      - MCP OAuth 2.1
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - token
+              properties:
+                token:
+                  type: string
+                token_type_hint:
+                  type: string
+                  enum:
+                  - access_token
+                  - refresh_token
       responses:
         '200':
-          description: User info
+          description: Introspection result
           content:
             application/json:
               schema:
                 type: object
-                additionalProperties: true
-  /api/backend/v1/logout:
-    post:
-      summary: Logout
-      description: Invalidate the supplied refresh token. Backend-only.
-      operationId: logout
-      tags:
-      - OAuth2
-      security:
-      - BackendApiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-              - refresh_token
-              properties:
-                refresh_token:
-                  type: string
-      responses:
-        '200':
-          description: Token revoked
+                properties:
+                  active:
+                    type: boolean
+                  scope:
+                    type: string
+                  client_id:
+                    type: string
+                  username:
+                    type: string
+                  sub:
+                    type: string
+                  exp:
+                    type: integer
+                  iat:
+                    type: integer
+                  org_id:
+                    type: string
+                    format: uuid
+                  org_role:
+                    type: string
 components:
   securitySchemes:
     BackendApiKey:

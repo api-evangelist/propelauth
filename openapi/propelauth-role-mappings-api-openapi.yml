@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Role Mappings API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Role Mappings
+  description: Manage custom role mappings per organization
+paths:
+  /api/backend/v1/custom_role_mappings:
+    get:
+      summary: Fetch Role Mappings
+      description: List custom role mappings configured for your project.
+      operationId: fetchRoleMappings
+      tags:
+      - Role Mappings
+      responses:
+        '200':
+          description: Role mappings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_role_mappings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RoleMapping'
+components:
+  schemas:
+    RoleMapping:
+      type: object
+      properties:
+        custom_role_mapping_name:
+          type: string
+        num_orgs_subscribed:
+          type: integer
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              is_internal:
+                type: boolean
+              is_visible_to_end_user:
+                type: boolean
+              permissions:
+                type: array
+                items:
+                  type: string
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

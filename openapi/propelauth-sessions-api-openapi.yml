@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Sessions API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Sessions
+  description: Manage user sessions and forced logout
+paths:
+  /api/backend/v1/user/{userId}/logout_all_sessions:
+    post:
+      summary: Logout All User Sessions
+      description: Invalidate every refresh token / session for the user.
+      operationId: logoutAllUserSessions
+      tags:
+      - Sessions
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: All sessions invalidated
+components:
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

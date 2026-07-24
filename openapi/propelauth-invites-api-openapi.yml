@@ -1,0 +1,193 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Invites API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Invites
+  description: Inspect and revoke pending organization invites
+paths:
+  /api/backend/v1/invite_user:
+    post:
+      summary: Invite User To Org
+      description: Send an invite email for a user to join an organization.
+      operationId: inviteUserToOrg
+      tags:
+      - Invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              - org_id
+              - role
+              properties:
+                email:
+                  type: string
+                  format: email
+                org_id:
+                  type: string
+                  format: uuid
+                role:
+                  type: string
+                additional_roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Invite sent
+  /api/backend/v1/invite_user_by_id:
+    post:
+      summary: Invite User To Org By User ID
+      description: Invite an existing user (by ID) into an organization.
+      operationId: inviteUserToOrgById
+      tags:
+      - Invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - org_id
+              - role
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                org_id:
+                  type: string
+                  format: uuid
+                role:
+                  type: string
+      responses:
+        '200':
+          description: Invite created
+  /api/backend/v1/pending_org_invites:
+    get:
+      summary: Fetch Pending Invites
+      description: Page through pending invites for an organization or across the whole project.
+      operationId: fetchPendingInvites
+      tags:
+      - Invites
+      parameters:
+      - name: org_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: page_number
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Pending invites
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invites:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PendingInvite'
+                  total_invites:
+                    type: integer
+                  has_more_results:
+                    type: boolean
+    delete:
+      summary: Revoke Pending Org Invite
+      description: Revoke a pending invite.
+      operationId: revokePendingOrgInvite
+      tags:
+      - Invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - org_id
+              - invitee_email
+              properties:
+                org_id:
+                  type: string
+                  format: uuid
+                invitee_email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Invite revoked
+components:
+  schemas:
+    PendingInvite:
+      type: object
+      properties:
+        invitee_email:
+          type: string
+          format: email
+        org_id:
+          type: string
+          format: uuid
+        org_name:
+          type: string
+        role_in_org:
+          type: string
+        additional_roles_in_org:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: integer
+        expires_at:
+          type: integer
+        inviter_email:
+          type: string
+          format: email
+        inviter_user_id:
+          type: string
+          format: uuid
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

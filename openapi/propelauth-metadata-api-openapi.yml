@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Metadata API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Metadata
+  description: Authorization server metadata discovery
+paths:
+  /.well-known/oauth-authorization-server/oauth/2.1:
+    get:
+      summary: OAuth 2.1 Authorization Server Metadata
+      description: 'OAuth 2.1 authorization server metadata document, including supported scopes, grant
+
+        types, response types, and PKCE methods.
+
+        '
+      operationId: mcpAuthServerMetadata
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Metadata document
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issuer:
+                    type: string
+                    format: uri
+                  authorization_endpoint:
+                    type: string
+                    format: uri
+                  token_endpoint:
+                    type: string
+                    format: uri
+                  introspection_endpoint:
+                    type: string
+                    format: uri
+                  registration_endpoint:
+                    type: string
+                    format: uri
+                  scopes_supported:
+                    type: array
+                    items:
+                      type: string
+                  response_types_supported:
+                    type: array
+                    items:
+                      type: string
+                  grant_types_supported:
+                    type: array
+                    items:
+                      type: string
+                  code_challenge_methods_supported:
+                    type: array
+                    items:
+                      type: string
+components:
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

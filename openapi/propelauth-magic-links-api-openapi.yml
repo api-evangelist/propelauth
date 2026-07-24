@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Magic Links API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Magic Links
+  description: Issue one-time magic links for login flows
+paths:
+  /api/backend/v1/magic_link:
+    post:
+      summary: Create Magic Link
+      description: Generate a one-time magic link that signs in or signs up the supplied user.
+      operationId: createMagicLink
+      tags:
+      - Magic Links
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MagicLinkRequest'
+      responses:
+        '200':
+          description: Magic link created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MagicLink'
+components:
+  schemas:
+    MagicLinkRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        redirect_to_url:
+          type: string
+          format: uri
+        expires_in_hours:
+          type: integer
+          minimum: 1
+          maximum: 168
+        create_new_user_if_one_doesnt_exist:
+          type: boolean
+        user_signup_query_parameters:
+          type: object
+          additionalProperties:
+            type: string
+    MagicLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

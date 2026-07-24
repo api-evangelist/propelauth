@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Dynamic Client Registration API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Dynamic Client Registration
+  description: RFC 7591 dynamic client registration
+paths:
+  /oauth/2.1/register:
+    post:
+      summary: Dynamic Client Registration
+      description: 'Register a new MCP client dynamically. Requires that dynamic client registration is
+
+        enabled for your PropelAuth instance.
+
+        '
+      operationId: mcpRegister
+      tags:
+      - Dynamic Client Registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - redirect_uris
+              properties:
+                redirect_uris:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+                client_name:
+                  type: string
+                client_uri:
+                  type: string
+                  format: uri
+                token_endpoint_auth_method:
+                  type: string
+                  enum:
+                  - none
+                  - client_secret_basic
+                  - client_secret_post
+                grant_types:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - authorization_code
+                    - refresh_token
+                response_types:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - code
+                scope:
+                  type: string
+      responses:
+        '201':
+          description: Client registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  client_id:
+                    type: string
+                  client_secret:
+                    type: string
+                  client_id_issued_at:
+                    type: integer
+                  client_secret_expires_at:
+                    type: integer
+                  redirect_uris:
+                    type: array
+                    items:
+                      type: string
+components:
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

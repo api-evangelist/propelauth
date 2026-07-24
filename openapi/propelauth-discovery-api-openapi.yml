@@ -1,0 +1,54 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Discovery API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Discovery
+  description: OpenID Connect discovery
+paths:
+  /.well-known/openid-configuration:
+    get:
+      summary: OpenID Connect Discovery
+      description: OpenID Connect discovery document for your PropelAuth Auth URL.
+      operationId: oidcDiscovery
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: Discovery document
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

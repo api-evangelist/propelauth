@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Migration API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Migration
+  description: Migrate users from external authentication providers
+paths:
+  /api/backend/v1/migrate_user/:
+    post:
+      summary: Migrate User From External Source
+      description: Import a user from another auth provider, optionally including a hashed password.
+      operationId: migrateUser
+      tags:
+      - Migration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrateUserRequest'
+      responses:
+        '200':
+          description: User migrated
+  /api/backend/v1/migrate_user/password:
+    post:
+      summary: Migrate User Password
+      description: Attach a legacy hashed password to an existing user.
+      operationId: migrateUserPassword
+      tags:
+      - Migration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - password_hash
+              - password_hash_type
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                password_hash:
+                  type: string
+                password_hash_type:
+                  type: string
+                  enum:
+                  - bcrypt
+                  - argon2
+                  - scrypt
+                  - pbkdf2_sha256
+                  - firebase_scrypt
+      responses:
+        '200':
+          description: Password migrated
+components:
+  schemas:
+    MigrateUserRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        email_confirmed:
+          type: boolean
+        existing_user_id:
+          type: string
+        existing_password_hash:
+          type: string
+        existing_mfa_base32_encoded_secret:
+          type: string
+        update_password_required:
+          type: boolean
+        enabled:
+          type: boolean
+        first_name:
+          type: string
+        last_name:
+          type: string
+        username:
+          type: string
+        picture_url:
+          type: string
+          format: uri
+        properties:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

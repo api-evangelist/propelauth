@@ -1,0 +1,237 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Organizations API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Organizations
+  description: Create, read, update, and delete tenant organizations
+paths:
+  /api/backend/v1/org/:
+    post:
+      summary: Create Org
+      description: Create a new organization (tenant).
+      operationId: createOrg
+      tags:
+      - Organizations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrgRequest'
+      responses:
+        '201':
+          description: Org created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Org'
+  /api/backend/v1/org/{orgId}:
+    get:
+      summary: Fetch Org
+      description: Get an organization by ID.
+      operationId: fetchOrg
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: Org found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Org'
+    put:
+      summary: Update Org
+      description: Update mutable organization fields.
+      operationId: updateOrg
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrgRequest'
+      responses:
+        '200':
+          description: Org updated
+    delete:
+      summary: Delete Org
+      description: Permanently delete an organization.
+      operationId: deleteOrg
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: Org deleted
+  /api/backend/v1/org/query:
+    post:
+      summary: Fetch Orgs
+      description: Page through organizations with optional filters and ordering.
+      operationId: fetchOrgs
+      tags:
+      - Organizations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_size:
+                  type: integer
+                  default: 10
+                page_number:
+                  type: integer
+                  default: 0
+                order_by:
+                  type: string
+                  enum:
+                  - CREATED_AT_ASC
+                  - CREATED_AT_DESC
+                  - NAME
+                name:
+                  type: string
+                  description: Filter by org name substring
+      responses:
+        '200':
+          description: Page of orgs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgPage'
+components:
+  schemas:
+    UpdateOrgRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        can_setup_saml:
+          type: boolean
+        max_users:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+        domain:
+          type: string
+        require_2fa_by:
+          type: integer
+        extra_domains:
+          type: array
+          items:
+            type: string
+        custom_role_mapping_name:
+          type: string
+    CreateOrgRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        domain:
+          type: string
+        enable_auto_joining_by_domain:
+          type: boolean
+        members_must_have_matching_domain:
+          type: boolean
+        max_users:
+          type: integer
+        custom_role_mapping_name:
+          type: string
+        legacy_org_id:
+          type: string
+    Org:
+      type: object
+      properties:
+        org_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        url_safe_org_name:
+          type: string
+        is_saml_configured:
+          type: boolean
+        is_saml_in_test_mode:
+          type: boolean
+        max_users:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+        domain:
+          type: string
+        domain_autojoin:
+          type: boolean
+        domain_restrict:
+          type: boolean
+        legacy_org_id:
+          type: string
+        custom_role_mapping_name:
+          type: string
+        can_setup_saml:
+          type: boolean
+        created_at:
+          type: integer
+    OrgPage:
+      type: object
+      properties:
+        orgs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Org'
+        total_orgs:
+          type: integer
+        current_page:
+          type: integer
+        page_size:
+          type: integer
+        has_more_results:
+          type: boolean
+  parameters:
+    OrgId:
+      name: orgId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

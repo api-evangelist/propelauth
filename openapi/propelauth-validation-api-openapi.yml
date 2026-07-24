@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth End-User API Keys Access Tokens Validation API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
+    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
+    personal user, an organization, or imported from a legacy auth system. All endpoints
+
+    require a PropelAuth Backend Integration API key.
+
+    '
+  version: 1.0.0
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
+security:
+- BackendApiKey: []
+tags:
+- name: Validation
+  description: Validate end-user, personal, organization, and imported API keys
+paths:
+  /api/backend/v1/end_user_api_keys/validate:
+    post:
+      summary: Validate API Key
+      description: 'Validate an end-user API key and return the associated user, organization, and metadata.
+
+        Use this endpoint at your API gateway / middleware layer to gate requests.
+
+        '
+      operationId: validateApiKey
+      tags:
+      - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - api_key_token
+              properties:
+                api_key_token:
+                  type: string
+                  description: The raw API key the end user presented
+      responses:
+        '200':
+          description: API key validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyValidationResult'
+        '401':
+          description: API key invalid or expired
+  /api/backend/v1/end_user_api_keys/validate_imported:
+    post:
+      summary: Validate Imported API Key
+      description: Validate an API key previously imported from an external auth system.
+      operationId: validateImportedApiKey
+      tags:
+      - Validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - api_key_token
+              properties:
+                api_key_token:
+                  type: string
+      responses:
+        '200':
+          description: Imported API key validated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyValidationResult'
+components:
+  schemas:
+    ApiKeyValidationResult:
+      type: object
+      properties:
+        user:
+          type: object
+          additionalProperties: true
+        org:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+        rate_limit:
+          type: object
+          properties:
+            allowed:
+              type: boolean
+            limit:
+              type: integer
+            remaining:
+              type: integer
+            reset_at_seconds:
+              type: integer
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer

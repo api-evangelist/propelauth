@@ -1,12 +1,16 @@
 openapi: 3.1.0
 info:
-  title: PropelAuth End-User API Keys API
-  description: |
-    Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+  title: PropelAuth End-User Access Tokens API Keys API
+  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+
     manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+
     personal user, an organization, or imported from a legacy auth system. All endpoints
+
     require a PropelAuth Backend Integration API key.
-  version: "1.0.0"
+
+    '
+  version: 1.0.0
   contact:
     name: PropelAuth Support
     url: https://www.propelauth.com
@@ -15,93 +19,52 @@ info:
     name: PropelAuth Terms
     url: https://www.propelauth.com/legal/terms-of-service
 servers:
-  - url: https://{authId}.propelauthtest.com
-    description: Test environment
-    variables:
-      authId:
-        default: "0000000000"
-  - url: https://auth.example.com
-    description: Production / Staging custom domain
+- url: https://{authId}.propelauthtest.com
+  description: Test environment
+  variables:
+    authId:
+      default: '0000000000'
+- url: https://auth.example.com
+  description: Production / Staging custom domain
 security:
-  - BackendApiKey: []
+- BackendApiKey: []
 tags:
-  - name: API Keys
-    description: Create, fetch, update, and delete end-user API keys
-  - name: Validation
-    description: Validate end-user, personal, organization, and imported API keys
-  - name: Usage
-    description: Inspect API key usage statistics
+- name: API Keys
+  description: Create, fetch, update, and delete end-user API keys
 paths:
-  /api/backend/v1/end_user_api_keys/validate:
-    post:
-      summary: Validate API Key
-      description: |
-        Validate an end-user API key and return the associated user, organization, and metadata.
-        Use this endpoint at your API gateway / middleware layer to gate requests.
-      operationId: validateApiKey
-      tags: [Validation]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [api_key_token]
-              properties:
-                api_key_token: { type: string, description: The raw API key the end user presented }
-      responses:
-        '200':
-          description: API key validated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiKeyValidationResult'
-        '401':
-          description: API key invalid or expired
-  /api/backend/v1/end_user_api_keys/validate_imported:
-    post:
-      summary: Validate Imported API Key
-      description: Validate an API key previously imported from an external auth system.
-      operationId: validateImportedApiKey
-      tags: [Validation]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [api_key_token]
-              properties:
-                api_key_token: { type: string }
-      responses:
-        '200':
-          description: Imported API key validated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiKeyValidationResult'
   /api/backend/v1/end_user_api_keys:
     get:
       summary: Fetch Active API Keys
       description: Page through active API keys for your project.
       operationId: fetchActiveApiKeys
-      tags: [API Keys]
+      tags:
+      - API Keys
       parameters:
-        - name: page_size
-          in: query
-          schema: { type: integer, default: 10 }
-        - name: page_number
-          in: query
-          schema: { type: integer, default: 0 }
-        - name: user_id
-          in: query
-          schema: { type: string, format: uuid }
-        - name: org_id
-          in: query
-          schema: { type: string, format: uuid }
-        - name: user_email
-          in: query
-          schema: { type: string, format: email }
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: page_number
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: user_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: org_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: user_email
+        in: query
+        schema:
+          type: string
+          format: email
       responses:
         '200':
           description: Page of API keys
@@ -113,7 +76,8 @@ paths:
       summary: Create API Key
       description: Create a new API key bound to a user, organization, or both.
       operationId: createApiKey
-      tags: [API Keys]
+      tags:
+      - API Keys
       requestBody:
         required: true
         content:
@@ -132,9 +96,10 @@ paths:
       summary: Fetch API Key
       description: Return the metadata for a single API key. The plaintext token is never returned.
       operationId: fetchApiKey
-      tags: [API Keys]
+      tags:
+      - API Keys
       parameters:
-        - $ref: '#/components/parameters/ApiKeyId'
+      - $ref: '#/components/parameters/ApiKeyId'
       responses:
         '200':
           description: API key metadata
@@ -146,9 +111,10 @@ paths:
       summary: Update API Key
       description: Update mutable fields on an API key (metadata, expiration, etc.).
       operationId: updateApiKey
-      tags: [API Keys]
+      tags:
+      - API Keys
       parameters:
-        - $ref: '#/components/parameters/ApiKeyId'
+      - $ref: '#/components/parameters/ApiKeyId'
       requestBody:
         required: true
         content:
@@ -156,7 +122,8 @@ paths:
             schema:
               type: object
               properties:
-                expires_at_seconds: { type: integer }
+                expires_at_seconds:
+                  type: integer
                 metadata:
                   type: object
                   additionalProperties: true
@@ -167,9 +134,10 @@ paths:
       summary: Delete API Key
       description: Revoke an API key. Subsequent validations of the token will fail.
       operationId: deleteApiKey
-      tags: [API Keys]
+      tags:
+      - API Keys
       parameters:
-        - $ref: '#/components/parameters/ApiKeyId'
+      - $ref: '#/components/parameters/ApiKeyId'
       responses:
         '200':
           description: API key deleted
@@ -178,20 +146,29 @@ paths:
       summary: Fetch Expired API Keys
       description: Page through expired and revoked API keys.
       operationId: fetchExpiredApiKeys
-      tags: [API Keys]
+      tags:
+      - API Keys
       parameters:
-        - name: page_size
-          in: query
-          schema: { type: integer, default: 10 }
-        - name: page_number
-          in: query
-          schema: { type: integer, default: 0 }
-        - name: user_id
-          in: query
-          schema: { type: string, format: uuid }
-        - name: org_id
-          in: query
-          schema: { type: string, format: uuid }
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: page_number
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: user_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: org_id
+        in: query
+        schema:
+          type: string
+          format: uuid
       responses:
         '200':
           description: Page of archived API keys
@@ -199,54 +176,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiKeyPage'
-  /api/backend/v1/end_user_api_keys/usage:
-    get:
-      summary: Fetch API Key Usage
-      description: Return validation counts and usage stats for end-user API keys.
-      operationId: fetchApiKeyUsage
-      tags: [Usage]
-      parameters:
-        - name: start_time_seconds
-          in: query
-          schema: { type: integer }
-        - name: end_time_seconds
-          in: query
-          schema: { type: integer }
-        - name: user_id
-          in: query
-          schema: { type: string, format: uuid }
-        - name: org_id
-          in: query
-          schema: { type: string, format: uuid }
-      responses:
-        '200':
-          description: Usage report
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  validations: { type: integer }
-                  cache_hits: { type: integer }
-                  cache_misses: { type: integer }
   /api/backend/v1/end_user_api_keys/import:
     post:
       summary: Import API Key
       description: Import an existing API key generated by a legacy auth system.
       operationId: importApiKey
-      tags: [API Keys]
+      tags:
+      - API Keys
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [api_key_token]
+              required:
+              - api_key_token
               properties:
-                api_key_token: { type: string }
-                user_id: { type: string, format: uuid }
-                org_id: { type: string, format: uuid }
-                expires_at_seconds: { type: integer }
+                api_key_token:
+                  type: string
+                user_id:
+                  type: string
+                  format: uuid
+                org_id:
+                  type: string
+                  format: uuid
+                expires_at_seconds:
+                  type: integer
                 metadata:
                   type: object
                   additionalProperties: true
@@ -254,71 +209,78 @@ paths:
         '201':
           description: API key imported
 components:
-  securitySchemes:
-    BackendApiKey:
-      type: http
-      scheme: bearer
-  parameters:
-    ApiKeyId:
-      name: apiKeyId
-      in: path
-      required: true
-      schema: { type: string, format: uuid }
   schemas:
-    ApiKey:
-      type: object
-      properties:
-        api_key_id: { type: string, format: uuid }
-        created_at: { type: integer }
-        expires_at_seconds: { type: integer }
-        metadata:
-          type: object
-          additionalProperties: true
-        user_id: { type: string, format: uuid }
-        org_id: { type: string, format: uuid }
-        type:
-          type: string
-          enum: [personal, org]
     ApiKeyPage:
       type: object
       properties:
         api_keys:
           type: array
-          items: { $ref: '#/components/schemas/ApiKey' }
-        total_api_keys: { type: integer }
-        current_page: { type: integer }
-        page_size: { type: integer }
-        has_more_results: { type: boolean }
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        total_api_keys:
+          type: integer
+        current_page:
+          type: integer
+        page_size:
+          type: integer
+        has_more_results:
+          type: boolean
     CreateApiKeyRequest:
       type: object
       properties:
-        user_id: { type: string, format: uuid }
-        org_id: { type: string, format: uuid }
-        expires_at_seconds: { type: integer }
+        user_id:
+          type: string
+          format: uuid
+        org_id:
+          type: string
+          format: uuid
+        expires_at_seconds:
+          type: integer
         metadata:
           type: object
           additionalProperties: true
     CreateApiKeyResponse:
       type: object
       properties:
-        api_key_id: { type: string, format: uuid }
-        api_key_token: { type: string, description: The plaintext API key — returned only once. }
-    ApiKeyValidationResult:
+        api_key_id:
+          type: string
+          format: uuid
+        api_key_token:
+          type: string
+          description: The plaintext API key — returned only once.
+    ApiKey:
       type: object
       properties:
-        user:
-          type: object
-          additionalProperties: true
-        org:
-          type: object
-          additionalProperties: true
+        api_key_id:
+          type: string
+          format: uuid
+        created_at:
+          type: integer
+        expires_at_seconds:
+          type: integer
         metadata:
           type: object
           additionalProperties: true
-        rate_limit:
-          type: object
-          properties:
-            allowed: { type: boolean }
-            limit: { type: integer }
-            remaining: { type: integer }
-            reset_at_seconds: { type: integer }
+        user_id:
+          type: string
+          format: uuid
+        org_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - personal
+          - org
+  parameters:
+    ApiKeyId:
+      name: apiKeyId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer
