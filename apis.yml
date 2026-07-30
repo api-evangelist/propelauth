@@ -1,113 +1,509 @@
 aid: propelauth
 url: https://raw.githubusercontent.com/api-evangelist/propelauth/refs/heads/main/apis.yml
 apis:
-  - aid: propelauth:propelauth-user-api
-    name: PropelAuth User API
-    tags:
-      - Authentication
-      - Users
-      - B2B
-      - Identity
-    humanURL: https://docs.propelauth.com/reference/api/user
-    properties:
-      - url: https://docs.propelauth.com/reference/api/user
-        type: Documentation
-      - url: https://docs.propelauth.com/reference/api/getting-started
-        type: GettingStarted
-      - url: openapi/propelauth-user-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/propelauth-user-schema.json
-        type: JSONSchema
-      - url: json-ld/propelauth-context.jsonld
-        type: JSONLD
-      - url: examples/propelauth-create-user-example.json
-        type: Examples
-      - url: examples/propelauth-create-magic-link-example.json
-        type: Examples
-    description: >-
-      Backend REST API for managing PropelAuth-managed end users. Create, fetch, query, update, delete, enable/disable,
-      and migrate users; issue magic links and short-lived access tokens; manage 2FA and force-logout sessions.
-      Authenticated with a PropelAuth Backend Integration API key as a Bearer token.
-  - aid: propelauth:propelauth-org-api
-    name: PropelAuth Organization API
-    tags:
-      - Authentication
-      - Organizations
-      - Multi-Tenancy
-      - B2B
-    humanURL: https://docs.propelauth.com/reference/api/org
-    properties:
-      - url: https://docs.propelauth.com/reference/api/org
-        type: Documentation
-      - url: openapi/propelauth-org-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/propelauth-org-schema.json
-        type: JSONSchema
-      - url: json-ld/propelauth-context.jsonld
-        type: JSONLD
-      - url: examples/propelauth-create-org-example.json
-        type: Examples
-    description: >-
-      Backend REST API for managing tenant organizations in PropelAuth. CRUD on organizations, member management (add,
-      remove, change role), invite flows, custom role mappings, and pending invite revocation. The multi-tenant core of
-      every B2B SaaS PropelAuth deployment.
-  - aid: propelauth:propelauth-api-keys-api
-    name: PropelAuth End-User API Keys API
-    tags:
-      - Authentication
-      - API Keys
-      - Machine-to-Machine
-      - B2B
-    humanURL: https://docs.propelauth.com/reference/api/apikey
-    properties:
-      - url: https://docs.propelauth.com/reference/api/apikey
-        type: Documentation
-      - url: openapi/propelauth-api-keys-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/propelauth-api-key-schema.json
-        type: JSONSchema
-      - url: examples/propelauth-validate-api-key-example.json
-        type: Examples
-    description: >-
-      Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that PropelAuth
-      manages on behalf of your users and tenant organizations. Includes personal and org-scoped keys, imported legacy
-      keys, and per-key usage reporting. Up to 5M validations / month with the Advanced API Keys add-on.
-  - aid: propelauth:propelauth-oauth2-api
-    name: PropelAuth OAuth2 API
-    tags:
-      - Authentication
-      - OAuth 2.0
-      - OpenID Connect
-      - Identity Provider
-    humanURL: https://docs.propelauth.com/reference/api/oauth2
-    properties:
-      - url: https://docs.propelauth.com/reference/api/oauth2
-        type: Documentation
-      - url: openapi/propelauth-oauth2-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      OAuth 2.0 / OpenID Connect identity-provider endpoints exposed by your PropelAuth Auth URL. Use PropelAuth as an
-      OIDC provider for first-party and third-party OAuth clients, including no-code / low-code and OIDC-aware backends.
-      Authorize, token exchange, refresh, userinfo, logout, and OIDC discovery.
-  - aid: propelauth:propelauth-mcp-api
-    name: PropelAuth MCP Authentication API
-    tags:
-      - Authentication
-      - MCP
-      - OAuth 2.1
-      - AI Agents
-      - Beta
-    humanURL: https://docs.propelauth.com/mcp-authentication/overview
-    properties:
-      - url: https://docs.propelauth.com/mcp-authentication/overview
-        type: Documentation
-      - url: openapi/propelauth-mcp-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      OAuth 2.1 authorization-server endpoints for Model Context Protocol (MCP) clients and AI agents. Authorize with
-      PKCE, exchange and refresh tokens, introspect access tokens, dynamically register MCP clients (RFC 7591), and
-      discover OAuth 2.1 server metadata. Secure MCP servers with PropelAuth identities and organization-scoped
-      permissions.
+- aid: propelauth:propelauth-api-keys-api
+  name: PropelAuth End-User API Keys API
+  tags:
+  - Authentication
+  - API Keys
+  - Machine-to-Machine
+  - B2B
+  humanURL: https://docs.propelauth.com/reference/api/apikey
+  properties:
+  - url: https://docs.propelauth.com/reference/api/apikey
+    type: Documentation
+  - url: openapi/propelauth-api-keys-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/propelauth-api-key-schema.json
+    type: JSONSchema
+  - url: examples/propelauth-validate-api-key-example.json
+    type: Examples
+  description: >-
+    Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that PropelAuth
+    manages on behalf of your users and tenant organizations. Includes personal and org-scoped keys, imported
+    legacy keys, and per-key usage reporting. Up to 5M validations / month with the Advanced API Keys
+    add-on.
+- aid: propelauth:propelauth-oauth2-api
+  name: PropelAuth OAuth2 API
+  tags:
+  - Authentication
+  - OAuth 2.0
+  - OpenID Connect
+  - Identity Provider
+  humanURL: https://docs.propelauth.com/reference/api/oauth2
+  properties:
+  - url: https://docs.propelauth.com/reference/api/oauth2
+    type: Documentation
+  - url: openapi/propelauth-oauth2-api-openapi.yml
+    type: OpenAPI
+  description: >-
+    OAuth 2.0 / OpenID Connect identity-provider endpoints exposed by your PropelAuth Auth URL. Use PropelAuth
+    as an OIDC provider for first-party and third-party OAuth clients, including no-code / low-code and
+    OIDC-aware backends. Authorize, token exchange, refresh, userinfo, logout, and OIDC discovery.
+- aid: propelauth:propelauth-access-tokens-api
+  name: PropelAuth Access Tokens API
+  description: Mint short-lived access tokens for impersonation and testing
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Access Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-access-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-discovery-api
+  name: PropelAuth Discovery API
+  description: OpenID Connect discovery
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-dynamic-client-registration-api
+  name: PropelAuth Dynamic Client Registration API
+  description: RFC 7591 dynamic client registration
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Dynamic Client Registration
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-dynamic-client-registration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-employees-api
+  name: PropelAuth Employees API
+  description: Inspect PropelAuth dashboard employees (internal team)
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-employees-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-invites-api
+  name: PropelAuth Invites API
+  description: Inspect and revoke pending organization invites
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-invites-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-magic-links-api
+  name: PropelAuth Magic Links API
+  description: Issue one-time magic links for login flows
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Magic Links
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-magic-links-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-mcp-oauth-2-1-api
+  name: PropelAuth MCP OAuth 2.1 API
+  description: OAuth 2.1 flows for MCP clients
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - MCP OAuth 2.1
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-mcp-oauth-2-1-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-members-api
+  name: PropelAuth Members API
+  description: Add, remove, invite, and change roles for users within an organization
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-members-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-metadata-api
+  name: PropelAuth Metadata API
+  description: Authorization server metadata discovery
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-migration-api
+  name: PropelAuth Migration API
+  description: Migrate users from external authentication providers
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Migration
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-migration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-organizations-api
+  name: PropelAuth Organizations API
+  description: Create, read, update, and delete tenant organizations
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-role-mappings-api
+  name: PropelAuth Role Mappings API
+  description: Manage custom role mappings per organization
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Role Mappings
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-role-mappings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-sessions-api
+  name: PropelAuth Sessions API
+  description: Manage user sessions and forced logout
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-usage-api
+  name: PropelAuth Usage API
+  description: Inspect API key usage statistics
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-usage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-users-api
+  name: PropelAuth Users API
+  description: Create, query, update, disable, delete, and inspect users
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-validation-api
+  name: PropelAuth Validation API
+  description: Validate end-user, personal, organization, and imported API keys
+  humanURL: https://docs.propelauth.com/reference/api/user
+  tags:
+  - Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-validation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/user
+  - type: GettingStarted
+    url: https://docs.propelauth.com/reference/api/getting-started
+  - type: JSONSchema
+    url: json-schema/propelauth-user-schema.json
+  - type: JSONLD
+    url: json-ld/propelauth-context.jsonld
+  - type: Examples
+    url: examples/propelauth-create-user-example.json
+  - type: Examples
+    url: examples/propelauth-create-magic-link-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/org
+  - type: JSONSchema
+    url: json-schema/propelauth-org-schema.json
+  - type: Examples
+    url: examples/propelauth-create-org-example.json
+  - type: Documentation
+    url: https://docs.propelauth.com/mcp-authentication/overview
 name: PropelAuth
 tags:
   - Authentication
@@ -121,7 +517,20 @@ tags:
   - MCP
   - API Keys
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/propelauth.png
 access: 3rd-Party
 common:
   - type: AgenticAccess
