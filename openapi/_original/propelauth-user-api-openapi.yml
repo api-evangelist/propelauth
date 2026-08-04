@@ -1,0 +1,546 @@
+openapi: 3.1.0
+info:
+  title: PropelAuth User API
+  description: |
+    Backend REST API for managing users in PropelAuth. Create, fetch, query, update, delete,
+    disable / enable, and migrate users; manage 2FA, sessions, magic links, and access tokens.
+    All endpoints are called server-to-server using a PropelAuth Backend Integration API key
+    presented as a Bearer token. The base URL is your PropelAuth Auth URL — `https://<id>.propelauthtest.com`
+    in test environments and your custom domain (e.g. `https://auth.acme.com`) in staging and production.
+  version: "1.0.0"
+  contact:
+    name: PropelAuth Support
+    url: https://www.propelauth.com
+    email: support@propelauth.com
+  license:
+    name: PropelAuth Terms
+    url: https://www.propelauth.com/legal/terms-of-service
+servers:
+  - url: https://{authId}.propelauthtest.com
+    description: Test environment (auto-generated subdomain)
+    variables:
+      authId:
+        default: "0000000000"
+        description: Your PropelAuth test environment ID
+  - url: https://auth.example.com
+    description: Production / Staging custom domain
+security:
+  - BackendApiKey: []
+tags:
+  - name: Users
+    description: Create, query, update, disable, delete, and inspect users
+  - name: Magic Links
+    description: Issue one-time magic links for login flows
+  - name: Access Tokens
+    description: Mint short-lived access tokens for impersonation and testing
+  - name: Migration
+    description: Migrate users from external authentication providers
+  - name: Sessions
+    description: Manage user sessions and forced logout
+  - name: Employees
+    description: Inspect PropelAuth dashboard employees (internal team)
+paths:
+  /api/backend/v1/user/:
+    post:
+      summary: Create User
+      description: Create a new user in your PropelAuth instance.
+      operationId: createUser
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/backend/v1/user/{userId}:
+    get:
+      summary: Fetch User By User ID
+      description: Returns the user with the supplied user ID.
+      operationId: fetchUserById
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update User
+      description: Update mutable user fields (metadata, locked state, properties, etc.).
+      operationId: updateUser
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete User
+      description: Permanently delete a user. This action cannot be undone.
+      operationId: deleteUser
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User deleted
+  /api/backend/v1/user/email:
+    get:
+      summary: Fetch User By Email
+      description: Returns the user with the supplied email address.
+      operationId: fetchUserByEmail
+      tags: [Users]
+      parameters:
+        - name: email
+          in: query
+          required: true
+          schema: { type: string, format: email }
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/backend/v1/user/username:
+    get:
+      summary: Fetch User By Username
+      description: Returns the user with the supplied username.
+      operationId: fetchUserByUsername
+      tags: [Users]
+      parameters:
+        - name: username
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/backend/v1/user/query:
+    get:
+      summary: Query For Users
+      description: Page through users filtered by email substring, legacy user ID, role, and more.
+      operationId: queryUsers
+      tags: [Users]
+      parameters:
+        - name: page_size
+          in: query
+          schema: { type: integer, default: 10, maximum: 100 }
+        - name: page_number
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: order_by
+          in: query
+          schema:
+            type: string
+            enum: [CREATED_AT_ASC, CREATED_AT_DESC, LAST_ACTIVE_AT_ASC, LAST_ACTIVE_AT_DESC, EMAIL, USERNAME]
+        - name: email_or_username
+          in: query
+          schema: { type: string }
+        - name: include_orgs
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Page of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPage'
+  /api/backend/v1/user/{userId}/email:
+    put:
+      summary: Update User Email
+      description: Change a user's email address. Optionally require email verification.
+      operationId: updateUserEmail
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [new_email]
+              properties:
+                new_email: { type: string, format: email }
+                require_email_confirmation: { type: boolean, default: true }
+      responses:
+        '200':
+          description: Email updated
+  /api/backend/v1/user/{userId}/password:
+    put:
+      summary: Update User Password
+      description: Programmatically set a user's password.
+      operationId: updateUserPassword
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [password]
+              properties:
+                password: { type: string, format: password }
+                ask_user_to_update_password_on_login: { type: boolean }
+      responses:
+        '200':
+          description: Password updated
+  /api/backend/v1/user/{userId}/clear_password:
+    put:
+      summary: Clear User Password
+      description: Remove a user's password, forcing them to reset on next login.
+      operationId: clearUserPassword
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Password cleared
+  /api/backend/v1/user/{userId}/disable:
+    post:
+      summary: Disable User
+      description: Block the user from signing in. Existing sessions are invalidated.
+      operationId: disableUser
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User disabled
+  /api/backend/v1/user/{userId}/enable:
+    post:
+      summary: Enable User
+      description: Re-enable a previously disabled user.
+      operationId: enableUser
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User enabled
+  /api/backend/v1/user/{userId}/disable_2fa:
+    post:
+      summary: Disable User 2FA
+      description: Remove the user's two-factor authentication enrollment.
+      operationId: disableUser2fa
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: 2FA disabled
+  /api/backend/v1/user/{userId}/logout_all_sessions:
+    post:
+      summary: Logout All User Sessions
+      description: Invalidate every refresh token / session for the user.
+      operationId: logoutAllUserSessions
+      tags: [Sessions]
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: All sessions invalidated
+  /api/backend/v1/resend_email_confirmation:
+    post:
+      summary: Resend Email Confirmation
+      description: Resend the email verification message to a user.
+      operationId: resendEmailConfirmation
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+      responses:
+        '200':
+          description: Confirmation email queued
+  /api/backend/v1/magic_link:
+    post:
+      summary: Create Magic Link
+      description: Generate a one-time magic link that signs in or signs up the supplied user.
+      operationId: createMagicLink
+      tags: [Magic Links]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MagicLinkRequest'
+      responses:
+        '200':
+          description: Magic link created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MagicLink'
+  /api/backend/v1/access_token:
+    post:
+      summary: Create Access Token
+      description: Mint a short-lived access token for a user (impersonation, testing, scripted automation).
+      operationId: createAccessToken
+      tags: [Access Tokens]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id]
+              properties:
+                user_id: { type: string, format: uuid }
+                duration_in_minutes: { type: integer, minimum: 1, maximum: 1440 }
+                active_org_id: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Access token created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token: { type: string }
+  /api/backend/v1/migrate_user/:
+    post:
+      summary: Migrate User From External Source
+      description: Import a user from another auth provider, optionally including a hashed password.
+      operationId: migrateUser
+      tags: [Migration]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrateUserRequest'
+      responses:
+        '200':
+          description: User migrated
+  /api/backend/v1/migrate_user/password:
+    post:
+      summary: Migrate User Password
+      description: Attach a legacy hashed password to an existing user.
+      operationId: migrateUserPassword
+      tags: [Migration]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id, password_hash, password_hash_type]
+              properties:
+                user_id: { type: string, format: uuid }
+                password_hash: { type: string }
+                password_hash_type:
+                  type: string
+                  enum: [bcrypt, argon2, scrypt, pbkdf2_sha256, firebase_scrypt]
+      responses:
+        '200':
+          description: Password migrated
+  /api/backend/v1/employee/{employeeId}:
+    get:
+      summary: Fetch Employee By ID
+      description: Look up a PropelAuth dashboard employee (your internal team member) by ID.
+      operationId: fetchEmployeeById
+      tags: [Employees]
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Employee found
+components:
+  securitySchemes:
+    BackendApiKey:
+      type: http
+      scheme: bearer
+      description: PropelAuth Backend Integration API key.
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    User:
+      type: object
+      properties:
+        user_id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        email_confirmed: { type: boolean }
+        has_password: { type: boolean }
+        username: { type: string }
+        first_name: { type: string }
+        last_name: { type: string }
+        picture_url: { type: string, format: uri }
+        properties:
+          type: object
+          additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+        locked: { type: boolean }
+        enabled: { type: boolean }
+        mfa_enabled: { type: boolean }
+        can_create_orgs: { type: boolean }
+        created_at: { type: integer, description: Unix seconds }
+        last_active_at: { type: integer, description: Unix seconds }
+        update_password_required: { type: boolean }
+        legacy_user_id: { type: string }
+        org_id_to_org_info:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/OrgMembership'
+    OrgMembership:
+      type: object
+      properties:
+        org_id: { type: string, format: uuid }
+        org_name: { type: string }
+        user_role: { type: string }
+        inherited_user_roles_plus_current_role:
+          type: array
+          items: { type: string }
+        user_permissions:
+          type: array
+          items: { type: string }
+    CreateUserRequest:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string, format: email }
+        email_confirmed: { type: boolean, default: false }
+        send_email_to_confirm_email_address: { type: boolean, default: true }
+        ask_user_to_update_password_on_login: { type: boolean }
+        password: { type: string, format: password }
+        username: { type: string }
+        first_name: { type: string }
+        last_name: { type: string }
+        properties:
+          type: object
+          additionalProperties: true
+    UpdateUserRequest:
+      type: object
+      properties:
+        username: { type: string }
+        first_name: { type: string }
+        last_name: { type: string }
+        picture_url: { type: string, format: uri }
+        metadata:
+          type: object
+          additionalProperties: true
+        properties:
+          type: object
+          additionalProperties: true
+        update_password_required: { type: boolean }
+        legacy_user_id: { type: string }
+    UserPage:
+      type: object
+      properties:
+        users:
+          type: array
+          items: { $ref: '#/components/schemas/User' }
+        total_users: { type: integer }
+        current_page: { type: integer }
+        page_size: { type: integer }
+        has_more_results: { type: boolean }
+    MagicLinkRequest:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string, format: email }
+        redirect_to_url: { type: string, format: uri }
+        expires_in_hours: { type: integer, minimum: 1, maximum: 168 }
+        create_new_user_if_one_doesnt_exist: { type: boolean }
+        user_signup_query_parameters:
+          type: object
+          additionalProperties: { type: string }
+    MagicLink:
+      type: object
+      properties:
+        url: { type: string, format: uri }
+    MigrateUserRequest:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string, format: email }
+        email_confirmed: { type: boolean }
+        existing_user_id: { type: string }
+        existing_password_hash: { type: string }
+        existing_mfa_base32_encoded_secret: { type: string }
+        update_password_required: { type: boolean }
+        enabled: { type: boolean }
+        first_name: { type: string }
+        last_name: { type: string }
+        username: { type: string }
+        picture_url: { type: string, format: uri }
+        properties:
+          type: object
+          additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        error_code: { type: string }
+        message: { type: string }
+        user_facing_error: { type: string }
+        user_facing_errors:
+          type: object
+          additionalProperties: { type: string }
+        field_to_errors:
+          type: object
+          additionalProperties:
+            type: array
+            items: { type: string }
