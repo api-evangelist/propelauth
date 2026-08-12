@@ -636,8 +636,6 @@ common:
   - url: https://docs.propelauth.com/files/PropelAuth.postman_collection.json
     name: Postman Collection
     type: Documentation
-  - url: support@propelauth.com
-    type: Support
   - url: https://github.com/PropelAuth
     type: GitHubOrganization
   - url: https://github.com/PropelAuth/react
