@@ -1,476 +1,20 @@
 {
   "item": [
     {
-      "id": "468f6f70-13aa-430d-af6b-55cb3fac09f2",
-      "name": "OAuth2",
+      "id": "9ca49241-acdb-473d-8648-b37f4569f29c",
+      "name": "Invites",
       "description": {
-        "content": "Authorize, token, refresh, and userinfo endpoints",
+        "content": "Inspect and revoke pending organization invites",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e561dd89-ed65-447b-9fa9-2bd3412014c6",
-          "name": "Authorize",
+          "id": "fb9ee950-1373-40b1-941f-c698cf19cfb5",
+          "name": "Invite User To Org",
           "request": {
-            "name": "Authorize",
+            "name": "Invite User To Org",
             "description": {
-              "content": "Redirect the user-agent to the PropelAuth login page. After successful login PropelAuth\nredirects back to your `redirect_uri` with a `code` parameter that you exchange at the\ntoken endpoint.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "propelauth",
-                "oauth",
-                "authorize"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "response_type",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "redirect_uri",
-                  "value": "<uri>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "scope",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "state",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "code_challenge",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "code_challenge_method",
-                  "value": "<string>"
-                }
-              ],
-              "variable": [
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{authId}}",
-                  "key": "authId"
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1c928999-635d-41fb-86d6-48689710593b",
-              "name": "Redirect to login or to redirect_uri with authorization code",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "propelauth",
-                    "oauth",
-                    "authorize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "response_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "key": "scope",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "code_challenge",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "code_challenge_method",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{authId}}",
-                      "key": "authId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Found",
-              "code": 302,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7c579ce2-9bcb-4162-bf2f-42b06c7d4e18",
-          "name": "Token",
-          "request": {
-            "name": "Token",
-            "description": {
-              "content": "Exchange an authorization code for an access token and refresh token, or exchange an\nexisting refresh token for a fresh access token.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "propelauth",
-                "oauth",
-                "token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{authId}}",
-                  "key": "authId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "disabled": false,
-                  "key": "grant_type",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "code",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "redirect_uri",
-                  "value": "<uri>"
-                },
-                {
-                  "disabled": false,
-                  "key": "refresh_token",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "client_secret",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "code_verifier",
-                  "value": "<string>"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ce0d2511-4c7c-43e3-a4be-b52d0ad9ce23",
-              "name": "Token issued",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "propelauth",
-                    "oauth",
-                    "token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{authId}}",
-                      "key": "authId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "grant_type",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "description": {
-                        "content": "(Required) ",
-                        "type": "text/plain"
-                      },
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "code",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "redirect_uri",
-                      "value": "<uri>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "refresh_token",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "disabled": false,
-                      "key": "code_verifier",
-                      "value": "<string>"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"id_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 8960,\n  \"scope\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0e851d0d-cd51-4601-ab6c-13ffe7d9b348",
-          "name": "User Info",
-          "request": {
-            "name": "User Info",
-            "description": {
-              "content": "Return the OIDC user info document for the bearer token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "propelauth",
-                "oauth",
-                "userinfo"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{authId}}",
-                  "key": "authId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
-            {
-              "id": "16ee3bb9-5f5f-493d-8849-7806851061b1",
-              "name": "User info",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "propelauth",
-                    "oauth",
-                    "userinfo"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{authId}}",
-                      "key": "authId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"key_0\": 9448\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "240b4b45-7cce-4156-8164-d7a53a037af4",
-          "name": "Logout",
-          "request": {
-            "name": "Logout",
-            "description": {
-              "content": "Invalidate the supplied refresh token. Backend-only.",
+              "content": "Send an invite email for a user to join an organization.",
               "type": "text/plain"
             },
             "url": {
@@ -478,7 +22,7 @@
                 "api",
                 "backend",
                 "v1",
-                "logout"
+                "invite_user"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -503,18 +47,10 @@
               }
             ],
             "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
+            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -524,15 +60,15 @@
           },
           "response": [
             {
-              "id": "c7c33490-4890-4d05-a5d8-54585b5dc434",
-              "name": "Token revoked",
+              "id": "0d4b4a67-e213-4a32-a1bf-c5aec0e8cdee",
+              "name": "Invite sent",
               "originalRequest": {
                 "url": {
                   "path": [
                     "api",
                     "backend",
                     "v1",
-                    "logout"
+                    "invite_user"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -563,7 +99,374 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\",\n  \"additional_roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98ff6a8a-4987-4a2e-bbf9-84d78cdc955d",
+          "name": "Invite User To Org By User ID",
+          "request": {
+            "name": "Invite User To Org By User ID",
+            "description": {
+              "content": "Invite an existing user (by ID) into an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "invite_user_by_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "109b4134-7aae-4a2e-88f2-d8489364c614",
+              "name": "Invite created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "invite_user_by_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ab73fd3-c250-45b7-8925-c133ebd0af1d",
+          "name": "Fetch Pending Invites",
+          "request": {
+            "name": "Fetch Pending Invites",
+            "description": {
+              "content": "Page through pending invites for an organization or across the whole project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "pending_org_invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "org_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_number",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6389f05-f448-40c8-9a5f-967d8de27c5c",
+              "name": "Pending invites",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "pending_org_invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "org_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page_number",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invites\": [\n    {\n      \"invitee_email\": \"ut6MHGUhYWM@RVYiWzav.bo\",\n      \"org_id\": \"13e6d42c-c421-66ed-de54-36057deee53f\",\n      \"org_name\": \"string\",\n      \"role_in_org\": \"string\",\n      \"additional_roles_in_org\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 5491,\n      \"expires_at\": 7280,\n      \"inviter_email\": \"E2w7saGAKU@KoVWIin.da\",\n      \"inviter_user_id\": \"95721135-6c12-d70a-090f-b9c94d04356d\"\n    },\n    {\n      \"invitee_email\": \"uvUqghSBOSY9@WjqNh.dh\",\n      \"org_id\": \"26d58663-2287-b075-1d80-ee95b20f1abd\",\n      \"org_name\": \"string\",\n      \"role_in_org\": \"string\",\n      \"additional_roles_in_org\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": 8141,\n      \"expires_at\": 3308,\n      \"inviter_email\": \"D8kL0seFIDGh1@bdf.vwag\",\n      \"inviter_user_id\": \"1bd9d759-2cf8-4d6b-247d-d2ed0ddb19d5\"\n    }\n  ],\n  \"total_invites\": 7050,\n  \"has_more_results\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcf48b7a-7bef-4cee-ad30-70f4e95718f9",
+          "name": "Revoke Pending Org Invite",
+          "request": {
+            "name": "Revoke Pending Org Invite",
+            "description": {
+              "content": "Revoke a pending invite.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "pending_org_invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"org_id\": \"<uuid>\",\n  \"invitee_email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc14772c-233b-4ff4-b0fc-16c9a8d7cfe2",
+              "name": "Invite revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "pending_org_invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"org_id\": \"<uuid>\",\n  \"invitee_email\": \"<email>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -620,8 +523,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7f150627-4874-44c9-b120-7818d7aee4b8",
-    "name": "PropelAuth End-User API Keys Access Tokens OAuth2 API",
+    "_postman_id": "b8572388-1f0a-4311-8411-341b9b468929",
+    "name": "PropelAuth End-User API Keys Access Tokens Invites API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",

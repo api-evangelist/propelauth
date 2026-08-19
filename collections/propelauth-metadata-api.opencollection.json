@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Metadata API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OAuth 2.1 Authorization Server Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/.well-known/oauth-authorization-server/oauth/2.1"
+          },
+          "docs": "OAuth 2.1 authorization server metadata document, including supported scopes, grant\ntypes, response types, and PKCE methods.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

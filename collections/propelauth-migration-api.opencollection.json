@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Migration API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Migration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Migrate User From External Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/migrate_user/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a user from another auth provider, optionally including a hashed password."
+        },
+        {
+          "info": {
+            "name": "Migrate User Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/migrate_user/password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attach a legacy hashed password to an existing user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,175 @@
+{
+  "item": [
+    {
+      "id": "8408ab26-5052-49b1-b6b7-5a93dbc8294d",
+      "name": "Access Tokens",
+      "description": {
+        "content": "Mint short-lived access tokens for impersonation and testing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a27df3e-bae1-45b9-88b3-a94abac05701",
+          "name": "Create Access Token",
+          "request": {
+            "name": "Create Access Token",
+            "description": {
+              "content": "Mint a short-lived access token for a user (impersonation, testing, scripted automation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"duration_in_minutes\": \"<integer>\",\n  \"active_org_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a76eb47f-df9f-486d-9e8b-03a9531ac0ab",
+              "name": "Access token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"duration_in_minutes\": \"<integer>\",\n  \"active_org_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70ee8f0c-3164-4b4e-aa1e-89373dd3e445",
+    "name": "PropelAuth End-User API Keys Access Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

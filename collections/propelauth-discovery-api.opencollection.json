@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Discovery API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenID Connect Discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/.well-known/openid-configuration"
+          },
+          "docs": "OpenID Connect discovery document for your PropelAuth Auth URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

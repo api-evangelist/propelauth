@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "36c107d5-43bc-44d4-934f-0fc27d1df802",
+      "name": "Role Mappings",
+      "description": {
+        "content": "Manage custom role mappings per organization",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53d5b875-6a66-4d1e-8243-f22d6878383f",
+          "name": "Fetch Role Mappings",
+          "request": {
+            "name": "Fetch Role Mappings",
+            "description": {
+              "content": "List custom role mappings configured for your project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "custom_role_mappings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bec70dd-a3f0-4fa7-b7a9-8726fa2fbc34",
+              "name": "Role mappings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "custom_role_mappings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"custom_role_mappings\": [\n    {\n      \"custom_role_mapping_name\": \"string\",\n      \"num_orgs_subscribed\": 6583,\n      \"roles\": [\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_internal\": true,\n          \"is_visible_to_end_user\": true,\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_internal\": true,\n          \"is_visible_to_end_user\": false,\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"custom_role_mapping_name\": \"string\",\n      \"num_orgs_subscribed\": 630,\n      \"roles\": [\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_internal\": false,\n          \"is_visible_to_end_user\": true,\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"is_internal\": true,\n          \"is_visible_to_end_user\": false,\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f0965e2d-32df-4338-a8e1-c38c0d920e77",
+    "name": "PropelAuth End-User API Keys Access Tokens Role Mappings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

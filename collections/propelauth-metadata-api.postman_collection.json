@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "c75acbaf-b83a-49c4-b585-e7cf19d5f9f7",
+      "name": "Metadata",
+      "description": {
+        "content": "Authorization server metadata discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e7c130b-871f-4f6c-b49d-3b0e0d885d6f",
+          "name": "OAuth 2.1 Authorization Server Metadata",
+          "request": {
+            "name": "OAuth 2.1 Authorization Server Metadata",
+            "description": {
+              "content": "OAuth 2.1 authorization server metadata document, including supported scopes, grant\ntypes, response types, and PKCE methods.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "oauth-authorization-server",
+                "oauth",
+                "2.1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ba566d1-e88a-4b76-b1f5-69d90137f35b",
+              "name": "Metadata document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "oauth-authorization-server",
+                    "oauth",
+                    "2.1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuer\": \"https://fvcDPEs.ehmaYgjUu4pjAKtIXuzqML4r0zLaKw7wKNy+R+yqiRqzrxP.MpDm9LIAOn4IF,0i-+jivyGn8gs8rUl\",\n  \"authorization_endpoint\": \"https://chjyWKbxQfPBaJTXKXSZWXcbmFMEGfko.tvf2WDSCtlSQAq6VWYROepCMvn3c.KdAjLD.n3sEhavoIo,QG421\",\n  \"token_endpoint\": \"http://mXfwCxrwVlpuqsAMPMEGxKU.iuwTVGS5BJYQP9T0,TUd7ibpCORDkQybq.ePvlGc3P3lpXtOf4CdHPkqPTabDZBm\",\n  \"introspection_endpoint\": \"http://qVqGfIViROXbEyYAQgE.bgvxeF,eKOKHR28a94dJcPpm\",\n  \"registration_endpoint\": \"https://zJutmmlzHUIARINLvSUb.gygrTiUbo3PPPnyGkDoBNlsywmhuB1b2\",\n  \"scopes_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"response_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"grant_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code_challenge_methods_supported\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "80ed71ee-2979-435c-8711-e5e1e5bd1c99",
+    "name": "PropelAuth End-User API Keys Access Tokens Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

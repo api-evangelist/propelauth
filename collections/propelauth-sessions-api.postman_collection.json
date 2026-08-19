@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "fc6d365b-4bdc-45c4-8e72-f4e3b82860d3",
+      "name": "Sessions",
+      "description": {
+        "content": "Manage user sessions and forced logout",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74f03cce-1f18-4fd6-b7c6-f0b704b47b2c",
+          "name": "Logout All User Sessions",
+          "request": {
+            "name": "Logout All User Sessions",
+            "description": {
+              "content": "Invalidate every refresh token / session for the user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "user",
+                ":userId",
+                "logout_all_sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "935151e1-ded6-46a0-bde1-819c5b4bcf08",
+              "name": "All sessions invalidated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "user",
+                    ":userId",
+                    "logout_all_sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7a9ee86-c7d8-47cb-b091-05bb072c130d",
+    "name": "PropelAuth End-User API Keys Access Tokens Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

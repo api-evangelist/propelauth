@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "7a98653b-10f8-4960-8df2-352059beddfc",
+      "name": "Migration",
+      "description": {
+        "content": "Migrate users from external authentication providers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b2eede0-1add-4093-a912-871408183c60",
+          "name": "Migrate User From External Source",
+          "request": {
+            "name": "Migrate User From External Source",
+            "description": {
+              "content": "Import a user from another auth provider, optionally including a hashed password.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "migrate_user",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"existing_user_id\": \"<string>\",\n  \"existing_password_hash\": \"<string>\",\n  \"existing_mfa_base32_encoded_secret\": \"<string>\",\n  \"update_password_required\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"username\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"key_0\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2906701-e4b5-42b0-9f97-4e7f1e2db9b1",
+              "name": "User migrated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "migrate_user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"email_confirmed\": \"<boolean>\",\n  \"existing_user_id\": \"<string>\",\n  \"existing_password_hash\": \"<string>\",\n  \"existing_mfa_base32_encoded_secret\": \"<string>\",\n  \"update_password_required\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"username\": \"<string>\",\n  \"picture_url\": \"<uri>\",\n  \"properties\": {\n    \"key_0\": 9481.916094886561,\n    \"key_1\": 985.8145166196364,\n    \"key_2\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01f5771f-6699-4fce-b1db-54e6bdc48a3d",
+          "name": "Migrate User Password",
+          "request": {
+            "name": "Migrate User Password",
+            "description": {
+              "content": "Attach a legacy hashed password to an existing user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "migrate_user",
+                "password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"password_hash\": \"<string>\",\n  \"password_hash_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b7e809c-f69f-4fbd-b546-3ea9f4c74f17",
+              "name": "Password migrated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "migrate_user",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"password_hash\": \"<string>\",\n  \"password_hash_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ab3820f-e965-4c81-97bc-9d6ef8be576e",
+    "name": "PropelAuth End-User API Keys Access Tokens Migration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

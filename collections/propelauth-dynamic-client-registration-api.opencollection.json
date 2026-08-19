@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Dynamic Client Registration API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dynamic Client Registration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Dynamic Client Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/oauth/2.1/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new MCP client dynamically. Requires that dynamic client registration is\nenabled for your PropelAuth instance.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

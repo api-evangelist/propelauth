@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Employees API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Employee By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/employee/:employeeId",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Look up a PropelAuth dashboard employee (your internal team member) by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

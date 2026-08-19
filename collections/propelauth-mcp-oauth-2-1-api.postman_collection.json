@@ -1,26 +1,26 @@
 {
   "item": [
     {
-      "id": "468f6f70-13aa-430d-af6b-55cb3fac09f2",
-      "name": "OAuth2",
+      "id": "16097f84-9d59-4723-afd2-0fbd05660cc6",
+      "name": "MCP OAuth 2.1",
       "description": {
-        "content": "Authorize, token, refresh, and userinfo endpoints",
+        "content": "OAuth 2.1 flows for MCP clients",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e561dd89-ed65-447b-9fa9-2bd3412014c6",
-          "name": "Authorize",
+          "id": "a36c4f93-293e-4eaf-948b-1d907d9241e2",
+          "name": "MCP Authorize",
           "request": {
-            "name": "Authorize",
+            "name": "MCP Authorize",
             "description": {
-              "content": "Redirect the user-agent to the PropelAuth login page. After successful login PropelAuth\nredirects back to your `redirect_uri` with a `code` parameter that you exchange at the\ntoken endpoint.\n",
+              "content": "Begin an OAuth 2.1 authorization code flow with PKCE for an MCP client.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "propelauth",
                 "oauth",
+                "2.1",
                 "authorize"
               ],
               "host": [
@@ -58,12 +58,14 @@
                 {
                   "disabled": false,
                   "key": "code_challenge",
-                  "value": "<string>"
+                  "value": "<string>",
+                  "description": "(Required) "
                 },
                 {
                   "disabled": false,
                   "key": "code_challenge_method",
-                  "value": "<string>"
+                  "value": "<string>",
+                  "description": "(Required) "
                 }
               ],
               "variable": [
@@ -83,13 +85,13 @@
           },
           "response": [
             {
-              "id": "1c928999-635d-41fb-86d6-48689710593b",
+              "id": "7024d11b-77b4-45e8-82bd-5fe032d7dc4d",
               "name": "Redirect to login or to redirect_uri with authorization code",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "propelauth",
                     "oauth",
+                    "2.1",
                     "authorize"
                   ],
                   "host": [
@@ -110,7 +112,7 @@
                     },
                     {
                       "key": "scope",
-                      "value": "<string>"
+                      "value": "read:user_data tools:execute"
                     },
                     {
                       "key": "state",
@@ -169,18 +171,18 @@
           }
         },
         {
-          "id": "7c579ce2-9bcb-4162-bf2f-42b06c7d4e18",
-          "name": "Token",
+          "id": "be8abd4f-722c-4ab3-9d50-fcc4c3754838",
+          "name": "MCP Token",
           "request": {
-            "name": "Token",
+            "name": "MCP Token",
             "description": {
-              "content": "Exchange an authorization code for an access token and refresh token, or exchange an\nexisting refresh token for a fresh access token.\n",
+              "content": "Exchange an authorization code for tokens, or refresh an existing token.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "propelauth",
                 "oauth",
+                "2.1",
                 "token"
               ],
               "host": [
@@ -256,13 +258,13 @@
           },
           "response": [
             {
-              "id": "ce0d2511-4c7c-43e3-a4be-b52d0ad9ce23",
+              "id": "7b0d1c9d-59be-43bb-98e5-b68889b40083",
               "name": "Token issued",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "propelauth",
                     "oauth",
+                    "2.1",
                     "token"
                   ],
                   "host": [
@@ -353,7 +355,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"id_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 8960,\n  \"scope\": \"string\"\n}",
+              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 8525,\n  \"scope\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -364,19 +366,19 @@
           }
         },
         {
-          "id": "0e851d0d-cd51-4601-ab6c-13ffe7d9b348",
-          "name": "User Info",
+          "id": "33e7354e-38b1-4e78-bca1-cda814ea5f6d",
+          "name": "MCP Introspect",
           "request": {
-            "name": "User Info",
+            "name": "MCP Introspect",
             "description": {
-              "content": "Return the OIDC user info document for the bearer token.",
+              "content": "Validate an access token and return associated user, organization, and scope information.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "propelauth",
                 "oauth",
-                "userinfo"
+                "2.1",
+                "introspect"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -396,22 +398,43 @@
             },
             "header": [
               {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET"
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "token_type_hint",
+                  "value": "<string>"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "16ee3bb9-5f5f-493d-8849-7806851061b1",
-              "name": "User info",
+              "id": "1ea83f3d-2071-442e-a381-e1f9c4096882",
+              "name": "Introspection result",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "propelauth",
                     "oauth",
-                    "userinfo"
+                    "2.1",
+                    "introspect"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -443,8 +466,26 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
@@ -454,134 +495,9 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key_0\": 9448\n}",
+              "body": "{\n  \"active\": false,\n  \"scope\": \"string\",\n  \"client_id\": \"string\",\n  \"username\": \"string\",\n  \"sub\": \"string\",\n  \"exp\": 9931,\n  \"iat\": 4790,\n  \"org_id\": \"c5a3f386-af5d-e050-20d8-b3866ad9b0d4\",\n  \"org_role\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "240b4b45-7cce-4156-8164-d7a53a037af4",
-          "name": "Logout",
-          "request": {
-            "name": "Logout",
-            "description": {
-              "content": "Invalidate the supplied refresh token. Backend-only.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "backend",
-                "v1",
-                "logout"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{authId}}",
-                  "key": "authId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c7c33490-4890-4d05-a5d8-54585b5dc434",
-              "name": "Token revoked",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "backend",
-                    "v1",
-                    "logout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{authId}}",
-                      "key": "authId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"refresh_token\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -620,8 +536,8 @@
     ]
   },
   "info": {
-    "_postman_id": "7f150627-4874-44c9-b120-7818d7aee4b8",
-    "name": "PropelAuth End-User API Keys Access Tokens OAuth2 API",
+    "_postman_id": "442b8280-94bc-405d-848f-10fe8d0f1544",
+    "name": "PropelAuth End-User API Keys Access Tokens MCP OAuth 2.1 API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",

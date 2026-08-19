@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Magic Links API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Magic Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Magic Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/magic_link",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a one-time magic link that signs in or signs up the supplied user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

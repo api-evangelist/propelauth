@@ -1,0 +1,194 @@
+{
+  "item": [
+    {
+      "id": "f19b7d20-c068-44c9-9570-ea69cce31bf8",
+      "name": "Usage",
+      "description": {
+        "content": "Inspect API key usage statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc1638ad-b965-47c9-b67a-b0087b1116ad",
+          "name": "Fetch API Key Usage",
+          "request": {
+            "name": "Fetch API Key Usage",
+            "description": {
+              "content": "Return validation counts and usage stats for end-user API keys.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "backend",
+                "v1",
+                "end_user_api_keys",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_time_seconds",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time_seconds",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "org_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{authId}}",
+                  "key": "authId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bf0523e-1e26-4b88-a96b-7af5d4c3a1fa",
+              "name": "Usage report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "backend",
+                    "v1",
+                    "end_user_api_keys",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time_seconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end_time_seconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "org_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{authId}}",
+                      "key": "authId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validations\": 2135,\n  \"cache_hits\": 5775,\n  \"cache_misses\": 7663\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0000000000",
+      "key": "authId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{authId}}.propelauthtest.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "816c9148-48c0-41e4-917f-20cfde02483b",
+    "name": "PropelAuth End-User API Keys Access Tokens Usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",
+      "type": "text/plain"
+    }
+  }
+}

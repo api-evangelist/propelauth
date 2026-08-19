@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Members API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Users In Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/org/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List users that belong to the supplied organization."
+        },
+        {
+          "info": {
+            "name": "Add User To Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/add_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an existing user to an organization with a specified role."
+        },
+        {
+          "info": {
+            "name": "Change Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/change_role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change a user's role within an organization."
+        },
+        {
+          "info": {
+            "name": "Remove User From Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/remove_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a user from an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

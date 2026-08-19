@@ -1,20 +1,20 @@
 {
   "item": [
     {
-      "id": "253e6726-3ad2-4437-a907-97c836da40d5",
-      "name": "API Keys",
+      "id": "7f2ad886-379e-4a38-ab77-e44890b01017",
+      "name": "Organizations",
       "description": {
-        "content": "Create, fetch, update, and delete end-user API keys",
+        "content": "Create, read, update, and delete tenant organizations",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "c1619af8-1304-4dee-90fd-34a5c3829a29",
-          "name": "Fetch Active API Keys",
+          "id": "dc215b51-6476-4bd7-ada3-a6e86513d0ff",
+          "name": "Create Org",
           "request": {
-            "name": "Fetch Active API Keys",
+            "name": "Create Org",
             "description": {
-              "content": "Page through active API keys for your project.",
+              "content": "Create a new organization (tenant).",
               "type": "text/plain"
             },
             "url": {
@@ -22,158 +22,8 @@
                 "api",
                 "backend",
                 "v1",
-                "end_user_api_keys"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "page_size",
-                  "value": "10"
-                },
-                {
-                  "disabled": false,
-                  "key": "page_number",
-                  "value": "0"
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<uuid>"
-                },
-                {
-                  "disabled": false,
-                  "key": "org_id",
-                  "value": "<uuid>"
-                },
-                {
-                  "disabled": false,
-                  "key": "user_email",
-                  "value": "<email>"
-                }
-              ],
-              "variable": [
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{authId}}",
-                  "key": "authId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6be734db-f538-4bb5-ab85-bdcf5cdab967",
-              "name": "Page of API keys",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "backend",
-                    "v1",
-                    "end_user_api_keys"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page_size",
-                      "value": "10"
-                    },
-                    {
-                      "key": "page_number",
-                      "value": "0"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<uuid>"
-                    },
-                    {
-                      "key": "org_id",
-                      "value": "<uuid>"
-                    },
-                    {
-                      "key": "user_email",
-                      "value": "<email>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{authId}}",
-                      "key": "authId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"api_keys\": [\n    {\n      \"api_key_id\": \"9e5b527c-2ab5-5f65-b9a1-9d59f9f31b7a\",\n      \"created_at\": 4471,\n      \"expires_at_seconds\": 942,\n      \"metadata\": {\n        \"key_0\": 8523,\n        \"key_1\": false\n      },\n      \"user_id\": \"55a7023b-3d18-c2e3-9646-5fd0ad271e86\",\n      \"org_id\": \"03b40a98-b0e3-e49b-f9a6-96eae3b8006d\",\n      \"type\": \"personal\"\n    },\n    {\n      \"api_key_id\": \"cf2dd540-2a81-9c61-80dc-0a5c51737467\",\n      \"created_at\": 4852,\n      \"expires_at_seconds\": 1888,\n      \"metadata\": {\n        \"key_0\": 4075,\n        \"key_1\": 7103,\n        \"key_2\": \"string\"\n      },\n      \"user_id\": \"21cdd220-5df7-19a4-e1e8-7444692b3afa\",\n      \"org_id\": \"2636b216-d6a9-b3a8-05d4-4dbccf17dc13\",\n      \"type\": \"org\"\n    }\n  ],\n  \"total_api_keys\": 5491,\n  \"current_page\": 2739,\n  \"page_size\": 5558,\n  \"has_more_results\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "73eb8098-df74-4cad-8f6e-5e9116a5814e",
-          "name": "Create API Key",
-          "request": {
-            "name": "Create API Key",
-            "description": {
-              "content": "Create a new API key bound to a user, organization, or both.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "backend",
-                "v1",
-                "end_user_api_keys"
+                "org",
+                ""
               ],
               "host": [
                 "{{baseUrl}}"
@@ -205,7 +55,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": 1054.2513421959131\n  }\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"enable_auto_joining_by_domain\": \"<boolean>\",\n  \"members_must_have_matching_domain\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"custom_role_mapping_name\": \"<string>\",\n  \"legacy_org_id\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -215,15 +65,16 @@
           },
           "response": [
             {
-              "id": "95d3cf61-5557-4a7d-bad3-d2aae308b771",
-              "name": "API key created",
+              "id": "394f0b6f-5418-4451-a8b4-9f613f895fd4",
+              "name": "Org created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "api",
                     "backend",
                     "v1",
-                    "end_user_api_keys"
+                    "org",
+                    ""
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -258,7 +109,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 1895.764366575383,\n    \"key_2\": 3558.7655070263645\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"enable_auto_joining_by_domain\": \"<boolean>\",\n  \"members_must_have_matching_domain\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"custom_role_mapping_name\": \"<string>\",\n  \"legacy_org_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -274,7 +125,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"api_key_id\": \"079f3021-7935-97ca-00f1-5333abd6e91e\",\n  \"api_key_token\": \"string\"\n}",
+              "body": "{\n  \"org_id\": \"fb98718f-daea-57fe-88ef-95c6f85063bf\",\n  \"name\": \"string\",\n  \"url_safe_org_name\": \"string\",\n  \"is_saml_configured\": true,\n  \"is_saml_in_test_mode\": false,\n  \"max_users\": 5058,\n  \"metadata\": {\n    \"key_0\": 2461.139711515944\n  },\n  \"domain\": \"string\",\n  \"domain_autojoin\": true,\n  \"domain_restrict\": false,\n  \"legacy_org_id\": \"string\",\n  \"custom_role_mapping_name\": \"string\",\n  \"can_setup_saml\": false,\n  \"created_at\": 140\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -285,12 +136,12 @@
           }
         },
         {
-          "id": "edd8bc9a-9945-4c69-b35c-7c602d54682f",
-          "name": "Fetch API Key",
+          "id": "8a9a9881-3788-4d34-b7e8-8db1a6b699da",
+          "name": "Fetch Org",
           "request": {
-            "name": "Fetch API Key",
+            "name": "Fetch Org",
             "description": {
-              "content": "Return the metadata for a single API key. The plaintext token is never returned.",
+              "content": "Get an organization by ID.",
               "type": "text/plain"
             },
             "url": {
@@ -298,8 +149,8 @@
                 "api",
                 "backend",
                 "v1",
-                "end_user_api_keys",
-                ":apiKeyId"
+                "org",
+                ":orgId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -310,7 +161,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<uuid>",
-                  "key": "apiKeyId",
+                  "key": "orgId",
                   "description": "(Required) "
                 },
                 {
@@ -335,16 +186,16 @@
           },
           "response": [
             {
-              "id": "d45e7fef-51e2-4463-9167-a0740aeae5ac",
-              "name": "API key metadata",
+              "id": "2138fa0a-56f1-42bd-a9fa-7cd710cf4b8f",
+              "name": "Org found",
               "originalRequest": {
                 "url": {
                   "path": [
                     "api",
                     "backend",
                     "v1",
-                    "end_user_api_keys",
-                    ":apiKeyId"
+                    "org",
+                    ":orgId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -355,7 +206,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<uuid>",
-                      "key": "apiKeyId",
+                      "key": "orgId",
                       "description": "(Required) "
                     },
                     {
@@ -394,7 +245,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"api_key_id\": \"22e1841d-fca2-98bf-ea13-eb9da2a9a30f\",\n  \"created_at\": 38,\n  \"expires_at_seconds\": 1930,\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 8137.6353113038995\n  },\n  \"user_id\": \"9a007533-720b-9e47-47a1-f088f0ea7be0\",\n  \"org_id\": \"6bd8cba0-53e0-f2ac-64da-7168f6f95235\",\n  \"type\": \"personal\"\n}",
+              "body": "{\n  \"org_id\": \"fb98718f-daea-57fe-88ef-95c6f85063bf\",\n  \"name\": \"string\",\n  \"url_safe_org_name\": \"string\",\n  \"is_saml_configured\": true,\n  \"is_saml_in_test_mode\": false,\n  \"max_users\": 5058,\n  \"metadata\": {\n    \"key_0\": 2461.139711515944\n  },\n  \"domain\": \"string\",\n  \"domain_autojoin\": true,\n  \"domain_restrict\": false,\n  \"legacy_org_id\": \"string\",\n  \"custom_role_mapping_name\": \"string\",\n  \"can_setup_saml\": false,\n  \"created_at\": 140\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -405,12 +256,12 @@
           }
         },
         {
-          "id": "2be38c61-80fa-4284-9771-a2bd343de592",
-          "name": "Update API Key",
+          "id": "ef21523f-e920-4f79-95f5-25031600b515",
+          "name": "Update Org",
           "request": {
-            "name": "Update API Key",
+            "name": "Update Org",
             "description": {
-              "content": "Update mutable fields on an API key (metadata, expiration, etc.).",
+              "content": "Update mutable organization fields.",
               "type": "text/plain"
             },
             "url": {
@@ -418,8 +269,8 @@
                 "api",
                 "backend",
                 "v1",
-                "end_user_api_keys",
-                ":apiKeyId"
+                "org",
+                ":orgId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -430,7 +281,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<uuid>",
-                  "key": "apiKeyId",
+                  "key": "orgId",
                   "description": "(Required) "
                 },
                 {
@@ -450,11 +301,11 @@
                 "value": "application/json"
               }
             ],
-            "method": "PATCH",
+            "method": "PUT",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": 3274\n  }\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"can_setup_saml\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": 3916.097331221716,\n    \"key_1\": \"string\"\n  },\n  \"domain\": \"<string>\",\n  \"require_2fa_by\": \"<integer>\",\n  \"extra_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_role_mapping_name\": \"<string>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -464,16 +315,16 @@
           },
           "response": [
             {
-              "id": "1e945d87-ed00-413a-96af-157d72d455eb",
-              "name": "API key updated",
+              "id": "99b6ebeb-1513-40ce-96cf-e6007ae40b06",
+              "name": "Org updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "api",
                     "backend",
                     "v1",
-                    "end_user_api_keys",
-                    ":apiKeyId"
+                    "org",
+                    ":orgId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -484,7 +335,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<uuid>",
-                      "key": "apiKeyId",
+                      "key": "orgId",
                       "description": "(Required) "
                     },
                     {
@@ -508,10 +359,10 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "PATCH",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": 7321.863669859684,\n    \"key_1\": 7214.942553780143\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"can_setup_saml\": \"<boolean>\",\n  \"max_users\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": 6578,\n    \"key_1\": 4791.088137215763,\n    \"key_2\": 4907\n  },\n  \"domain\": \"<string>\",\n  \"require_2fa_by\": \"<integer>\",\n  \"extra_domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_role_mapping_name\": \"<string>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -538,12 +389,12 @@
           }
         },
         {
-          "id": "2fce0bee-5113-40e7-9a31-37fc761103e9",
-          "name": "Delete API Key",
+          "id": "131e12d7-67bd-4073-89db-fa99ae5c5012",
+          "name": "Delete Org",
           "request": {
-            "name": "Delete API Key",
+            "name": "Delete Org",
             "description": {
-              "content": "Revoke an API key. Subsequent validations of the token will fail.",
+              "content": "Permanently delete an organization.",
               "type": "text/plain"
             },
             "url": {
@@ -551,8 +402,8 @@
                 "api",
                 "backend",
                 "v1",
-                "end_user_api_keys",
-                ":apiKeyId"
+                "org",
+                ":orgId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -563,7 +414,7 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<uuid>",
-                  "key": "apiKeyId",
+                  "key": "orgId",
                   "description": "(Required) "
                 },
                 {
@@ -582,16 +433,16 @@
           },
           "response": [
             {
-              "id": "75a0d4e8-4f0c-403d-b17d-7ba83fe32e83",
-              "name": "API key deleted",
+              "id": "35bd7f05-4671-42d7-921f-d887e1e0dafe",
+              "name": "Org deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "api",
                     "backend",
                     "v1",
-                    "end_user_api_keys",
-                    ":apiKeyId"
+                    "org",
+                    ":orgId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -602,7 +453,7 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<uuid>",
-                      "key": "apiKeyId",
+                      "key": "orgId",
                       "description": "(Required) "
                     },
                     {
@@ -648,12 +499,12 @@
           }
         },
         {
-          "id": "03d0cc3c-628e-434f-be07-640d59809c29",
-          "name": "Fetch Expired API Keys",
+          "id": "df5f7ac3-6122-43bf-8b07-9fc205f15af7",
+          "name": "Fetch Orgs",
           "request": {
-            "name": "Fetch Expired API Keys",
+            "name": "Fetch Orgs",
             "description": {
-              "content": "Page through expired and revoked API keys.",
+              "content": "Page through organizations with optional filters and ordering.",
               "type": "text/plain"
             },
             "url": {
@@ -661,34 +512,13 @@
                 "api",
                 "backend",
                 "v1",
-                "end_user_api_keys",
-                "archived"
+                "org",
+                "query"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "page_size",
-                  "value": "10"
-                },
-                {
-                  "disabled": false,
-                  "key": "page_number",
-                  "value": "0"
-                },
-                {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<uuid>"
-                },
-                {
-                  "disabled": false,
-                  "key": "org_id",
-                  "value": "<uuid>"
-                }
-              ],
+              "query": [],
               "variable": [
                 {
                   "description": {
@@ -703,47 +533,43 @@
             },
             "header": [
               {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page_size\": 10,\n  \"page_number\": 0,\n  \"order_by\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "11f37ee4-a7bd-4ea3-8ef6-fb5a15ba36bf",
-              "name": "Page of archived API keys",
+              "id": "66d9e418-8053-4891-8eb0-dc3e54b90c0a",
+              "name": "Page of orgs",
               "originalRequest": {
                 "url": {
                   "path": [
                     "api",
                     "backend",
                     "v1",
-                    "end_user_api_keys",
-                    "archived"
+                    "org",
+                    "query"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "page_size",
-                      "value": "10"
-                    },
-                    {
-                      "key": "page_number",
-                      "value": "0"
-                    },
-                    {
-                      "key": "user_id",
-                      "value": "<uuid>"
-                    },
-                    {
-                      "key": "org_id",
-                      "value": "<uuid>"
-                    }
-                  ],
+                  "query": [],
                   "variable": [
                     {
                       "description": {
@@ -770,8 +596,16 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page_size\": 10,\n  \"page_number\": 0,\n  \"order_by\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
               "status": "OK",
               "code": 200,
@@ -781,128 +615,9 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"api_keys\": [\n    {\n      \"api_key_id\": \"9e5b527c-2ab5-5f65-b9a1-9d59f9f31b7a\",\n      \"created_at\": 4471,\n      \"expires_at_seconds\": 942,\n      \"metadata\": {\n        \"key_0\": 8523,\n        \"key_1\": false\n      },\n      \"user_id\": \"55a7023b-3d18-c2e3-9646-5fd0ad271e86\",\n      \"org_id\": \"03b40a98-b0e3-e49b-f9a6-96eae3b8006d\",\n      \"type\": \"personal\"\n    },\n    {\n      \"api_key_id\": \"cf2dd540-2a81-9c61-80dc-0a5c51737467\",\n      \"created_at\": 4852,\n      \"expires_at_seconds\": 1888,\n      \"metadata\": {\n        \"key_0\": 4075,\n        \"key_1\": 7103,\n        \"key_2\": \"string\"\n      },\n      \"user_id\": \"21cdd220-5df7-19a4-e1e8-7444692b3afa\",\n      \"org_id\": \"2636b216-d6a9-b3a8-05d4-4dbccf17dc13\",\n      \"type\": \"org\"\n    }\n  ],\n  \"total_api_keys\": 5491,\n  \"current_page\": 2739,\n  \"page_size\": 5558,\n  \"has_more_results\": true\n}",
+              "body": "{\n  \"orgs\": [\n    {\n      \"org_id\": \"a9cbf0cb-927a-17b6-059d-35633924f6af\",\n      \"name\": \"string\",\n      \"url_safe_org_name\": \"string\",\n      \"is_saml_configured\": true,\n      \"is_saml_in_test_mode\": false,\n      \"max_users\": 3163,\n      \"metadata\": {\n        \"key_0\": 2781\n      },\n      \"domain\": \"string\",\n      \"domain_autojoin\": true,\n      \"domain_restrict\": true,\n      \"legacy_org_id\": \"string\",\n      \"custom_role_mapping_name\": \"string\",\n      \"can_setup_saml\": false,\n      \"created_at\": 3839\n    },\n    {\n      \"org_id\": \"15b4c152-7efd-4107-cc0a-7ac3725bae31\",\n      \"name\": \"string\",\n      \"url_safe_org_name\": \"string\",\n      \"is_saml_configured\": true,\n      \"is_saml_in_test_mode\": false,\n      \"max_users\": 50,\n      \"metadata\": {\n        \"key_0\": 2493,\n        \"key_1\": 9626.66268886565,\n        \"key_2\": 525\n      },\n      \"domain\": \"string\",\n      \"domain_autojoin\": false,\n      \"domain_restrict\": true,\n      \"legacy_org_id\": \"string\",\n      \"custom_role_mapping_name\": \"string\",\n      \"can_setup_saml\": false,\n      \"created_at\": 8446\n    }\n  ],\n  \"total_orgs\": 4404,\n  \"current_page\": 7908,\n  \"page_size\": 6831,\n  \"has_more_results\": false\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f8a5cb98-5c5e-4af4-9284-262d86b6db2d",
-          "name": "Import API Key",
-          "request": {
-            "name": "Import API Key",
-            "description": {
-              "content": "Import an existing API key generated by a legacy auth system.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "api",
-                "backend",
-                "v1",
-                "end_user_api_keys",
-                "import"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": {
-                    "content": "",
-                    "type": "text/plain"
-                  },
-                  "type": "any",
-                  "value": "{{authId}}",
-                  "key": "authId"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"api_key_token\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "460d610d-db40-4a96-8b26-6ec7d47cfe18",
-              "name": "API key imported",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "api",
-                    "backend",
-                    "v1",
-                    "end_user_api_keys",
-                    "import"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": {
-                        "content": "",
-                        "type": "text/plain"
-                      },
-                      "type": "any",
-                      "value": "{{authId}}",
-                      "key": "authId"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"api_key_token\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"org_id\": \"<uuid>\",\n  \"expires_at_seconds\": \"<integer>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
             }
           ],
           "event": [],
@@ -941,8 +656,8 @@
     ]
   },
   "info": {
-    "_postman_id": "32e2b0c7-0579-4d27-90c7-e4b21a48c676",
-    "name": "PropelAuth End-User Access Tokens API Keys API",
+    "_postman_id": "a4615176-b91e-4dd7-9490-7103cbe61048",
+    "name": "PropelAuth End-User API Keys Access Tokens Organizations API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth\nmanages on behalf of your end users and tenant organizations. API keys can be scoped to a\npersonal user, an organization, or imported from a legacy auth system. All endpoints\nrequire a PropelAuth Backend Integration API key.\n\n\nContact Support:\n Name: PropelAuth Support\n Email: support@propelauth.com",

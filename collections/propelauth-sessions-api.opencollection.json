@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Sessions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Logout All User Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/logout_all_sessions",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Invalidate every refresh token / session for the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Organizations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization (tenant)."
+        },
+        {
+          "info": {
+            "name": "Fetch Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an organization by ID."
+        },
+        {
+          "info": {
+            "name": "Update Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mutable organization fields."
+        },
+        {
+          "info": {
+            "name": "Delete Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete an organization."
+        },
+        {
+          "info": {
+            "name": "Fetch Orgs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/org/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Page through organizations with optional filters and ordering."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

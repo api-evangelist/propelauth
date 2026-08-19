@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Usage API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch API Key Usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/end_user_api_keys/usage",
+            "params": [
+              {
+                "name": "start_time_seconds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time_seconds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return validation counts and usage stats for end-user API keys."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

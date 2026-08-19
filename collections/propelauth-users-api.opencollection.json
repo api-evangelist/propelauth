@@ -1,0 +1,302 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Users API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user in your PropelAuth instance."
+        },
+        {
+          "info": {
+            "name": "Fetch User By User ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the user with the supplied user ID."
+        },
+        {
+          "info": {
+            "name": "Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mutable user fields (metadata, locked state, properties, etc.)."
+        },
+        {
+          "info": {
+            "name": "Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Permanently delete a user. This action cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Fetch User By Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the user with the supplied email address."
+        },
+        {
+          "info": {
+            "name": "Fetch User By Username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the user with the supplied username."
+        },
+        {
+          "info": {
+            "name": "Query For Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/query",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email_or_username",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_orgs",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Page through users filtered by email substring, legacy user ID, role, and more."
+        },
+        {
+          "info": {
+            "name": "Update User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/email",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change a user's email address. Optionally require email verification."
+        },
+        {
+          "info": {
+            "name": "Update User Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/password",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Programmatically set a user's password."
+        },
+        {
+          "info": {
+            "name": "Clear User Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/clear_password",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user's password, forcing them to reset on next login."
+        },
+        {
+          "info": {
+            "name": "Disable User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/disable",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Block the user from signing in. Existing sessions are invalidated."
+        },
+        {
+          "info": {
+            "name": "Enable User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/enable",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Re-enable a previously disabled user."
+        },
+        {
+          "info": {
+            "name": "Disable User 2FA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/user/:userId/disable_2fa",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove the user's two-factor authentication enrollment."
+        },
+        {
+          "info": {
+            "name": "Resend Email Confirmation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/resend_email_confirmation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resend the email verification message to a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

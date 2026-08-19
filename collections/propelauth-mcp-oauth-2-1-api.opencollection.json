@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "PropelAuth End-User API Keys Access Tokens OAuth2 API",
+    "name": "PropelAuth End-User API Keys Access Tokens MCP OAuth 2.1 API",
     "version": "1.0.0"
   },
   "request": {
@@ -13,18 +13,18 @@
   "items": [
     {
       "info": {
-        "name": "OAuth2",
+        "name": "MCP OAuth 2.1",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Authorize",
+            "name": "MCP Authorize",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://{authId}.propelauthtest.com/propelauth/oauth/authorize",
+            "url": "https://{authId}.propelauthtest.com/oauth/2.1/authorize",
             "params": [
               {
                 "name": "response_type",
@@ -63,16 +63,16 @@
               }
             ]
           },
-          "docs": "Redirect the user-agent to the PropelAuth login page. After successful login PropelAuth\nredirects back to your `redirect_uri` with a `code` parameter that you exchange at the\ntoken endpoint.\n"
+          "docs": "Begin an OAuth 2.1 authorization code flow with PKCE for an MCP client."
         },
         {
           "info": {
-            "name": "Token",
+            "name": "MCP Token",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://{authId}.propelauthtest.com/propelauth/oauth/token",
+            "url": "https://{authId}.propelauthtest.com/oauth/2.1/token",
             "body": {
               "type": "form-urlencoded",
               "data": [
@@ -107,37 +107,31 @@
               ]
             }
           },
-          "docs": "Exchange an authorization code for an access token and refresh token, or exchange an\nexisting refresh token for a fresh access token.\n"
+          "docs": "Exchange an authorization code for tokens, or refresh an existing token."
         },
         {
           "info": {
-            "name": "User Info",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://{authId}.propelauthtest.com/propelauth/oauth/userinfo"
-          },
-          "docs": "Return the OIDC user info document for the bearer token."
-        },
-        {
-          "info": {
-            "name": "Logout",
+            "name": "MCP Introspect",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://{authId}.propelauthtest.com/api/backend/v1/logout",
+            "url": "https://{authId}.propelauthtest.com/oauth/2.1/introspect",
             "body": {
-              "type": "json",
-              "data": "{}"
-            },
-            "auth": {
-              "type": "bearer",
-              "token": "{{bearerToken}}"
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "token",
+                  "value": ""
+                },
+                {
+                  "name": "token_type_hint",
+                  "value": ""
+                }
+              ]
             }
           },
-          "docs": "Invalidate the supplied refresh token. Backend-only."
+          "docs": "Validate an access token and return associated user, organization, and scope information."
         }
       ]
     }

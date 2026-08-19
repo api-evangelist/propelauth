@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PropelAuth End-User API Keys Access Tokens Invites API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invite User To Org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/invite_user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an invite email for a user to join an organization."
+        },
+        {
+          "info": {
+            "name": "Invite User To Org By User ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/invite_user_by_id",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invite an existing user (by ID) into an organization."
+        },
+        {
+          "info": {
+            "name": "Fetch Pending Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/pending_org_invites",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_number",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Page through pending invites for an organization or across the whole project."
+        },
+        {
+          "info": {
+            "name": "Revoke Pending Org Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{authId}.propelauthtest.com/api/backend/v1/pending_org_invites",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a pending invite."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
