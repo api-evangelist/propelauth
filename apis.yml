@@ -5,6 +5,11 @@ apis:
   name: PropelAuth End-User API Keys API
   tags:
   - Authentication
+  - APIKeys
+  - Machine-to-Machine
+  - B2B
+  tags_raw:
+  - Authentication
   - API Keys
   - Machine-to-Machine
   - B2B
@@ -26,6 +31,10 @@ apis:
 - aid: propelauth:propelauth-oauth2-api
   name: PropelAuth OAuth2 API
   tags:
+  - Authentication
+  - OpenID Connect
+  - Identity Provider
+  tags_raw:
   - Authentication
   - OAuth 2.0
   - OpenID Connect
@@ -335,6 +344,8 @@ apis:
   description: Create, read, update, and delete tenant organizations
   humanURL: https://docs.propelauth.com/reference/api/user
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -451,6 +462,8 @@ apis:
   description: Create, query, update, disable, delete, and inspect users
   humanURL: https://docs.propelauth.com/reference/api/user
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -506,6 +519,17 @@ apis:
     url: https://docs.propelauth.com/mcp-authentication/overview
 name: PropelAuth
 tags:
+  - Authentication
+  - Identity
+  - B2B
+  - Multi-Tenancy
+  - Authorization
+  - RBAC
+  - SSO
+  - SCIM
+  - MCP
+  - APIKeys
+tags_raw:
   - Authentication
   - Identity
   - B2B
