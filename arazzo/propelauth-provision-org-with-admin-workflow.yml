@@ -10,11 +10,14 @@ info:
     Integration API key as a bearer token.
   version: 1.0.0
 sourceDescriptions:
-- name: orgApi
-  url: ../openapi/propelauth-org-api-openapi.yml
+- name: membersApi
+  url: ../openapi/propelauth-members-api-openapi.yml
   type: openapi
-- name: userApi
-  url: ../openapi/propelauth-user-api-openapi.yml
+- name: organizationsApi
+  url: ../openapi/propelauth-organizations-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/propelauth-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-org-with-admin

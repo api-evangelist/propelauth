@@ -10,8 +10,8 @@ info:
     bearer token.
   version: 1.0.0
 sourceDescriptions:
-- name: userApi
-  url: ../openapi/propelauth-user-api-openapi.yml
+- name: usersApi
+  url: ../openapi/propelauth-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-and-update-user

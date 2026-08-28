@@ -10,8 +10,11 @@ info:
     the flow reads and runs without the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: userApi
-  url: ../openapi/propelauth-user-api-openapi.yml
+- name: magicLinksApi
+  url: ../openapi/propelauth-magic-links-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/propelauth-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: issue-magic-link-for-new-user

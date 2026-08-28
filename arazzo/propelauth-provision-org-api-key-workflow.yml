@@ -10,11 +10,11 @@ info:
     request, including the Backend Integration API key as a bearer token.
   version: 1.0.0
 sourceDescriptions:
-- name: orgApi
-  url: ../openapi/propelauth-org-api-openapi.yml
-  type: openapi
 - name: apiKeysApi
   url: ../openapi/propelauth-api-keys-api-openapi.yml
+  type: openapi
+- name: organizationsApi
+  url: ../openapi/propelauth-organizations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-org-api-key

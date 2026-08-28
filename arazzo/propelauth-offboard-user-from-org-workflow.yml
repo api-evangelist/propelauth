@@ -10,11 +10,11 @@ info:
     token, so the flow reads and runs without the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: userApi
-  url: ../openapi/propelauth-user-api-openapi.yml
+- name: membersApi
+  url: ../openapi/propelauth-members-api-openapi.yml
   type: openapi
-- name: orgApi
-  url: ../openapi/propelauth-org-api-openapi.yml
+- name: usersApi
+  url: ../openapi/propelauth-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: offboard-user-from-org
