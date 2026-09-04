@@ -560,11 +560,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/propelauth.png
 access: 3rd-Party
@@ -823,7 +824,7 @@ common:
     updated: '2026-05-25'
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-05-25'
-position: Providing
+position: Producing
 description: >-
   PropelAuth is a B2B SaaS authentication and multi-tenant user management platform purpose-built for organizations that
   sell to other organizations. It provides hosted login UIs, first-class organizations / tenants with custom roles and
