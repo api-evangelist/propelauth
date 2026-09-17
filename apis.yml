@@ -23,31 +23,11 @@ apis:
     type: JSONSchema
   - url: examples/propelauth-validate-api-key-example.json
     type: Examples
-  description: Backend REST API for issuing, validating, listing, updating, and revoking end-user API
-    keys that PropelAuth manages on behalf of your users and tenant organizations. Includes personal and
-    org-scoped keys, imported legacy keys, and per-key usage reporting. Up to 5M validations / month with
-    the Advanced API Keys add-on.
-- aid: propelauth:propelauth-oauth2-api
-  name: PropelAuth OAuth2 API
-  tags:
-  - Authentication
-  - OpenID Connect
-  - Identity Provider
-  tags_raw:
-  - Authentication
-  - OAuth 2.0
-  - OpenID Connect
-  - Identity Provider
-  humanURL: https://docs.propelauth.com/reference/api/oauth2
-  properties:
-  - url: https://docs.propelauth.com/reference/api/oauth2
-    type: Documentation
-  - url: openapi/propelauth-oauth2-api-openapi.yml
-    type: OpenAPI
-  description: OAuth 2.0 / OpenID Connect identity-provider endpoints exposed by your PropelAuth Auth
-    URL. Use PropelAuth as an OIDC provider for first-party and third-party OAuth clients, including no-code
-    / low-code and OIDC-aware backends. Authorize, token exchange, refresh, userinfo, logout, and OIDC
-    discovery.
+  description: >-
+    Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that PropelAuth
+    manages on behalf of your users and tenant organizations. Includes personal and org-scoped keys, imported
+    legacy keys, and per-key usage reporting. Up to 5M validations / month with the Advanced API Keys
+    add-on.
 - aid: propelauth:propelauth-access-tokens-api
   name: PropelAuth Access Tokens API
   description: Mint short-lived access tokens for impersonation and testing
@@ -516,6 +496,17 @@ apis:
     url: examples/propelauth-create-org-example.json
   - type: Documentation
     url: https://docs.propelauth.com/mcp-authentication/overview
+- aid: propelauth:propelauth-oauth2-api
+  name: PropelAuth O Auth2 API
+  description: Authorize, token, refresh, and userinfo endpoints
+  humanURL: https://docs.propelauth.com/reference/api/apikey
+  tags:
+  - OAuth2
+  properties:
+  - type: OpenAPI
+    url: openapi/propelauth-oauth2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.propelauth.com/reference/api/oauth2
 name: PropelAuth
 tags:
 - Authentication
