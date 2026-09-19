@@ -501,6 +501,8 @@ apis:
   description: Authorize, token, refresh, and userinfo endpoints
   humanURL: https://docs.propelauth.com/reference/api/apikey
   tags:
+  - Authentication
+  tags_raw:
   - OAuth2
   properties:
   - type: OpenAPI
