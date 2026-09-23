@@ -1,15 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: PropelAuth End-User API Keys Access Tokens Metadata API
-  description: 'Backend REST API for validating, issuing, listing, and revoking API keys that PropelAuth
+  title: PropelAuth MCP Authentication Metadata API
+  description: 'OAuth 2.1 authorization server endpoints PropelAuth exposes for Model Context Protocol
 
-    manages on behalf of your end users and tenant organizations. API keys can be scoped to a
+    (MCP) clients and AI agents. Includes dynamic client registration (RFC 7591), token
 
-    personal user, an organization, or imported from a legacy auth system. All endpoints
+    introspection, and the OAuth 2.1 authorization server metadata endpoint. Use this to
 
-    require a PropelAuth Backend Integration API key.
-
-    '
+    secure MCP servers with PropelAuth identities and organization-scoped permissions.'
   version: 1.0.0
   contact:
     name: PropelAuth Support
@@ -19,15 +17,8 @@ info:
     name: PropelAuth Terms
     url: https://www.propelauth.com/legal/terms-of-service
 servers:
-- url: https://{authId}.propelauthtest.com
-  description: Test environment
-  variables:
-    authId:
-      default: '0000000000'
 - url: https://auth.example.com
-  description: Production / Staging custom domain
-security:
-- BackendApiKey: []
+  description: Your PropelAuth Auth URL
 tags:
 - name: Metadata
   description: Authorization server metadata discovery
@@ -37,9 +28,7 @@ paths:
       summary: OAuth 2.1 Authorization Server Metadata
       description: 'OAuth 2.1 authorization server metadata document, including supported scopes, grant
 
-        types, response types, and PKCE methods.
-
-        '
+        types, response types, and PKCE methods.'
       operationId: mcpAuthServerMetadata
       tags:
       - Metadata
@@ -82,8 +71,3 @@ paths:
                     type: array
                     items:
                       type: string
-components:
-  securitySchemes:
-    BackendApiKey:
-      type: http
-      scheme: bearer
