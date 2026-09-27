@@ -131,15 +131,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/OrgPage'
 components:
-  parameters:
-    OrgId:
-      name: orgId
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
   schemas:
+    CreateOrgRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        domain:
+          type: string
+        enable_auto_joining_by_domain:
+          type: boolean
+        members_must_have_matching_domain:
+          type: boolean
+        max_users:
+          type: integer
+        custom_role_mapping_name:
+          type: string
+        legacy_org_id:
+          type: string
     Org:
       type: object
       properties:
@@ -195,25 +206,6 @@ components:
             type: string
         custom_role_mapping_name:
           type: string
-    CreateOrgRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        domain:
-          type: string
-        enable_auto_joining_by_domain:
-          type: boolean
-        members_must_have_matching_domain:
-          type: boolean
-        max_users:
-          type: integer
-        custom_role_mapping_name:
-          type: string
-        legacy_org_id:
-          type: string
     OrgPage:
       type: object
       properties:
@@ -229,6 +221,14 @@ components:
           type: integer
         has_more_results:
           type: boolean
+  parameters:
+    OrgId:
+      name: orgId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     BackendApiKey:
       type: http

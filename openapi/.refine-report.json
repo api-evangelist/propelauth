@@ -6,7 +6,7 @@
     "_original/propelauth-user-api-openapi.yml",
     "propelauth-api-keys-api-openapi.yml",
     "propelauth-discovery-api-openapi.yml",
-    "propelauth-o-auth2-api-openapi.yml",
+    "propelauth-oauth2-api-openapi.yml",
     "propelauth-usage-api-openapi.yml",
     "propelauth-validation-api-openapi.yml"
   ],
@@ -26,7 +26,7 @@
     "propelauth-users-api-openapi.yml",
     "propelauth-api-keys-api-openapi.yml",
     "propelauth-discovery-api-openapi.yml",
-    "propelauth-o-auth2-api-openapi.yml",
+    "propelauth-oauth2-api-openapi.yml",
     "propelauth-usage-api-openapi.yml",
     "propelauth-validation-api-openapi.yml"
   ],
@@ -35,7 +35,7 @@
   "warnings": [
     "propelauth-api-keys-api-openapi.yml: previously refined output kept for 7 operation(s) no archived document covers (e.g. /api/backend/v1/end_user_api_keys get, /api/backend/v1/end_user_api_keys post, /api/backend/v1/end_user_api_keys/archived get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
     "propelauth-discovery-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /.well-known/openid-configuration get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
-    "propelauth-o-auth2-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /api/backend/v1/logout post, /propelauth/oauth/authorize get, /propelauth/oauth/token post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "propelauth-oauth2-api-openapi.yml: previously refined output kept for 4 operation(s) no archived document covers (e.g. /api/backend/v1/logout post, /propelauth/oauth/authorize get, /propelauth/oauth/token post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
     "propelauth-usage-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /api/backend/v1/end_user_api_keys/usage get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
     "propelauth-validation-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /api/backend/v1/end_user_api_keys/validate post, /api/backend/v1/end_user_api_keys/validate_imported post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
   ],

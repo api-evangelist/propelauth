@@ -55,12 +55,6 @@ paths:
                 $ref: '#/components/schemas/MagicLink'
 components:
   schemas:
-    MagicLink:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
     MagicLinkRequest:
       type: object
       required:
@@ -82,6 +76,12 @@ components:
           type: object
           additionalProperties:
             type: string
+    MagicLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
   securitySchemes:
     BackendApiKey:
       type: http
