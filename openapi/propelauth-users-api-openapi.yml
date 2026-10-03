@@ -314,28 +314,6 @@ paths:
           description: Confirmation email queued
 components:
   schemas:
-    UpdateUserRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        picture_url:
-          type: string
-          format: uri
-        metadata:
-          type: object
-          additionalProperties: true
-        properties:
-          type: object
-          additionalProperties: true
-        update_password_required:
-          type: boolean
-        legacy_user_id:
-          type: string
     OrgMembership:
       type: object
       properties:
@@ -419,25 +397,6 @@ components:
           type: integer
         has_more_results:
           type: boolean
-    ErrorResponse:
-      type: object
-      properties:
-        error_code:
-          type: string
-        message:
-          type: string
-        user_facing_error:
-          type: string
-        user_facing_errors:
-          type: object
-          additionalProperties:
-            type: string
-        field_to_errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     CreateUserRequest:
       type: object
       required:
@@ -466,15 +425,56 @@ components:
         properties:
           type: object
           additionalProperties: true
+    ErrorResponse:
+      type: object
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string
+        user_facing_error:
+          type: string
+        user_facing_errors:
+          type: object
+          additionalProperties:
+            type: string
+        field_to_errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        picture_url:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties: true
+        properties:
+          type: object
+          additionalProperties: true
+        update_password_required:
+          type: boolean
+        legacy_user_id:
+          type: string
   responses:
-    BadRequest:
-      description: Bad request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:

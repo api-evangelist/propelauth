@@ -208,44 +208,6 @@ paths:
           description: API key imported
 components:
   schemas:
-    CreateApiKeyRequest:
-      type: object
-      properties:
-        user_id:
-          type: string
-          format: uuid
-        org_id:
-          type: string
-          format: uuid
-        expires_at_seconds:
-          type: integer
-        metadata:
-          type: object
-          additionalProperties: true
-    ApiKey:
-      type: object
-      properties:
-        api_key_id:
-          type: string
-          format: uuid
-        created_at:
-          type: integer
-        expires_at_seconds:
-          type: integer
-        metadata:
-          type: object
-          additionalProperties: true
-        user_id:
-          type: string
-          format: uuid
-        org_id:
-          type: string
-          format: uuid
-        type:
-          type: string
-          enum:
-          - personal
-          - org
     CreateApiKeyResponse:
       type: object
       properties:
@@ -270,6 +232,44 @@ components:
           type: integer
         has_more_results:
           type: boolean
+    ApiKey:
+      type: object
+      properties:
+        api_key_id:
+          type: string
+          format: uuid
+        created_at:
+          type: integer
+        expires_at_seconds:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+        user_id:
+          type: string
+          format: uuid
+        org_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - personal
+          - org
+    CreateApiKeyRequest:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        org_id:
+          type: string
+          format: uuid
+        expires_at_seconds:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
   parameters:
     ApiKeyId:
       name: apiKeyId
