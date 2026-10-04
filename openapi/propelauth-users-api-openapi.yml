@@ -313,25 +313,26 @@ paths:
         '200':
           description: Confirmation email queued
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    OrgMembership:
-      type: object
-      properties:
-        org_id:
-          type: string
-          format: uuid
-        org_name:
-          type: string
-        user_role:
-          type: string
-        inherited_user_roles_plus_current_role:
-          type: array
-          items:
-            type: string
-        user_permissions:
-          type: array
-          items:
-            type: string
     User:
       type: object
       properties:
@@ -382,6 +383,65 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/OrgMembership'
+    ErrorResponse:
+      type: object
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string
+        user_facing_error:
+          type: string
+        user_facing_errors:
+          type: object
+          additionalProperties:
+            type: string
+        field_to_errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        picture_url:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties: true
+        properties:
+          type: object
+          additionalProperties: true
+        update_password_required:
+          type: boolean
+        legacy_user_id:
+          type: string
+    OrgMembership:
+      type: object
+      properties:
+        org_id:
+          type: string
+          format: uuid
+        org_name:
+          type: string
+        user_role:
+          type: string
+        inherited_user_roles_plus_current_role:
+          type: array
+          items:
+            type: string
+        user_permissions:
+          type: array
+          items:
+            type: string
     UserPage:
       type: object
       properties:
@@ -425,66 +485,6 @@ components:
         properties:
           type: object
           additionalProperties: true
-    ErrorResponse:
-      type: object
-      properties:
-        error_code:
-          type: string
-        message:
-          type: string
-        user_facing_error:
-          type: string
-        user_facing_errors:
-          type: object
-          additionalProperties:
-            type: string
-        field_to_errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    UpdateUserRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        picture_url:
-          type: string
-          format: uri
-        metadata:
-          type: object
-          additionalProperties: true
-        properties:
-          type: object
-          additionalProperties: true
-        update_password_required:
-          type: boolean
-        legacy_user_id:
-          type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     UserId:
       name: userId

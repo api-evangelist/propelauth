@@ -151,28 +151,6 @@ components:
           type: string
         legacy_org_id:
           type: string
-    UpdateOrgRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        can_setup_saml:
-          type: boolean
-        max_users:
-          type: integer
-        metadata:
-          type: object
-          additionalProperties: true
-        domain:
-          type: string
-        require_2fa_by:
-          type: integer
-        extra_domains:
-          type: array
-          items:
-            type: string
-        custom_role_mapping_name:
-          type: string
     Org:
       type: object
       properties:
@@ -221,6 +199,28 @@ components:
           type: integer
         has_more_results:
           type: boolean
+    UpdateOrgRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        can_setup_saml:
+          type: boolean
+        max_users:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+        domain:
+          type: string
+        require_2fa_by:
+          type: integer
+        extra_domains:
+          type: array
+          items:
+            type: string
+        custom_role_mapping_name:
+          type: string
   parameters:
     OrgId:
       name: orgId
