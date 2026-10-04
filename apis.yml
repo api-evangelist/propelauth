@@ -564,6 +564,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/propelauth.png
 access: 3rd-Party
 common:
+- type: CapabilityMap
+  url: capabilities/propelauth-capability-edges.yml
+  name: PropelAuth Business Capability Map
 - type: Website
   url: https://www.propelauth.com/
 - type: AgenticAccess
