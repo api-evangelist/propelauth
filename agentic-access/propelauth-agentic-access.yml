@@ -1,41 +1,31 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/propelauth-api-keys-api-openapi.yml, openapi/propelauth-mcp-api-openapi.yml,
-  openapi/propelauth-oauth2-api-openapi.yml, openapi/propelauth-org-api-openapi.yml, openapi/propelauth-user-api-openapi.yml
+source: openapi/propelauth-access-tokens-api-openapi.yml, openapi/propelauth-api-keys-api-openapi.yml,
+  openapi/propelauth-discovery-api-openapi.yml, openapi/propelauth-dynamic-client-registration-api-openapi.yml,
+  openapi/propelauth-employees-api-openapi.yml, openapi/propelauth-invites-api-openapi.yml,
+  openapi/propelauth-magic-links-api-openapi.yml, openapi/propelauth-mcp-oauth-2-1-api-openapi.yml,
+  openapi/propelauth-members-api-openapi.yml, openapi/propelauth-metadata-api-openapi.yml, openapi/propelauth-migration-api-openapi.yml,
+  openapi/propelauth-oauth2-api-openapi.yml, openapi/propelauth-organizations-api-openapi.yml,
+  openapi/propelauth-role-mappings-api-openapi.yml, openapi/propelauth-sessions-api-openapi.yml,
+  openapi/propelauth-usage-api-openapi.yml, openapi/propelauth-users-api-openapi.yml, openapi/propelauth-validation-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 54
   by_action_class:
-    acting: 36
-    connected: 18
+    acting: 35
+    connected: 19
   by_consequence:
-    write: 32
-    read: 18
+    write: 31
+    read: 19
     safety-critical: 3
     physical: 1
   human_in_the_loop_required: 3
 operations:
-- path: /api/backend/v1/end_user_api_keys/validate
+- path: /api/backend/v1/access_token
   method: post
-  operationId: validateApiKey
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/end_user_api_keys/validate_imported
-  method: post
-  operationId: validateImportedApiKey
+  operationId: createAccessToken
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -127,9 +117,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/backend/v1/end_user_api_keys/usage
+- path: /api/backend/v1/end_user_api_keys/import
+  method: post
+  operationId: importApiKey
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /.well-known/openid-configuration
   method: get
-  operationId: fetchApiKeyUsage
+  operationId: oidcDiscovery
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -137,9 +143,93 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/backend/v1/end_user_api_keys/import
+- path: /oauth/2.1/register
   method: post
-  operationId: importApiKey
+  operationId: mcpRegister
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/employee/{employeeId}
+  method: get
+  operationId: fetchEmployeeById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/backend/v1/invite_user
+  method: post
+  operationId: inviteUserToOrg
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/invite_user_by_id
+  method: post
+  operationId: inviteUserToOrgById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/pending_org_invites
+  method: get
+  operationId: fetchPendingInvites
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/backend/v1/pending_org_invites
+  method: delete
+  operationId: revokePendingOrgInvite
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/backend/v1/magic_link
+  method: post
+  operationId: createMagicLink
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -195,9 +285,51 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /oauth/2.1/register
+- path: /api/backend/v1/user/org/{orgId}
+  method: get
+  operationId: fetchUsersInOrg
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/backend/v1/org/add_user
   method: post
-  operationId: mcpRegister
+  operationId: addUserToOrg
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/org/change_role
+  method: post
+  operationId: changeRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/org/remove_user
+  method: post
+  operationId: removeUserFromOrg
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -221,6 +353,38 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/backend/v1/migrate_user/
+  method: post
+  operationId: migrateUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/migrate_user/password
+  method: post
+  operationId: migrateUserPassword
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /propelauth/oauth/authorize
   method: get
   operationId: authorize
@@ -273,16 +437,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /.well-known/openid-configuration
-  method: get
-  operationId: oidcDiscovery
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /api/backend/v1/org/
   method: post
   operationId: createOrg
@@ -345,108 +499,12 @@ operations:
   method: post
   operationId: fetchOrgs
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/user/org/{orgId}
-  method: get
-  operationId: fetchUsersInOrg
-  x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     token:
       max-ttl: 3600
     audit: none
-- path: /api/backend/v1/org/add_user
-  method: post
-  operationId: addUserToOrg
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/invite_user
-  method: post
-  operationId: inviteUserToOrg
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/invite_user_by_id
-  method: post
-  operationId: inviteUserToOrgById
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/org/change_role
-  method: post
-  operationId: changeRole
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/org/remove_user
-  method: post
-  operationId: removeUserFromOrg
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /api/backend/v1/custom_role_mappings
   method: get
   operationId: fetchRoleMappings
@@ -457,9 +515,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/backend/v1/pending_org_invites
+- path: /api/backend/v1/user/{userId}/logout_all_sessions
+  method: post
+  operationId: logoutAllUserSessions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/backend/v1/end_user_api_keys/usage
   method: get
-  operationId: fetchPendingInvites
+  operationId: fetchApiKeyUsage
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -467,22 +541,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/backend/v1/pending_org_invites
-  method: delete
-  operationId: revokePendingOrgInvite
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
 - path: /api/backend/v1/user/
   method: post
   operationId: createUser
@@ -667,22 +725,6 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /api/backend/v1/user/{userId}/logout_all_sessions
-  method: post
-  operationId: logoutAllUserSessions
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /api/backend/v1/resend_email_confirmation
   method: post
   operationId: resendEmailConfirmation
@@ -701,9 +743,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/backend/v1/magic_link
+- path: /api/backend/v1/end_user_api_keys/validate
   method: post
-  operationId: createMagicLink
+  operationId: validateApiKey
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -717,9 +759,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/backend/v1/access_token
+- path: /api/backend/v1/end_user_api_keys/validate_imported
   method: post
-  operationId: createAccessToken
+  operationId: validateImportedApiKey
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -733,45 +775,3 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/backend/v1/migrate_user/
-  method: post
-  operationId: migrateUser
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/migrate_user/password
-  method: post
-  operationId: migrateUserPassword
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/backend/v1/employee/{employeeId}
-  method: get
-  operationId: fetchEmployeeById
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
