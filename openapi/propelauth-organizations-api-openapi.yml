@@ -132,6 +132,43 @@ paths:
                 $ref: '#/components/schemas/OrgPage'
 components:
   schemas:
+    UpdateOrgRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        can_setup_saml:
+          type: boolean
+        max_users:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+        domain:
+          type: string
+        require_2fa_by:
+          type: integer
+        extra_domains:
+          type: array
+          items:
+            type: string
+        custom_role_mapping_name:
+          type: string
+    OrgPage:
+      type: object
+      properties:
+        orgs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Org'
+        total_orgs:
+          type: integer
+        current_page:
+          type: integer
+        page_size:
+          type: integer
+        has_more_results:
+          type: boolean
     CreateOrgRequest:
       type: object
       required:
@@ -184,43 +221,6 @@ components:
           type: boolean
         created_at:
           type: integer
-    OrgPage:
-      type: object
-      properties:
-        orgs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Org'
-        total_orgs:
-          type: integer
-        current_page:
-          type: integer
-        page_size:
-          type: integer
-        has_more_results:
-          type: boolean
-    UpdateOrgRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        can_setup_saml:
-          type: boolean
-        max_users:
-          type: integer
-        metadata:
-          type: object
-          additionalProperties: true
-        domain:
-          type: string
-        require_2fa_by:
-          type: integer
-        extra_domains:
-          type: array
-          items:
-            type: string
-        custom_role_mapping_name:
-          type: string
   parameters:
     OrgId:
       name: orgId

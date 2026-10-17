@@ -208,6 +208,15 @@ paths:
           description: API key imported
 components:
   schemas:
+    CreateApiKeyResponse:
+      type: object
+      properties:
+        api_key_id:
+          type: string
+          format: uuid
+        api_key_token:
+          type: string
+          description: The plaintext API key — returned only once.
     ApiKey:
       type: object
       properties:
@@ -232,20 +241,6 @@ components:
           enum:
           - personal
           - org
-    CreateApiKeyRequest:
-      type: object
-      properties:
-        user_id:
-          type: string
-          format: uuid
-        org_id:
-          type: string
-          format: uuid
-        expires_at_seconds:
-          type: integer
-        metadata:
-          type: object
-          additionalProperties: true
     ApiKeyPage:
       type: object
       properties:
@@ -261,15 +256,20 @@ components:
           type: integer
         has_more_results:
           type: boolean
-    CreateApiKeyResponse:
+    CreateApiKeyRequest:
       type: object
       properties:
-        api_key_id:
+        user_id:
           type: string
           format: uuid
-        api_key_token:
+        org_id:
           type: string
-          description: The plaintext API key — returned only once.
+          format: uuid
+        expires_at_seconds:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
   parameters:
     ApiKeyId:
       name: apiKeyId

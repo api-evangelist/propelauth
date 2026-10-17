@@ -313,25 +313,6 @@ paths:
         '200':
           description: Confirmation email queued
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     User:
       type: object
@@ -383,25 +364,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/OrgMembership'
-    ErrorResponse:
-      type: object
-      properties:
-        error_code:
-          type: string
-        message:
-          type: string
-        user_facing_error:
-          type: string
-        user_facing_errors:
-          type: object
-          additionalProperties:
-            type: string
-        field_to_errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     UpdateUserRequest:
       type: object
       properties:
@@ -424,6 +386,53 @@ components:
           type: boolean
         legacy_user_id:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string
+        user_facing_error:
+          type: string
+        user_facing_errors:
+          type: object
+          additionalProperties:
+            type: string
+        field_to_errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateUserRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        email_confirmed:
+          type: boolean
+          default: false
+        send_email_to_confirm_email_address:
+          type: boolean
+          default: true
+        ask_user_to_update_password_on_login:
+          type: boolean
+        password:
+          type: string
+          format: password
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        properties:
+          type: object
+          additionalProperties: true
     OrgMembership:
       type: object
       properties:
@@ -457,34 +466,25 @@ components:
           type: integer
         has_more_results:
           type: boolean
-    CreateUserRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-          format: email
-        email_confirmed:
-          type: boolean
-          default: false
-        send_email_to_confirm_email_address:
-          type: boolean
-          default: true
-        ask_user_to_update_password_on_login:
-          type: boolean
-        password:
-          type: string
-          format: password
-        username:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        properties:
-          type: object
-          additionalProperties: true
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     UserId:
       name: userId
