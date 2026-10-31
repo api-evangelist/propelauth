@@ -1,4 +1,4 @@
-# PropelAuth (propelauth)
+# PropelAuth
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,212 +66,219 @@
 
 PropelAuth is a B2B SaaS authentication and multi-tenant user management platform purpose-built for organizations that sell to other organizations. It provides hosted login UIs, first-class organizations / tenants with custom roles and permissions, enterprise SSO via SAML and OIDC, SCIM directory sync, end-user API keys with validation and usage reporting, OAuth 2.0 / OpenID Connect identity-provider endpoints, and OAuth 2.1 MCP server authentication with dynamic client registration for AI agents. Backend SDKs span Node, Express, FastAPI, Flask, Django REST Framework, Python, Go, Rust, .NET, Ruby, and Cloudflare Workers; frontend SDKs cover React, JavaScript, and Next.js (App + Pages Router). A Terraform provider and official CLI back infrastructure-as-code workflows. Pricing starts free with 10,000 MAU and scales through Growth ($150/mo) and Growth Plus ($500/mo) to custom Enterprise contracts.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/propelauth/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/propelauth/refs/heads/main/apis.yml)
+**Areas:** Authentication · Identity · B2B · Multi-Tenancy · Authorization · RBAC · SSO · SCIM · MCP · APIKeys · Identity Federation
 
-## Scope
+## PropelAuth on APIs.io
 
-- **Position:** Providing
-- **Access:** 3rd-Party
+Everything profiled for PropelAuth is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/propelauth/](https://apis.io/providers/propelauth/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (18)
 
-- Authentication
-- Identity
-- B2B
-- Multi-Tenancy
-- Authorization
-- RBAC
-- SSO
-- SCIM
-- MCP
-- API Keys
+- [PropelAuth End-User API Keys API](https://apis.io/apis/propelauth/propelauth-api-keys-api/) — Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that PropelAuth manages on behalf of your users and tenant…
+- [PropelAuth Access Tokens API](https://apis.io/apis/propelauth/propelauth-access-tokens-api/) — Mint short-lived access tokens for impersonation and testing
+- [PropelAuth Discovery API](https://apis.io/apis/propelauth/propelauth-discovery-api/) — OpenID Connect discovery
+- [PropelAuth Dynamic Client Registration API](https://apis.io/apis/propelauth/propelauth-dynamic-client-registration-api/) — RFC 7591 dynamic client registration
+- [PropelAuth Employees API](https://apis.io/apis/propelauth/propelauth-employees-api/) — Inspect PropelAuth dashboard employees (internal team)
+- [PropelAuth Invites API](https://apis.io/apis/propelauth/propelauth-invites-api/) — Inspect and revoke pending organization invites
+- [PropelAuth Magic Links API](https://apis.io/apis/propelauth/propelauth-magic-links-api/) — Issue one-time magic links for login flows
+- [PropelAuth MCP OAuth 2.1 API](https://apis.io/apis/propelauth/propelauth-mcp-oauth-2-1-api/) — OAuth 2.1 flows for MCP clients
+- [PropelAuth Members API](https://apis.io/apis/propelauth/propelauth-members-api/) — Add, remove, invite, and change roles for users within an organization
+- [PropelAuth Metadata API](https://apis.io/apis/propelauth/propelauth-metadata-api/) — Authorization server metadata discovery
+- [PropelAuth Migration API](https://apis.io/apis/propelauth/propelauth-migration-api/) — Migrate users from external authentication providers
+- [PropelAuth Organizations API](https://apis.io/apis/propelauth/propelauth-organizations-api/) — Create, read, update, and delete tenant organizations
+- [PropelAuth Role Mappings API](https://apis.io/apis/propelauth/propelauth-role-mappings-api/) — Manage custom role mappings per organization
+- [PropelAuth Sessions API](https://apis.io/apis/propelauth/propelauth-sessions-api/) — Manage user sessions and forced logout
+- [PropelAuth Usage API](https://apis.io/apis/propelauth/propelauth-usage-api/) — Inspect API key usage statistics
+- [PropelAuth Users API](https://apis.io/apis/propelauth/propelauth-users-api/) — Create, query, update, disable, delete, and inspect users
+- [PropelAuth Validation API](https://apis.io/apis/propelauth/propelauth-validation-api/) — Validate end-user, personal, organization, and imported API keys
+- [PropelAuth O Auth2 API](https://apis.io/apis/propelauth/propelauth-oauth2-api/) — Authorize, token, refresh, and userinfo endpoints
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25T00:00:00.000Z
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (13)
 
-### PropelAuth User API
+Multi-step workflows that chain operations into a business task.
 
-Backend REST API for managing PropelAuth-managed end users. Create, fetch, query, update, delete, enable/disable, and migrate users; issue magic links and short-lived access tokens; manage 2FA and force-logout sessions. Authenticated with a PropelAuth Backend Integration API key as a Bearer token.
+- [PropelAuth Create And Update User](https://apis.io/arazzos/propelauth/propelauth-create-and-update-user-workflow/)
+- [PropelAuth Invite Existing User By ID](https://apis.io/arazzos/propelauth/propelauth-invite-existing-user-by-id-workflow/)
+- [PropelAuth Invite User To Org](https://apis.io/arazzos/propelauth/propelauth-invite-user-to-org-workflow/)
+- [PropelAuth Issue Magic Link For New User](https://apis.io/arazzos/propelauth/propelauth-issue-magic-link-for-new-user-workflow/)
+- [PropelAuth Migrate User With Password](https://apis.io/arazzos/propelauth/propelauth-migrate-user-with-password-workflow/)
+- [PropelAuth Offboard User From Org](https://apis.io/arazzos/propelauth/propelauth-offboard-user-from-org-workflow/)
+- [PropelAuth Onboard User Into Org](https://apis.io/arazzos/propelauth/propelauth-onboard-user-into-org-workflow/)
+- [PropelAuth Promote Org Member](https://apis.io/arazzos/propelauth/propelauth-promote-org-member-workflow/)
+- [PropelAuth Provision Org API Key](https://apis.io/arazzos/propelauth/propelauth-provision-org-api-key-workflow/)
+- [PropelAuth Provision Org With Admin](https://apis.io/arazzos/propelauth/propelauth-provision-org-with-admin-workflow/)
+- [PropelAuth Revoke Pending Invite](https://apis.io/arazzos/propelauth/propelauth-revoke-pending-invite-workflow/)
+- [PropelAuth Rotate User API Key](https://apis.io/arazzos/propelauth/propelauth-rotate-user-api-key-workflow/)
+- [PropelAuth Upsert User By Email](https://apis.io/arazzos/propelauth/propelauth-upsert-user-by-email-workflow/)
 
-- **Human URL:** [https://docs.propelauth.com/reference/api/user](https://docs.propelauth.com/reference/api/user)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Authentication
-- Users
-- B2B
-- Identity
+- [Propelauth Agentic Access](https://apis.io/agentic-access/propelauth/propelauth-agentic-access/)
 
-#### Properties
+#### JSON Schema (3)
 
-- [Documentation](https://docs.propelauth.com/reference/api/user)
-- [Getting Started](https://docs.propelauth.com/reference/api/getting-started)
-- [OpenAPI](openapi/propelauth-user-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/propelauth-user-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/propelauth-user-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/propelauth-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/propelauth-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Example](examples/propelauth-create-user-example.json)
-- [Example](examples/propelauth-create-magic-link-example.json)
+The data models the API reads and writes.
 
-### PropelAuth Organization API
+- [PropelAuth End-User API Key](https://apis.io/schemas/propelauth/propelauth-api-key/)
+- [PropelAuth Organization](https://apis.io/schemas/propelauth/propelauth-org/)
+- [PropelAuth User](https://apis.io/schemas/propelauth/propelauth-user/)
 
-Backend REST API for managing tenant organizations in PropelAuth. CRUD on organizations, member management (add, remove, change role), invite flows, custom role mappings, and pending invite revocation. The multi-tenant core of every B2B SaaS PropelAuth deployment.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.propelauth.com/reference/api/org](https://docs.propelauth.com/reference/api/org)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Propelauth Context](https://apis.io/jsonld/propelauth/propelauth-context/)
 
-- Authentication
-- Organizations
-- Multi-Tenancy
-- B2B
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.propelauth.com/reference/api/org)
-- [OpenAPI](openapi/propelauth-org-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/propelauth-org-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/propelauth-org-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/propelauth-org-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/propelauth-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Example](examples/propelauth-create-org-example.json)
+- [Propelauth Vocabulary](https://apis.io/vocabularies/propelauth/propelauth-vocabulary/)
 
-### PropelAuth End-User API Keys API
+#### Examples (4)
 
-Backend REST API for issuing, validating, listing, updating, and revoking end-user API keys that PropelAuth manages on behalf of your users and tenant organizations. Includes personal and org-scoped keys, imported legacy keys, and per-key usage reporting. Up to 5M validations / month with the Advanced API Keys add-on.
+Example requests and responses.
 
-- **Human URL:** [https://docs.propelauth.com/reference/api/apikey](https://docs.propelauth.com/reference/api/apikey)
+- [Propelauth Create Magic Link Example](https://apis.io/examples/propelauth/propelauth-create-magic-link-example/)
+- [Propelauth Create Org Example](https://apis.io/examples/propelauth/propelauth-create-org-example/)
+- [Propelauth Create User Example](https://apis.io/examples/propelauth/propelauth-create-user-example/)
+- [Propelauth Validate Api Key Example](https://apis.io/examples/propelauth/propelauth-validate-api-key-example/)
 
-#### Tags
+#### Collections (26)
 
-- Authentication
-- API Keys
-- Machine-to-Machine
-- B2B
+Postman and Open Collection request collections.
 
-#### Properties
+- [PropelAuth End-User API Keys Access Tokens API](https://apis.io/collections/propelauth/open-propelauth-access-tokens-api/)
+- [PropelAuth End-User Access Tokens API Keys API](https://apis.io/collections/propelauth/open-propelauth-api-keys-api/)
+- [PropelAuth End-User API Keys Access Tokens Discovery API](https://apis.io/collections/propelauth/open-propelauth-discovery-api/)
+- [PropelAuth End-User API Keys Access Tokens Dynamic Client Registration API](https://apis.io/collections/propelauth/open-propelauth-dynamic-client-registration-api/)
+- [PropelAuth End-User API Keys Access Tokens Employees API](https://apis.io/collections/propelauth/open-propelauth-employees-api/)
+- [PropelAuth End-User API Keys Access Tokens Invites API](https://apis.io/collections/propelauth/open-propelauth-invites-api/)
+- [PropelAuth End-User API Keys Access Tokens Magic Links API](https://apis.io/collections/propelauth/open-propelauth-magic-links-api/)
+- [PropelAuth MCP Authentication API](https://apis.io/collections/propelauth/open-propelauth-mcp-api/)
+- [PropelAuth End-User API Keys Access Tokens MCP OAuth 2.1 API](https://apis.io/collections/propelauth/open-propelauth-mcp-oauth-2-1-api/)
+- [PropelAuth End-User API Keys Access Tokens Members API](https://apis.io/collections/propelauth/open-propelauth-members-api/)
+- [PropelAuth End-User API Keys Access Tokens Metadata API](https://apis.io/collections/propelauth/open-propelauth-metadata-api/)
+- [PropelAuth End-User API Keys Access Tokens Migration API](https://apis.io/collections/propelauth/open-propelauth-migration-api/)
+- [PropelAuth End-User API Keys Access Tokens OAuth2 API](https://apis.io/collections/propelauth/open-propelauth-oauth2-api/)
+- [PropelAuth Organization API](https://apis.io/collections/propelauth/open-propelauth-org-api/)
+- [PropelAuth End-User API Keys Access Tokens Organizations API](https://apis.io/collections/propelauth/open-propelauth-organizations-api/)
+- [PropelAuth End-User API Keys Access Tokens Role Mappings API](https://apis.io/collections/propelauth/open-propelauth-role-mappings-api/)
+- [PropelAuth End-User API Keys Access Tokens Sessions API](https://apis.io/collections/propelauth/open-propelauth-sessions-api/)
+- [PropelAuth End-User API Keys Access Tokens Usage API](https://apis.io/collections/propelauth/open-propelauth-usage-api/)
+- [PropelAuth User API](https://apis.io/collections/propelauth/open-propelauth-user-api/)
+- [PropelAuth End-User API Keys Access Tokens Users API](https://apis.io/collections/propelauth/open-propelauth-users-api/)
+- [PropelAuth End-User API Keys Access Tokens Validation API](https://apis.io/collections/propelauth/open-propelauth-validation-api/)
+- [PropelAuth End-User API Keys API](https://apis.io/collections/propelauth/postman-propelauth-api-keys-api/)
+- [PropelAuth MCP Authentication API](https://apis.io/collections/propelauth/postman-propelauth-mcp-api/)
+- [PropelAuth OAuth2 API](https://apis.io/collections/propelauth/postman-propelauth-oauth2-api/)
+- [PropelAuth Organization API](https://apis.io/collections/propelauth/postman-propelauth-org-api/)
+- …and 1 more published on APIs.io
 
-- [Documentation](https://docs.propelauth.com/reference/api/apikey)
-- [OpenAPI](openapi/propelauth-api-keys-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/propelauth-api-keys-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/propelauth-api-keys-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/propelauth-api-key-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/propelauth-validate-api-key-example.json)
+#### Governance rules (2)
 
-### PropelAuth OAuth2 API
+Spectral rulesets for the provider's contracts.
 
-OAuth 2.0 / OpenID Connect identity-provider endpoints exposed by your PropelAuth Auth URL. Use PropelAuth as an OIDC provider for first-party and third-party OAuth clients, including no-code / low-code and OIDC-aware backends. Authorize, token exchange, refresh, userinfo, logout, and OIDC discovery.
+- [PropelAuth — jsonschema rules](https://apis.io/rules/propelauth/propelauth-jsonschema-spectral-rules/)
+- [PropelAuth API Rules](https://apis.io/rules/propelauth/propelauth-rules/)
 
-- **Human URL:** [https://docs.propelauth.com/reference/api/oauth2](https://docs.propelauth.com/reference/api/oauth2)
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Authentication
-- OAuth 2.0
-- OpenID Connect
-- Identity Provider
+- [Propelauth Authentication](https://apis.io/security/propelauth/propelauth-authentication/)
+- [Propelauth Domain Security](https://apis.io/security/propelauth/propelauth-domain-security/)
+- [Propelauth Trust Center](https://apis.io/security/propelauth/propelauth-trust-center/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.propelauth.com/reference/api/oauth2)
-- [OpenAPI](openapi/propelauth-oauth2-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/propelauth-oauth2-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/propelauth-oauth2-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### PropelAuth MCP Authentication API
+- [Propelauth Plans Pricing](https://apis.io/plans/propelauth/propelauth-plans-pricing/)
 
-OAuth 2.1 authorization-server endpoints for Model Context Protocol (MCP) clients and AI agents. Authorize with PKCE, exchange and refresh tokens, introspect access tokens, dynamically register MCP clients (RFC 7591), and discover OAuth 2.1 server metadata. Secure MCP servers with PropelAuth identities and organization-scoped permissions.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.propelauth.com/mcp-authentication/overview](https://docs.propelauth.com/mcp-authentication/overview)
+Published request limits.
 
-#### Tags
+- [Propelauth Rate Limits](https://apis.io/rate-limits/propelauth/propelauth-rate-limits/)
 
-- Authentication
-- MCP
-- OAuth 2.1
-- AI Agents
-- Beta
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://docs.propelauth.com/mcp-authentication/overview)
-- [OpenAPI](openapi/propelauth-mcp-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/propelauth-mcp-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/propelauth-mcp-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Propelauth Finops](https://apis.io/finops/propelauth/propelauth-finops/)
 
-## Common Properties
+## Where to find this API
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://www.propelauth.com)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.propelauth.com/)
 - [Documentation](https://docs.propelauth.com)
-- [Getting Started](https://docs.propelauth.com/getting-started)
-- [Documentation](https://docs.propelauth.com/reference)
-- [Documentation](https://docs.propelauth.com/reference/api/getting-started)
-- [Documentation](https://docs.propelauth.com/reference/api/user)
-- [Documentation](https://docs.propelauth.com/reference/api/org)
-- [Documentation](https://docs.propelauth.com/reference/api/apikey)
-- [Documentation](https://docs.propelauth.com/reference/api/oauth2)
-- [Documentation](https://docs.propelauth.com/mcp-authentication/overview)
+- [Getting started](https://docs.propelauth.com/getting-started)
 - [Pricing](https://www.propelauth.com/pricing)
-- [Status Page](https://status.propelauth.com/)
-- [Status Page](https://status.propelauth.com/default/history.rss)
 - [Blog](https://www.propelauth.com/blog)
-- [Terms of Service](https://www.propelauth.com/legal/terms-of-service)
-- [Privacy Policy](https://www.propelauth.com/legal/privacy-policy)
-- [Sign Up](https://auth.propelauth.com/en/signup)
-- [Documentation](https://byo.propelauth.com)
-- [Documentation](https://docs.propelauth.com/files/PropelAuth.postman_collection.json)
-- [Support](support@propelauth.com)
-- [GitHub Organization](https://github.com/PropelAuth)
-- [SDK](https://github.com/PropelAuth/react)
-- [SDK](https://github.com/PropelAuth/javascript)
-- [SDK](https://github.com/PropelAuth/nextjs)
-- [SDK](https://github.com/PropelAuth/node)
-- [SDK](https://github.com/PropelAuth/express)
-- [SDK](https://github.com/PropelAuth/propelauth-fastapi)
-- [SDK](https://github.com/PropelAuth/propelauth-flask)
-- [SDK](https://github.com/PropelAuth/propelauth-py)
-- [SDK](https://github.com/PropelAuth/propelauth-django-rest-framework)
-- [SDK](https://github.com/PropelAuth/propelauth-go)
-- [SDK](https://github.com/PropelAuth/rust)
-- [SDK](https://github.com/PropelAuth/dotnet)
-- [SDK](https://github.com/PropelAuth/propelauth-rb)
-- [SDK](https://github.com/PropelAuth/cloudflare-worker)
-- [SDK](https://github.com/PropelAuth/frontend-apis)
-- [SDK](https://github.com/PropelAuth/node-apis)
-- [Tool](https://github.com/PropelAuth/cli)
-- [Tool](https://github.com/PropelAuth/terraform-provider-propelauth)
-- [Tool](https://github.com/PropelAuth/byo-go)
-- [Tool](https://github.com/PropelAuth/propelauth-byo-java)
-- [Tool](https://github.com/PropelAuth/base-elements)
-- [Documentation](https://github.com/PropelAuth/documentation)
-- [Code Examples](https://github.com/PropelAuth/react-frontend-starter)
-- [Code Examples](https://github.com/PropelAuth/express-backend-starter)
-- [Code Examples](https://github.com/PropelAuth/flask-backend-starter)
-- [Code Examples](https://github.com/PropelAuth/fastapi-backend-starter)
-- [Code Examples](https://github.com/PropelAuth/python-chalice-backend-starter)
-- [Code Examples](https://github.com/PropelAuth/rust-axum-starter)
-- [Code Examples](https://github.com/PropelAuth/redwood)
-- [Code Examples](https://github.com/PropelAuth/postgraphile-propelauth-starter)
-- [Code Examples](https://github.com/PropelAuth/nextjs-example-app)
-- [Code Examples](https://github.com/PropelAuth/react-express-comment-example)
-- [Code Examples](https://github.com/PropelAuth/demo-genai-api-keys)
-- [Code Examples](https://github.com/PropelAuth/demo-b2b-coupon-generator)
-- [Code Examples](https://github.com/PropelAuth/windows-login-pages)
-- [Plans](plans/propelauth-plans-pricing.yml)
-- [Rate Limits](rate-limits/propelauth-rate-limits.yml)
-- [Fin Ops](finops/propelauth-finops.yml)
-- [Vocabulary](vocabulary/propelauth-vocabulary.yml)
-- [Spectral Ruleset](rules/propelauth-rules.yml)
-- [Features](undefined)
+- [Terms of service](https://www.propelauth.com/legal/terms-of-service)
+- [Privacy policy](https://www.propelauth.com/legal/privacy-policy)
+- [GitHub](https://github.com/PropelAuth)
+- [Status](https://status.propelauth.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 56.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 61.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 63.1 |
+| Access clarity | 68.4 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/propelauth/](https://apis.io/providers/propelauth/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for PropelAuth: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/propelauth/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
